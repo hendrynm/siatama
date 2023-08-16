@@ -1,4 +1,4 @@
-<?= $this->extend('_layout/master') ?>
+<?= $this->extend('admin/_layout/master') ?>
 
 <?= $this->section('menu') ?>
 Selamat Datang
@@ -8,24 +8,20 @@ Selamat Datang
 Beranda
 <?= $this->endSection() ?>
 
-<?= $this->section('hero') ?>
-<div class="content">
+<?= $this->section('content') ?>
+<div class="col-12">
     <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center py-2 text-center text-md-start">
         <div class="flex-grow-1 mb-1 mb-md-0">
-            <h1 class="h4 fw-bold mb-0">
+            <h1 class="fs-4 fw-semibold mb-1">
                 Selamat datang
             </h1>
-            <h1 class="h3 fw-bold mb-2 text-primary">
+            <h1 class="fs-3 fw-bold mb-3 text-primary">
                 Hendry Naufal Marbella
             </h1>
-            <h1 class="h6 fw-medium fw-medium mb-0">
+            <h1 class="fs-6 fw-medium">
                 Semoga harimu menyenangkan 😇
             </h1>
         </div>
     </div>
 </div>
-<?= $this->endSection() ?>
-
-<?= $this->section('konten') ?>
-AUhAuHAhahaah
 <?= $this->endSection() ?>

@@ -1,84 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="id">
 <head>
     <meta charset="utf-8">
-    <title><?= lang('Errors.pageNotFound') ?></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <style>
-        div.logo {
-            height: 200px;
-            width: 155px;
-            display: inline-block;
-            opacity: 0.08;
-            position: absolute;
-            top: 2rem;
-            left: 50%;
-            margin-left: -73px;
-        }
-        body {
-            height: 100%;
-            background: #fafafa;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            color: #777;
-            font-weight: 300;
-        }
-        h1 {
-            font-weight: lighter;
-            letter-spacing: normal;
-            font-size: 3rem;
-            margin-top: 0;
-            margin-bottom: 0;
-            color: #222;
-        }
-        .wrap {
-            max-width: 1024px;
-            margin: 5rem auto;
-            padding: 2rem;
-            background: #fff;
-            text-align: center;
-            border: 1px solid #efefef;
-            border-radius: 0.5rem;
-            position: relative;
-        }
-        pre {
-            white-space: normal;
-            margin-top: 1.5rem;
-        }
-        code {
-            background: #fafafa;
-            border: 1px solid #efefef;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            display: block;
-        }
-        p {
-            margin-top: 1.5rem;
-        }
-        .footer {
-            margin-top: 2rem;
-            border-top: 1px solid #efefef;
-            padding: 1em 2em 0 2em;
-            font-size: 85%;
-            color: #999;
-        }
-        a:active,
-        a:link,
-        a:visited {
-            color: #dd4814;
-        }
-    </style>
+    <title>Error 404 | Halaman tidak ditemukan | Siatama Privat</title>
+
+    <meta name="description" content="Sistem Manajemen Bimbingan Belajar oleh Siatama Privat">
+    <meta name="author" content="Siatama Privat">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('siatama-sementara.png') ?>">
+
+    <link rel="stylesheet" id="css-main" href="<?= base_url('src/assets/css/codebase.min.css') ?>">
 </head>
 <body>
-    <div class="wrap">
-        <h1>404</h1>
-
-        <p>
-            <?php if (ENVIRONMENT !== 'production') : ?>
-                <?= nl2br(esc($message)) ?>
-            <?php else : ?>
-                <?= lang('Errors.sorryCannotFind') ?>
-            <?php endif ?>
-        </p>
-    </div>
+<div id="page-container" class="main-content-boxed">
+    <main id="main-container">
+        <div class="hero bg-body-extra-light">
+            <div class="hero-inner">
+                <div class="content content-full">
+                    <div class="py-4 text-center">
+                        <div class="display-1 fw-bold text-danger">
+                            <i class="fa fa-exclamation-triangle opacity-50 me-1"></i> 404
+                        </div>
+                        <h1 class="fw-bold mt-5 mb-2">Halaman Tidak Ditemukan</h1>
+                        <h2 class="fs-4 fw-medium text-muted mb-5 mt-3">Maaf, halaman yang kamu cari tidak ditemukan</h2>
+                        <a class="btn btn-lg btn-alt-secondary" href="<?= previous_url() ?>">
+                            <i class="fa fa-arrow-left me-2"></i> Kembali ke halaman sebelumnya
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<script src="<?= base_url('src/assets/js/codebase.app.min.js') ?>"></script>
 </body>
 </html>

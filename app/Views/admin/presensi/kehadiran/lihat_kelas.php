@@ -5,15 +5,15 @@ Presensi
 <?= $this->endSection() ?>
 
 <?= $this->section('submenu') ?>
-Beranda
+Detail Kelas
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 <div class="col-12">
     <div class="block block-bordered">
         <div class="block-header bg-primary px-4 d-flex">
-            <a href="#" class="fa fa-arrow-circle-left text-white fs-3"></a>
-            <span class="ms-3 me-auto text-white fs-5 fw-semibold">Kehadiran Siswa</span>
+            <a href="<?= route_to('admin.presensi.kehadiran.pilih_kelas') ?>" class="fa fa-arrow-circle-left text-white fs-3"></a>
+            <span class="ms-3 me-auto text-white fs-5 fw-semibold">Detail Kelas dan Tatap Muka</span>
         </div>
         <div class="block-content px-3 py-4 d-flex row justify-content-between">
             <div class="col-12 col-xl-6 space-y-2">
@@ -43,8 +43,8 @@ Beranda
             </div>
             <div class="col-auto d-none d-xl-block">
                 <div class="row">
-                    <div class="col-6 col-md-4 col-xl-2">
-                        <a class="btn btn-alt-primary text-center" href="#">
+                    <div class="col-12">
+                        <a class="btn btn-alt-primary text-center" href="<?= route_to('admin.presensi.kehadiran.tambah_presensi') ?>">
                             <div class="block-content py-3 px-4">
                                 <div class="mb-3">
                                     <i class="fa fa-plus fa-2x"></i>
@@ -58,7 +58,7 @@ Beranda
             <div class="col-auto mt-3 d-block d-xl-none">
                 <div class="row">
                     <div class="col-12">
-                        <a class="btn btn-alt-primary text-center" href="#">
+                        <a class="btn btn-alt-primary text-center" href="<?= route_to('admin.presensi.kehadiran.tambah_presensi') ?>">
                             <i class="fa fa-plus"></i>
                             <span class="fw-medium ms-2" style="line-height: 1.25">Tambah Presensi</span>
                         </a>
@@ -72,7 +72,7 @@ Beranda
 <div class="col-12 mt-3">
     <div class="block block-bordered">
         <div class="block-content p-0">
-            <table class="table my-0">
+            <table class="table table-hover my-0">
                 <thead>
                 <tr class="bg-gray text-sm text-center">
                     <th class="col-2">Tatap Muka</th>
@@ -81,12 +81,12 @@ Beranda
                     <th class="col-2">Aksi</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody class="align-middle fs-sm">
                 <tr>
-                    <th class="text-center fs-1 fw-bold" scope="row">
+                    <th class="text-center fs-1 fw-medium" scope="row">
                         1
                     </th>
-                    <td class="fs-sm">
+                    <td class="">
                         <div class="fw-medium"><i class="far fa-calendar me-2"></i>Senin, 20 September 2021</div>
                         <div class=""><i class="far fa-clock me-2"></i>16:00 - 18:00</div>
                     </td>
@@ -95,15 +95,15 @@ Beranda
                     </td>
                     <td class="text-center">
                         <div class="space-y-1">
-                            <a href="#" class="btn btn-alt-primary btn-sm w-100"><i class="fa fa-eye me-2"></i>Presensi</a>
+                            <a href="<?= route_to('admin.presensi.kehadiran.isi_presensi') ?>" class="btn btn-alt-primary btn-sm w-100"><i class="fa fa-eye me-2"></i>Presensi</a>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <th class="text-center fs-1 fw-bold" scope="row">
+                    <th class="text-center fs-1 fw-medium" scope="row">
                         2
                     </th>
-                    <td class="fs-sm">
+                    <td class="">
                         <div class="fw-medium"><i class="far fa-calendar me-2"></i>Senin, 30 September 2021</div>
                         <div class=""><i class="far fa-clock me-2"></i>16:00 - 18:00</div>
                     </td>
@@ -112,8 +112,27 @@ Beranda
                     </td>
                     <td class="text-center">
                         <div class="space-y-1">
-                            <a href="#" class="btn btn-alt-primary btn-sm w-100"><i class="fa fa-eye me-2"></i>Presensi</a>
-                            <a href="#" class="btn btn-alt-warning btn-sm w-100"><i class="fa fa-edit me-2"></i>Ubah</a>
+                            <a href="<?= route_to('admin.presensi.kehadiran.isi_presensi') ?>" class="btn btn-alt-primary btn-sm w-100"><i class="fa fa-eye me-2"></i>Presensi</a>
+                            <a href="<?= route_to('admin.presensi.kehadiran.ubah_presensi') ?>" class="btn btn-alt-warning btn-sm w-100"><i class="fa fa-edit me-2"></i>Ubah</a>
+                            <a href="#" class="btn btn-alt-danger btn-sm w-100"><i class="fa fa-trash me-2"></i>Hapus</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="text-center fs-1 fw-medium" scope="row">
+                        3
+                    </th>
+                    <td class="">
+                        <div class="fw-medium"><i class="far fa-calendar me-2"></i>Senin, 10 Oktober 2021</div>
+                        <div class=""><i class="far fa-clock me-2"></i>16:00 - 18:00</div>
+                    </td>
+                    <td class="">
+                        Hendry Naufal Marbella
+                    </td>
+                    <td class="text-center">
+                        <div class="space-y-1">
+                            <a href="<?= route_to('admin.presensi.kehadiran.isi_presensi') ?>" class="btn btn-alt-primary btn-sm w-100"><i class="fa fa-eye me-2"></i>Presensi</a>
+                            <a href="<?= route_to('admin.presensi.kehadiran.ubah_presensi') ?>" class="btn btn-alt-warning btn-sm w-100"><i class="fa fa-edit me-2"></i>Ubah</a>
                             <a href="#" class="btn btn-alt-danger btn-sm w-100"><i class="fa fa-trash me-2"></i>Hapus</a>
                         </div>
                     </td>
