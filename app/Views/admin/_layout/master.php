@@ -109,27 +109,33 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?= base_url() ?>">
+                            <a class="nav-main-link <?= cek_aktif(route_to('admin.penilaian.index')) ?>" href="<?= route_to('admin.penilaian.index') ?>">
+                                <i class="nav-main-link-icon fa fa-marker"></i>
+                                <span class="nav-main-link-name">Penilaian</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link <?= cek_aktif(route_to('admin.laporan.index')) ?>" href="<?= route_to('admin.laporan.index') ?>">
                                 <i class="nav-main-link-icon fa fa-book-open-reader"></i>
-                                <span class="nav-main-link-name">Laporan Siswa</span>
+                                <span class="nav-main-link-name">Laporan</span>
                             </a>
                         </li>
                         
                         <li class="nav-main-heading">Manajemen Data</li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?= base_url() ?>">
+                            <a class="nav-main-link <?= cek_aktif(route_to('admin.siswa.index')) ?>" href="<?= route_to('admin.siswa.index') ?>">
                                 <i class="nav-main-link-icon fa fa-user-graduate"></i>
                                 <span class="nav-main-link-name">Data Siswa</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?= base_url() ?>">
+                            <a class="nav-main-link <?= cek_aktif(route_to('admin.mentor.index')) ?>" href="<?= route_to('admin.mentor.index') ?>">
                                 <i class="nav-main-link-icon fa fa-chalkboard-user"></i>
                                 <span class="nav-main-link-name">Data Mentor</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?= base_url() ?>">
+                            <a class="nav-main-link <?= cek_aktif(route_to('admin.jadwal.index')) ?>" href="<?= route_to('admin.jadwal.index') ?>">
                                 <i class="nav-main-link-icon fa fa-calendar-day"></i>
                                 <span class="nav-main-link-name">Jadwal Les</span>
                             </a>
@@ -137,27 +143,21 @@
 
                         <li class="nav-main-heading">Pengaturan</li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?= base_url() ?>">
-                                <i class="nav-main-link-icon fa fa-marker"></i>
-                                <span class="nav-main-link-name">Komponen Penilaian</span>
+                            <a class="nav-main-link <?= cek_aktif(route_to('admin.jenjang.index')) ?>" href="<?= route_to('admin.jenjang.index') ?>">
+                                <i class="nav-main-link-icon fa fa-arrow-up-short-wide"></i>
+                                <span class="nav-main-link-name">Jenjang & Tingkat</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?= base_url() ?>">
-                                <i class="nav-main-link-icon fa fa-arrow-down-short-wide"></i>
-                                <span class="nav-main-link-name">Jenjang / Tingkat</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?= base_url() ?>">
-                                <i class="nav-main-link-icon fa fa-arrow-up-right-dots"></i>
+                            <a class="nav-main-link <?= cek_aktif(route_to('admin.semester.index')) ?>" href="<?= route_to('admin.semester.index') ?>">
+                                <i class="nav-main-link-icon fa fa-person-arrow-up-from-line"></i>
                                 <span class="nav-main-link-name">Semester</span>
                             </a>
                         </li>
 
                         <li class="nav-main-heading d-block d-xl-none">Akun</li>
                         <li class="nav-main-item d-block d-xl-none">
-                            <a class="nav-main-link" href="<?= base_url() ?>">
+                            <a class="nav-main-link" href="<?= route_to('publik.masuk.index') ?>">
                                 <i class="nav-main-link-icon fa fa-sign-out-alt"></i>
                                 <span class="nav-main-link-name">Keluar</span>
                             </a>
@@ -195,7 +195,7 @@
                 <div class="dropdown d-inline-block">
                     <div class="px-2">
                         <div class="d-none d-xl-block fs-sm">
-                            <a href="#" class="btn btn-sm btn-outline-primary">
+                            <a href="<?= route_to('publik.masuk.index') ?>" class="btn btn-sm btn-outline-primary">
                                 <i class="fa fa-sign-out-alt"></i>
                                 <span class="ms-1">Keluar</span>
                             </a>
@@ -230,7 +230,7 @@
             <div class="row fs-xs">
                 <div class="col-12 py-1 text-center">
                     Dibuat dengan <i class="fa fa-heart text-danger"></i> oleh
-                    <a class="fw-medium" href="#" target="_blank">Siatama Privat</a> &copy;
+                    <a class="fw-medium" href="#">Siatama Privat</a> &copy;
                     <span data-toggle="year-copy"></span>
                 </div>
             </div>

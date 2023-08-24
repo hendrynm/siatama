@@ -4,13 +4,18 @@ namespace App\Controllers;
 
 class JadwalController extends BaseController
 {
-    public function semua_mentor_aktif(): string
+    public function index(): string
     {
-        return view('admin/jadwal/semua_mentor_aktif');
+        return view('admin/jadwal/index');
     }
     
-    public function semua_siswa_aktif(): string
+    public function mentor_aktif(): string
     {
-        return view('admin/jadwal/semua_siswa_aktif');
+        return view('admin/jadwal/mentor_aktif');
+    }
+    
+    public function siswa_aktif(): string
+    {
+        return view('admin/jadwal/siswa_aktif');
     }
 }
