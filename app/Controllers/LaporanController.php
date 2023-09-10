@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use Mpdf\MpdfException;
+
 class LaporanController extends BaseController
 {
     public function index(): string
@@ -19,6 +21,9 @@ class LaporanController extends BaseController
         return view('admin/laporan/laporan_siswa');
     }
     
+    /**
+     * @throws MpdfException
+     */
     public function cetak()
     {
         $data['kehadiran'] = $this->request->getVar('kehadiran');
@@ -34,6 +39,7 @@ class LaporanController extends BaseController
         $mpdf->SetDefaultBodyCSS('font-size', '1rem');
         $mpdf->WriteHTML($html);
         
-        return redirect()->to($mpdf->Output("Laporan Siswa - Hendry Naufal Marbella.pdf", "I"));
+        $mpdf->Output("Laporan Siswa - Hendry Naufal Marbella.pdf", "I");
+        return response()->setHeader('Content-Type', 'application/pdf');
     }
 }

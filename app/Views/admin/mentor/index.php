@@ -1,7 +1,7 @@
 <?= $this->extend('admin/_layout/master') ?>
 
 <?= $this->section('menu') ?>
-Data Mentor
+Data Tentor
 <?= $this->endSection() ?>
 
 <?= $this->section('submenu') ?>
@@ -13,7 +13,7 @@ Beranda
     <div class="row mb-4">
         <div class="col-12">
             <div class="fs-1 fw-semibold">
-                Data Mentor
+                Data Tentor
             </div>
             <div class="fs-5">
                 Silakan memilih menu di bawah ini
@@ -29,7 +29,7 @@ Beranda
                         <i class="fa fa-users fa-2x"></i>
                     </div>
                     <div class="fw-medium fs-3 mt-3">
-                        Mentor Aktif
+                        Tentor Aktif
                     </div>
                 </div>
             </a>
@@ -41,7 +41,7 @@ Beranda
                         <i class="fa fa-users-slash fa-2x"></i>
                     </div>
                     <div class="fw-medium fs-3 mt-3">
-                        Mentor Nonaktif
+                        Tentor Nonaktif
                     </div>
                 </div>
             </a>
@@ -53,7 +53,7 @@ Beranda
                         <i class="fa fa-user-plus fa-2x"></i>
                     </div>
                     <div class="fw-medium fs-3 mt-3">
-                        Tambah Mentor
+                        Tambah Tentor
                     </div>
                 </div>
             </a>

@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class MentorController extends BaseController
+class TentorController extends BaseController
 {
     public function index(): string
     {

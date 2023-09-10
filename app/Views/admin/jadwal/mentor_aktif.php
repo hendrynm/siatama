@@ -5,7 +5,7 @@ Jadwal Les
 <?= $this->endSection() ?>
 
 <?= $this->section('submenu') ?>
-Mentor
+Tentor
 <?= $this->endSection() ?>
 
 <?= $this->section('css') ?>
@@ -30,7 +30,7 @@ Mentor
     <div class="block block-bordered">
         <div class="block-header bg-primary px-4 d-flex">
             <a href="<?= route_to('admin.jadwal.index') ?>" class="fa fa-arrow-circle-left text-white fs-3"></a>
-            <span class="ms-3 me-auto text-white fs-5 fw-semibold">Jadwal Mengajar per Mentor</span>
+            <span class="ms-3 me-auto text-white fs-5 fw-semibold">Jadwal Mengajar per Tentor</span>
         </div>
         <div class="block-content block-content-full">
             <!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->

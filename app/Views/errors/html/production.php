@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <title>Error 404 | Halaman tidak ditemukan | Siatama Privat</title>
+    <title>Error 500 | Server Aplikasi Error | Siatama Privat</title>
 
     <meta name="description" content="Sistem Manajemen Bimbingan Belajar oleh Siatama Privat">
     <meta name="author" content="Siatama Privat">

@@ -1,9 +1,9 @@
 <?= $this->extend('admin/_layout/master') ?>
 
 <?= $this->section('menu') ?>
-Data Mentor
+Data Tentor
 <?= $this->endSection() ?>
 
 <?= $this->section('submenu') ?>
-Mentor Nonaktif
+Tentor Nonaktif
 <?= $this->endSection() ?>

@@ -64,10 +64,10 @@
                             </div>
                             <div class="col-9">
                                 <span href="#" class="fs-base fw-bold text-uppercase text-black" style="line-height: 0 !important;">
-                                    Hendry Naufal Marbella</span>
-                                <i class="btn btn-sm fa fa-pen-to-square text-primary"></i>
+                                    <?= view_cell('NamaAkunCell') ?>
+                                </span>
                                 <br>
-                                <span class="fs-sm">Hak akses: <span class="fw-semibold">Mentor</span></span>
+                                <span class="fs-sm">Hak akses: <span class="fw-semibold"><?= view_cell('LevelAkunCell') ?></span></span>
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                 function cek_aktif(string $route_url): string|null
                 {
                     $url_sekarang = current_url(true)->getSegments();
-                    $url_menu = $url_sekarang[2];
+                    $url_menu = $url_sekarang[1];
                     
                     $url_route = explode('/', $route_url);
                     $url_route_menu = $url_route[2];
@@ -131,7 +131,7 @@
                         <li class="nav-main-item">
                             <a class="nav-main-link <?= cek_aktif(route_to('admin.mentor.index')) ?>" href="<?= route_to('admin.mentor.index') ?>">
                                 <i class="nav-main-link-icon fa fa-chalkboard-user"></i>
-                                <span class="nav-main-link-name">Data Mentor</span>
+                                <span class="nav-main-link-name">Data Tentor</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
@@ -157,7 +157,7 @@
 
                         <li class="nav-main-heading d-block d-xl-none">Akun</li>
                         <li class="nav-main-item d-block d-xl-none">
-                            <a class="nav-main-link" href="<?= route_to('publik.masuk.index') ?>">
+                            <a class="nav-main-link" href="<?= route_to('admin.beranda.keluar') ?>">
                                 <i class="nav-main-link-icon fa fa-sign-out-alt"></i>
                                 <span class="nav-main-link-name">Keluar</span>
                             </a>
@@ -195,7 +195,7 @@
                 <div class="dropdown d-inline-block">
                     <div class="px-2">
                         <div class="d-none d-xl-block fs-sm">
-                            <a href="<?= route_to('publik.masuk.index') ?>" class="btn btn-sm btn-outline-primary">
+                            <a href="<?= route_to('admin.beranda.keluar') ?>" class="btn btn-sm btn-outline-primary">
                                 <i class="fa fa-sign-out-alt"></i>
                                 <span class="ms-1">Keluar</span>
                             </a>

@@ -37,7 +37,7 @@ Tambah Presensi
                     </div>
                 </div>
                 <div class="fs-sm d-flex flex-column">
-                    <div class="fw-medium">Mentor:</div>
+                    <div class="fw-medium">Tentor:</div>
                     <div class="">Hendry Naufal Marbella</div>
                 </div>
             </div>
@@ -66,7 +66,7 @@ Tambah Presensi
                                 <option value="2">Ening Tri Ayu</option>
                                 <option value="3">Brahmantyo Aditya</option>
                             </select>
-                            <label class="form-label" for="mentor">Mentor</label>
+                            <label class="form-label" for="mentor">Tentor</label>
                         </div>
                     </div>
                 </div>

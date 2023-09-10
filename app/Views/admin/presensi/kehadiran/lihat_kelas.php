@@ -37,7 +37,7 @@ Detail Kelas
                     </div>
                 </div>
                 <div class="fs-sm d-flex flex-column">
-                    <div class="fw-medium">Mentor:</div>
+                    <div class="fw-medium">Tentor:</div>
                     <div class="">Hendry Naufal Marbella</div>
                 </div>
             </div>
@@ -77,7 +77,7 @@ Detail Kelas
                 <tr class="bg-gray text-sm text-center">
                     <th class="col-2">Tatap Muka</th>
                     <th class="col-4">Jadwal</th>
-                    <th class="col-4">Mentor</th>
+                    <th class="col-4">Tentor</th>
                     <th class="col-2">Aksi</th>
                 </tr>
                 </thead>

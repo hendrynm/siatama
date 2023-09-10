@@ -1,5 +1,7 @@
 <?= $this->extend('admin/_layout/master') ?>
 
+<?php helper(['ubah_nomor_hp', 'ubah_harga']); ?>
+
 <?= $this->section('menu') ?>
 Data Siswa
 <?= $this->endSection() ?>
@@ -14,6 +16,7 @@ Siswa Aktif
 <?= link_tag('src/assets/js/plugins/datatables-responsive-bs5/css/responsive.bootstrap5.min.css') ?>
 <?= link_tag('https://cdn.datatables.net/searchpanes/2.2.0/css/searchPanes.bootstrap5.min.css') ?>
 <?= link_tag('https://cdn.datatables.net/select/1.3.3/css/select.bootstrap5.min.css') ?>
+<?= link_tag('src/assets/js/plugins/sweetalert2/sweetalert2.min.css') ?>
 
 <style>
     .dataTables_filter {
@@ -45,186 +48,52 @@ Siswa Aktif
                     </tr>
                     </thead>
                     <tbody class="align-middle">
+                    <?php foreach ($siswa as $key => $value): ?>
                     <tr>
                         <th class="text-center fw-medium" scope="row">
-                            1
+                            <?= $key+1 ?>
                         </th>
                         <td class="">
-                            <div class="fw-medium">Brian Aprilio Pramono Putra</div>
-                            <div class="fs-sm">
-                                SDN Dr. Soetomo 1 Surabaya
+                            <div class="fw-medium">
+                                <?= $value->nama_siswa ?>
                             </div>
                             <div class="fs-sm">
-                                <span class="badge bg-danger">SD/MI</span>
-                                <span class="badge bg-primary">Kelas 5</span>
+                                <?= $value->asal_sekolah ?>
                             </div>
-                        </td>
-                        <td class="">
-                            <div class="fw-medium">Rendi Prabowo Budianto</div>
                             <div class="fs-sm">
-                                081234567890
+                                <span class="badge bg-<?= $value->warna ?>"><?= $value->nama_jenjang ?></span>
+                                <span class="badge bg-primary"><?= $value->nama_tingkat ?></span>
                             </div>
                         </td>
                         <td class="">
-                            <div class="fw-medium">Kelas Bimbel: 20</div>
-                            <div class="fs-sm">Mentor: Ening Tri Ayu</div>
+                            <div class="fw-medium">
+                                <?= $value->nama_ortu ?>
+                            </div>
+                            <div class="fs-sm">
+                                <?= ubah_nomor_hp($value->telepon_ortu) ?>
+                            </div>
+                        </td>
+                        <td class="">
+                            <div class="fw-medium">
+                                Paket <?= $value->nama_paket ?>
+                            </div>
+                            <div class="fs-sm">
+                                <?= ubah_harga($value->harga_paket) ?>
+                            </div>
                         </td>
                         <td class="text-center space-y-1">
-                            <a href="<?= route_to('admin.siswa.ubah_siswa') ?>" class="btn btn-sm btn-alt-warning" data-bs-toggle="tooltip" title="Ubah">
+                            <a href="<?= url_to('SiswaController::ubah_siswa', $value->id_siswa) ?>" class="btn btn-sm btn-alt-warning" data-bs-toggle="tooltip" data-bs-placement="left" title="Ubah">
                                 <i class="fa fa-pen"></i>
                             </a>
-                            <a href="<?= route_to('admin.siswa.hapus_siswa') ?>" class="btn btn-sm btn-alt-danger" data-bs-toggle="tooltip" title="Hapus">
+                            <button class="btn btn-sm btn-alt-danger" data-siswa-hapus-id="<?= $value->id_siswa ?>" data-siswa-hapus-nama="<?= $value->nama_siswa ?>" data-bs-toggle="tooltip" data-bs-placement="left" title="Hapus">
                                 <i class="fa fa-trash"></i>
-                            </a>
-                            <a href="<?= route_to('admin.siswa.arsip_siswa') ?>" class="btn btn-sm btn-alt-info" data-bs-toggle="tooltip" title="Arsipkan">
+                            </button>
+                            <button class="btn btn-sm btn-alt-info" data-siswa-arsip-id="<?= $value->id_siswa ?>" data-siswa-arsip-nama="<?= $value->nama_siswa ?>" data-bs-toggle="tooltip" data-bs-placement="left" title="Arsipkan">
                                 <i class="fa fa-archive"></i>
-                            </a>
+                            </button>
                         </td>
                     </tr>
-                    <tr>
-                        <th class="text-center fw-medium" scope="row">
-                            2
-                        </th>
-                        <td class="">
-                            <div class="fw-medium">Bena Bianda Putri Cantikka</div>
-                            <div class="fs-sm">
-                                SMPN 1 Surabaya
-                            </div>
-                            <div class="fs-sm">
-                                <span class="badge bg-info">SMP/MTs</span>
-                                <span class="badge bg-primary">Kelas 8</span>
-                            </div>
-                        </td>
-                        <td class="">
-                            <div class="fw-medium">Djuminten Sekarningrum</div>
-                            <div class="fs-sm">
-                                081234567890
-                            </div>
-                        </td>
-                        <td class="">
-                            <div class="fw-medium">Kelas Bimbel: 03</div>
-                            <div class="fs-sm">Mentor: Hendry Naufal Marbella</div>
-                        </td>
-                        <td class="text-center space-y-1">
-                            <a href="<?= route_to('admin.siswa.ubah_siswa') ?>" class="btn btn-sm btn-alt-warning" data-bs-toggle="tooltip" title="Ubah">
-                                <i class="fa fa-pen"></i>
-                            </a>
-                            <a href="<?= route_to('admin.siswa.hapus_siswa') ?>" class="btn btn-sm btn-alt-danger" data-bs-toggle="tooltip" title="Hapus">
-                                <i class="fa fa-trash"></i>
-                            </a>
-                            <a href="<?= route_to('admin.siswa.arsip_siswa') ?>" class="btn btn-sm btn-alt-info" data-bs-toggle="tooltip" title="Arsipkan">
-                                <i class="fa fa-archive"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="text-center fw-medium" scope="row">
-                            3
-                        </th>
-                        <td class="">
-                            <div class="fw-medium">Anang Dwi Saputro</div>
-                            <div class="fs-sm">
-                                SMAK Santa Maria 2 Surabaya
-                            </div>
-                            <div class="fs-sm">
-                                <span class="badge bg-secondary">SMA/MA</span>
-                                <span class="badge bg-primary">Kelas 12</span>
-                            </div>
-                        </td>
-                        <td class="">
-                            <div class="fw-medium">Suroso Adi Pratomo</div>
-                            <div class="fs-sm">
-                                081234567890
-                            </div>
-                        </td>
-                        <td class="">
-                            <div class="fw-medium">Kelas Bimbel: 13</div>
-                            <div class="fs-sm">Mentor: Ening Tri Ayu</div>
-                        </td>
-                        <td class="text-center space-y-1">
-                            <a href="<?= route_to('admin.siswa.ubah_siswa') ?>" class="btn btn-sm btn-alt-warning" data-bs-toggle="tooltip" title="Ubah">
-                                <i class="fa fa-pen"></i>
-                            </a>
-                            <a href="<?= route_to('admin.siswa.hapus_siswa') ?>" class="btn btn-sm btn-alt-danger" data-bs-toggle="tooltip" title="Hapus">
-                                <i class="fa fa-trash"></i>
-                            </a>
-                            <a href="<?= route_to('admin.siswa.arsip_siswa') ?>" class="btn btn-sm btn-alt-info" data-bs-toggle="tooltip" title="Arsipkan">
-                                <i class="fa fa-archive"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="text-center fw-medium" scope="row">
-                            4
-                        </th>
-                        <td class="">
-                            <div class="fw-medium">Antika Dewa Prasongko</div>
-                            <div class="fs-sm">
-                                SMAN 1 Surabaya
-                            </div>
-                            <div class="fs-sm">
-                                <span class="badge bg-secondary">SMA/MA</span>
-                                <span class="badge bg-primary">Kelas 12</span>
-                            </div>
-                        </td>
-                        <td class="">
-                            <div class="fw-medium">Adityo Bagus Contoh</div>
-                            <div class="fs-sm">
-                                081234567890
-                            </div>
-                        </td>
-                        <td class="">
-                            <div class="fw-medium">Kelas Bimbel: 13</div>
-                            <div class="fs-sm">Mentor: Ening Tri Ayu</div>
-                        </td>
-                        <td class="text-center space-y-1">
-                            <a href="<?= route_to('admin.siswa.ubah_siswa') ?>" class="btn btn-sm btn-alt-warning" data-bs-toggle="tooltip" title="Ubah">
-                                <i class="fa fa-pen"></i>
-                            </a>
-                            <a href="<?= route_to('admin.siswa.hapus_siswa') ?>" class="btn btn-sm btn-alt-danger" data-bs-toggle="tooltip" title="Hapus">
-                                <i class="fa fa-trash"></i>
-                            </a>
-                            <a href="<?= route_to('admin.siswa.arsip_siswa') ?>" class="btn btn-sm btn-alt-info" data-bs-toggle="tooltip" title="Arsipkan">
-                                <i class="fa fa-archive"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="text-center fw-medium" scope="row">
-                            5
-                        </th>
-                        <td class="">
-                            <div class="fw-medium">Ventika Dera Serambi</div>
-                            <div class="fs-sm">
-                                SMAN 2 Surabaya
-                            </div>
-                            <div class="fs-sm">
-                                <span class="badge bg-secondary">SMA/MA</span>
-                                <span class="badge bg-primary">Kelas 12</span>
-                            </div>
-                        </td>
-                        <td class="">
-                            <div class="fw-medium">Tenjo Tigakarsa Pratama</div>
-                            <div class="fs-sm">
-                                081234567890
-                            </div>
-                        </td>
-                        <td class="">
-                            <div class="fw-medium">Kelas Bimbel: 29</div>
-                            <div class="fs-sm">Mentor: Hendry Naufal Marbella</div>
-                        </td>
-                        <td class="text-center space-y-1">
-                            <a href="<?= route_to('admin.siswa.ubah_siswa') ?>" class="btn btn-sm btn-alt-warning" data-bs-toggle="tooltip" title="Ubah">
-                                <i class="fa fa-pen"></i>
-                            </a>
-                            <a href="<?= route_to('admin.siswa.hapus_siswa') ?>" class="btn btn-sm btn-alt-danger" data-bs-toggle="tooltip" title="Hapus">
-                                <i class="fa fa-trash"></i>
-                            </a>
-                            <a href="<?= route_to('admin.siswa.arsip_siswa') ?>" class="btn btn-sm btn-alt-info" data-bs-toggle="tooltip" title="Arsipkan">
-                                <i class="fa fa-archive"></i>
-                            </a>
-                        </td>
-                    </tr>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -240,6 +109,7 @@ Siswa Aktif
 <?= script_tag('https://cdn.datatables.net/searchpanes/2.2.0/js/dataTables.searchPanes.min.js') ?>
 <?= script_tag('https://cdn.datatables.net/searchpanes/2.2.0/js/searchPanes.bootstrap5.min.js') ?>
 <?= script_tag('https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js') ?>
+<?= script_tag('src/assets/js/plugins/sweetalert2/sweetalert2.min.js') ?>
 
 <script type="text/javascript">
 !function() {
@@ -271,12 +141,118 @@ Siswa Aktif
                     [5, 10, 25, 50, 100, "Semua"]
                 ],
             });
-
-            table.searchPanes.container().prependTo(table.table().container());
-            table.searchPanes.resizePanes();
+        }
+        static sweetAlert2() {
+            let e = Swal.mixin({
+                buttonsStyling: !1,
+                target: "#page-container",
+                customClass: {
+                    confirmButton: "btn btn-alt-primary m-1",
+                    cancelButton: "btn btn-alt-danger m-1",
+                    input: "form-control"
+                }
+            });
+            <?php if (session()->getFlashdata('success')): ?>
+            e.fire({
+                title: 'Berhasil!',
+                html: '<?= session()->getFlashdata("success") ?>',
+                icon: 'success'
+            });
+            <?php endif; ?>
+        }
+        static konfirmasiHapus() {
+            $('button[data-siswa-hapus-id]').click(function () {
+                const siswaId = $(this).data('siswa-hapus-id');
+                const siswaNama = $(this).data('siswa-hapus-nama');
+                let e = Swal.mixin({
+                    buttonsStyling: !1,
+                    target: "#page-container",
+                    customClass: {
+                        confirmButton: "btn btn-alt-danger m-1",
+                        cancelButton: "btn btn-alt-secondary m-1",
+                        input: "form-control",
+                        icon: "border-0"
+                    }
+                });
+                e.fire({
+                    title: 'Konfirmasi Hapus',
+                    html: 'Apakah Anda yakin ingin menghapus data<br><span class="text-danger fw-bold fs-lg">' + siswaNama + '</span>',
+                    iconHtml: '<i class="fa fa-trash text-danger"></i>',
+                    showCancelButton: true,
+                    confirmButtonText: 'Hapus',
+                    cancelButtonText: 'Batal',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Mengirim permintaan AJAX POST untuk menghapus data
+                        $.ajax({
+                            url: '<?= url_to('SiswaController::hapus_siswa') ?>', // Ganti dengan URL tindakan penghapusan Anda
+                            type: 'POST',
+                            data: { id_siswa: siswaId, '<?= csrf_token() ?>': '<?= csrf_hash() ?>' },
+                            success: function (response) {
+                                if (response === 'sukses') {
+                                    e.fire('Berhasil!', 'Data siswa berhasil dihapus!', 'success').then(() => window.location.reload());
+                                } else {
+                                    e.fire('Kesalahan Program!', response, 'error')
+                                }
+                            },
+                            error: function () {
+                                e.fire('Server Error!', 'Terjadi kegagalan proses di sisi Server!. Coba beberapa saat lagi', 'error');
+                            },
+                        });
+                    }
+                });
+            });
+        }
+        static konfirmasiArsip() {
+            $('button[data-siswa-arsip-id]').click(function () {
+                const siswaId = $(this).data('siswa-arsip-id');
+                const siswaNama = $(this).data('siswa-arsip-nama');
+                let e = Swal.mixin({
+                    buttonsStyling: !1,
+                    target: "#page-container",
+                    customClass: {
+                        confirmButton: "btn btn-alt-info m-1",
+                        cancelButton: "btn btn-alt-secondary m-1",
+                        input: "form-control",
+                        icon: "border-0"
+                    }
+                });
+                e.fire({
+                    title: 'Konfirmasi Arsip',
+                    html: 'Apakah Anda yakin ingin mengarsipkan data<br><span class="text-info fw-bold fs-lg">' + siswaNama + '</span>',
+                    iconHtml: '<i class="fa fa-archive text-info"></i>',
+                    showCancelButton: true,
+                    confirmButtonText: 'Arsipkan',
+                    cancelButtonText: 'Batal',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Mengirim permintaan AJAX POST untuk menghapus data
+                        $.ajax({
+                            url: '<?= url_to('SiswaController::arsip_siswa') ?>', // Ganti dengan URL tindakan penghapusan Anda
+                            type: 'POST',
+                            data: { id_siswa: siswaId, '<?= csrf_token() ?>': '<?= csrf_hash() ?>' },
+                            success: function (response) {
+                                if (response === 'sukses') {
+                                    e.fire('Berhasil!', 'Data siswa berhasil diarsipkan!', 'success').then(() => window.location.reload());
+                                } else {
+                                    e.fire('Kesalahan Program!', response, 'error')
+                                }
+                            },
+                            error: function () {
+                                e.fire('Server Error!', 'Terjadi kegagalan proses di sisi Server!. Coba beberapa saat lagi', 'error');
+                            },
+                        });
+                    }
+                });
+            });
         }
         static init() {
-            this.initDataTables()
+            this.initDataTables();
+            this.sweetAlert2();
+            this.konfirmasiHapus();
+            this.konfirmasiArsip();
         }
     }
     Codebase.onLoad((() => a.init()))

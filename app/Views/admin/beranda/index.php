@@ -16,7 +16,7 @@ Beranda
                 Selamat datang
             </h1>
             <h1 class="fs-3 fw-bold mb-3 text-primary">
-                Hendry Naufal Marbella
+                <?= view_cell('NamaAkunCell') ?>
             </h1>
             <h1 class="fs-6 fw-medium">
                 Semoga harimu menyenangkan 😇

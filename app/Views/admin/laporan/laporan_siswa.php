@@ -72,7 +72,7 @@ Laporan Siswa
             <div class="block">
                 <div class="block-content block-content-full d-flex justify-content-between align-items-center">
                     <div class="text-start">
-                        <div class="fs-sm fw-medium text-muted">Mentor</div>
+                        <div class="fs-sm fw-medium text-muted">Tentor</div>
                         <div class="fs-5 fw-semibold">Ening Tri Ayu</div>
                     </div>
                     <div class="text-end">
@@ -325,6 +325,11 @@ Laporan Siswa
             mapForm.method = "POST";
             mapForm.action = "<?= route_to('admin.laporan.cetak') ?>";
 
+            let mapInput0 = document.createElement("input");
+            mapInput0.type = "hidden";
+            mapInput0.name = "<?= csrf_token() ?>";
+            mapInput0.value = "<?= csrf_hash() ?>";
+
             let mapInput1 = document.createElement("input");
             mapInput1.type = "hidden";
             mapInput1.name = "kehadiran";
@@ -335,6 +340,7 @@ Laporan Siswa
             mapInput2.name = "penilaian";
             mapInput2.value = penilaian;
 
+            mapForm.appendChild(mapInput0);
             mapForm.appendChild(mapInput1);
             mapForm.appendChild(mapInput2);
 

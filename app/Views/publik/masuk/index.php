@@ -14,6 +14,7 @@
     
     <?= link_tag('src/assets/css/codebase.min.css') ?>
     <?= link_tag('src/assets/css/themes/flat.min.css') ?>
+    <?= link_tag('src/assets/js/plugins/sweetalert2/sweetalert2.min.css') ?>
 </head>
 <body>
 <div id="page-container" class="main-content-boxed">
@@ -22,11 +23,11 @@
     <main id="main-container">
         <!-- Page Content -->
         <div class="bg-image" style="background-image: url('https://priba.id/wp-content/uploads/2020/06/Les-Privat-Calistung-Membaca-Menulis-dan-Berhitung.jpg');">
-            <div class="row mx-0 bg-black-50">
+            <div class="row mx-0 bg-black-25">
                 <div class="hero-static col-md-6 col-xl-8 d-none d-md-flex align-items-md-end">
-                    <div class="p-4">
+                    <div class="p-4 bg-black-50">
                         <p class="fs-3 fw-semibold text-white">
-                            Bergabung bersama kami<br>
+                            Mari bergabung bersama kami<br>
                             Bimbingan Belajar Privat TERBAIK di Surabaya
                         </p>
                         <p class="text-white-75 fw-medium">
@@ -46,14 +47,15 @@
                         </div>
                         <!-- END Header -->
                         
-                        <form class="js-validation-signin px-4" action="<?= route_to('admin.beranda.index') ?>" method="get">
+                        <form class="form-masuk px-4" action="<?= route_to('publik.masuk.index') ?>" method="post">
+                            <?= csrf_field() ?>
                             <div class="form-floating mb-4">
-                                <input type="text" class="form-control" id="login-username" name="login-username" placeholder="">
-                                <label class="form-label" for="login-username">Username (diisi ngawur aja)</label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="" value="<?= old('username') ?>">
+                                <label class="form-label" for="username">Username</label>
                             </div>
                             <div class="form-floating mb-4">
-                                <input type="password" class="form-control" id="login-password" name="login-password" placeholder="">
-                                <label class="form-label" for="login-password">Password (diisi ngawur aja)</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="" value="<?= old('password') ?>">
+                                <label class="form-label" for="password">Password</label>
                             </div>
                             <div class="mb-4">
                                 <button type="submit" class="btn btn-lg btn-alt-primary fw-semibold">
@@ -75,33 +77,53 @@
 <?= script_tag('src/assets/js/codebase.app.min.js') ?>
 <?= script_tag('src/assets/js/lib/jquery.min.js') ?>
 <?= script_tag('src/assets/js/plugins/jquery-validation/jquery.validate.min.js') ?>
+<?= script_tag('src/assets/js/plugins/sweetalert2/sweetalert2.min.js') ?>
 
 <!-- Page JS Code -->
 <script type="text/javascript">
     ! function() {
         class e {
             static initValidationSignIn() {
-                Codebase.helpers("jq-validation"), jQuery(".js-validation-signin").validate({
+                Codebase.helpers("jq-validation"), jQuery(".form-masuk").validate({
                     rules: {
-                        "login-username": {
+                        "username": {
                             required: !0,
                         },
-                        "login-password": {
+                        "password": {
                             required: !0,
                         }
                     },
                     messages: {
-                        "login-username": {
-                            required: "Mohon masukkan username Anda (ngawur aja kak)",
+                        "username": {
+                            required: "Username wajib diisi!",
                         },
-                        "login-password": {
-                            required: "Mohon masukkan password Anda (ngawur aja kak)",
+                        "password": {
+                            required: "Password wajib diisi!",
                         }
                     }
                 })
             }
+            static sweetAlert2() {
+                let e = Swal.mixin({
+                    buttonsStyling: !1,
+                    target: "#page-container",
+                    customClass: {
+                        confirmButton: "btn btn-alt-primary m-1",
+                        cancelButton: "btn btn-alt-danger m-1",
+                        input: "form-control"
+                    }
+                });
+                <?php if (session()->getFlashdata('error')): ?>
+                e.fire({
+                    title: "Kesalahan!",
+                    html: "<?= session()->getFlashdata('error') ?>",
+                    icon: "error"
+                });
+                <?php endif; ?>
+            }
             static init() {
                 this.initValidationSignIn()
+                this.sweetAlert2()
             }
         }
         Codebase.onLoad((() => e.init()))

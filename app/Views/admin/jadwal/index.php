@@ -41,7 +41,7 @@ Beranda
                         <i class="fa fa-chalkboard-teacher fa-2x"></i>
                     </div>
                     <div class="fw-medium fs-3 mt-3">
-                        Jadwal Mentor
+                        Jadwal Tentor
                     </div>
                 </div>
             </a>

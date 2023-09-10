@@ -6,41 +6,21 @@ use App\Controllers\AdminController;
 use App\Controllers\JadwalController;
 use App\Controllers\JenjangController;
 use App\Controllers\LaporanController;
-use App\Controllers\MentorController;
+use App\Controllers\TentorController;
 use App\Controllers\PenilaianController;
 use App\Controllers\PresensiController;
 use App\Controllers\SemesterController;
 use App\Controllers\SiswaController;
+use CodeIgniter\Router\RouteCollection;
 
-// Create a new instance of our RouteCollection class.
-$routes = Services::routes();
-
-/*
- * --------------------------------------------------------------------
- * Router Setup
- * --------------------------------------------------------------------
+/**
+ * @var RouteCollection $routes
  */
-$routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
-$routes->setDefaultMethod('index');
-$routes->setTranslateURIDashes(false);
-$routes->set404Override();
-
-// The Auto Routing (Legacy) is very dangerous. It is easy to create vulnerable apps
-// where controller filters or CSRF protection are bypassed.
-// If you don't want to define all routes, please use the Auto Routing (Improved).
-// Set `$autoRoutesImproved` to true in `app/Config/Feature.php` and set the following to true.
-$routes->setAutoRoute(false);
-
-/*
- * --------------------------------------------------------------------
- * Route Definitions
- * --------------------------------------------------------------------
- */
-
-// We get a performance increase by specifying the default
-// route since we don't have to scan directories.
-$routes->get('/', [AdminController::class, 'masuk'], ['as' => 'publik.masuk.index']);
+$routes->group('/', function ($routes)
+{
+    $routes->get('', [AdminController::class, 'masuk'], ['as' => 'publik.masuk.index']);
+    $routes->post('', [AdminController::class, 'masuk_post'], ['as' => 'publik.masuk.post']);
+});
 
 $routes->group('admin', function ($routes)
 {
@@ -48,6 +28,8 @@ $routes->group('admin', function ($routes)
     {
         $routes->get('',
             [AdminController::class, 'index'], ['as' => 'admin.beranda.index']);
+        $routes->get('keluar',
+            [AdminController::class, 'keluar'], ['as' => 'admin.beranda.keluar']);
     });
     
     $routes->group('presensi', function ($routes)
@@ -150,37 +132,39 @@ $routes->group('admin', function ($routes)
         $routes->get('tambah-siswa',
             [SiswaController::class, 'tambah_siswa'], ['as' => 'admin.siswa.tambah_siswa']);
         $routes->post('tambah-siswa',
-            [SiswaController::class, 'tambah_siswa_post'], ['as' => 'admin.siswa.tambah_siswa.post']);
-        $routes->get('ubah-siswa',
-            [SiswaController::class, 'ubah_siswa'], ['as' => 'admin.siswa.ubah_siswa']);
+            [SiswaController::class, 'simpan_data_siswa_aktif'], ['as' => 'admin.siswa.tambah_siswa.post']);
+        $routes->get('ubah-siswa/(:num)',
+            [[SiswaController::class, 'ubah_siswa'], '$1']);
         $routes->post('ubah-siswa',
-            [SiswaController::class, 'ubah_siswa_post'], ['as' => 'admin.siswa.ubah_siswa.post']);
-        $routes->get('hapus-siswa',
-            [SiswaController::class, 'hapus_siswa'], ['as' => 'admin.siswa.hapus_siswa']);
-        $routes->get('arsip-siswa',
+            [SiswaController::class, 'simpan_data_siswa_aktif'], ['as' => 'admin.siswa.ubah_siswa.post']);
+        $routes->post('hapus-siswa',
+            [SiswaController::class, 'hapus_siswa'], ['as' => 'admin.siswa.hapus_siswa.post']);
+        $routes->post('arsip-siswa',
             [SiswaController::class, 'arsip_siswa'], ['as' => 'admin.siswa.arsip_siswa']);
+        $routes->post('aktif-siswa',
+            [SiswaController::class, 'aktif_siswa'], ['as' => 'admin.siswa.aktif_siswa']);
     });
     
     $routes->group('mentor', function ($routes)
     {
         $routes->get('',
-            [MentorController::class, 'index'], ['as' => 'admin.mentor.index']);
+            [TentorController::class, 'index'], ['as' => 'admin.mentor.index']);
         $routes->get('mentor-aktif',
-            [MentorController::class, 'mentor_aktif'], ['as' => 'admin.mentor.mentor_aktif']);
+            [TentorController::class, 'mentor_aktif'], ['as' => 'admin.mentor.mentor_aktif']);
         $routes->get('mentor-nonaktif',
-            [MentorController::class, 'mentor_nonaktif'], ['as' => 'admin.mentor.mentor_nonaktif']);
+            [TentorController::class, 'mentor_nonaktif'], ['as' => 'admin.mentor.mentor_nonaktif']);
         $routes->get('tambah-mentor',
-            [MentorController::class, 'tambah_mentor'], ['as' => 'admin.mentor.tambah_mentor']);
+            [TentorController::class, 'tambah_mentor'], ['as' => 'admin.mentor.tambah_mentor']);
         $routes->post('tambah-mentor',
-            [MentorController::class, 'tambah_mentor_post'], ['as' => 'admin.mentor.tambah_mentor.post']);
+            [TentorController::class, 'tambah_mentor_post'], ['as' => 'admin.mentor.tambah_mentor.post']);
         $routes->get('ubah-mentor',
-            [MentorController::class, 'ubah_mentor'], ['as' => 'admin.mentor.ubah_mentor']);
+            [TentorController::class, 'ubah_mentor'], ['as' => 'admin.mentor.ubah_mentor']);
         $routes->post('ubah-mentor',
-            [MentorController::class, 'ubah_mentor_post'], ['as' => 'admin.mentor.ubah_mentor.post']);
+            [TentorController::class, 'ubah_mentor_post'], ['as' => 'admin.mentor.ubah_mentor.post']);
         $routes->get('hapus-mentor',
-            [MentorController::class, 'hapus_mentor'], ['as' => 'admin.mentor.hapus_mentor']);
+            [TentorController::class, 'hapus_mentor'], ['as' => 'admin.mentor.hapus_mentor']);
         $routes->get('arsip-mentor',
-            [MentorController::class, 'arsip_mentor'], ['as' => 'admin.mentor.arsip_mentor']);
+            [TentorController::class, 'arsip_mentor'], ['as' => 'admin.mentor.arsip_mentor']);
     });
     
     $routes->group('jadwal', function ($routes)
@@ -240,19 +224,3 @@ $routes->group('admin', function ($routes)
     });
 });
 
-/*
- * --------------------------------------------------------------------
- * Additional Routing
- * --------------------------------------------------------------------
- *
- * There will often be times that you need additional routing and you
- * need it to be able to override any defaults in this file. Environment
- * based routes is one such time. require() additional route files here
- * to make that happen.
- *
- * You will have access to the $routes object within that file without
- * needing to reload it.
- */
-if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
-    require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
-}

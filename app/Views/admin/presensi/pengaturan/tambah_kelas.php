@@ -83,7 +83,7 @@ Tambah Kelas
                                 <option value="2">Ening Tri Ayu</option>
                                 <option value="3">Brahmantyo Aditya</option>
                             </select>
-                            <label class="form-label" for="mentor_1">Mentor</label>
+                            <label class="form-label" for="mentor_1">Tentor</label>
                         </div>
                     </div>
                 </div>

@@ -1,11 +1,11 @@
 <?= $this->extend('admin/_layout/master') ?>
 
 <?= $this->section('menu') ?>
-Data Mentor
+Data Tentor
 <?= $this->endSection() ?>
 
 <?= $this->section('submenu') ?>
-Mentor Aktif
+Tentor Aktif
 <?= $this->endSection() ?>
 
 <?= $this->section('css') ?>
@@ -30,7 +30,7 @@ Mentor Aktif
     <div class="block block-bordered">
         <div class="block-header bg-primary px-4 d-flex">
             <a href="<?= route_to('admin.mentor.index') ?>" class="fa fa-arrow-circle-left text-white fs-3"></a>
-            <span class="ms-3 me-auto text-white fs-5 fw-semibold">Daftar Mentor Aktif</span>
+            <span class="ms-3 me-auto text-white fs-5 fw-semibold">Daftar Tentor Aktif</span>
         </div>
         <div class="block-content block-content-full">
             <div class="table-responsive p-1">

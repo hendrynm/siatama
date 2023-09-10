@@ -37,7 +37,7 @@
     </div>
     <div class="col-xs-3">
         <div style="padding: 1rem 1.25rem; background: #e4e7ed; ">
-            <div style="font-size: 0.75rem;">Mentor</div>
+            <div style="font-size: 0.75rem;">Tentor</div>
             <div style="font-weight: bold; font-size: 1rem;">Ening Tri Ayu</div>
         </div>
     </div>
@@ -130,7 +130,7 @@
                         <th style="text-align: center; width: 7%;">No.</th>
                         <th style="text-align: center; width: 28%">Tanggal</th>
                         <th style="text-align: center; width: 10%">Status</th>
-                        <th style="text-align: center; ">Catatan Mentor</th>
+                        <th style="text-align: center; ">Catatan Tentor</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -203,7 +203,7 @@
 <div class="row" style="page-break-after:avoid;">
     <div class="col-xs-11">
         <div style="font-size: 1.5rem; font-weight: bold; color: #36b3a0;">Detail Komponen Penilaian dan Skor Siswa</div>
-        <div>Bagian ini berisi tentang perincian komponen penilaian yang digunakan oleh Mentor beserta dengan hasil capaian atau skor yang didapatkan oleh siswa.</div>
+        <div>Bagian ini berisi tentang perincian komponen penilaian yang digunakan oleh Tentor beserta dengan hasil capaian atau skor yang didapatkan oleh siswa.</div>
         <div style="margin-top: 1.25rem;">
             <div style="font-size: 0.75rem"><b>Tabel 3.</b> Detail Komponen Penilaian untuk Siswa.</div>
             <div style="margin-top: 0.5rem;">
@@ -220,13 +220,13 @@
                     <tr>
                         <th role="row" style="text-align: center;">1</th>
                         <td>Ulangan</td>
-                        <td>Siswa akan mengerjakan soal yang diberikan oleh Mentor. Soal dapat berupa Pilihan Ganda, Isian Singkat, maupun Uraian atau Esai.</td>
+                        <td>Siswa akan mengerjakan soal yang diberikan oleh Tentor. Soal dapat berupa Pilihan Ganda, Isian Singkat, maupun Uraian atau Esai.</td>
                         <td>0 - 100</td>
                     </tr>
                     <tr>
                         <th role="row" style="text-align: center;">2</th>
                         <td>Sikap</td>
-                        <td>Siswa akan dinilai sikapnya oleh Mentor berdasarkan kegiatan selama berada di Bimbingan Belajar.</td>
+                        <td>Siswa akan dinilai sikapnya oleh Tentor berdasarkan kegiatan selama berada di Bimbingan Belajar.</td>
                         <td>Sangat Buruk - Sangat Baik</td>
                     </tr>
                     <tr>
