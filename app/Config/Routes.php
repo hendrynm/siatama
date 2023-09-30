@@ -41,36 +41,45 @@ $routes->group('admin', function ($routes)
         {
             $routes->get('pilih-kelas',
                 [PresensiController::class, 'kehadiran_pilih_kelas'], ['as' => 'admin.presensi.kehadiran.pilih_kelas']);
-            $routes->get('lihat-kelas',
-                [PresensiController::class, 'kehadiran_lihat_kelas'], ['as' => 'admin.presensi.kehadiran.lihat_kelas']);
-            $routes->get('isi-presensi',
-                [PresensiController::class, 'kehadiran_isi_presensi'], ['as' => 'admin.presensi.kehadiran.isi_presensi']);
+            $routes->get('lihat-kelas/(:num)',
+                [[PresensiController::class, 'kehadiran_lihat_kelas'], '$1']);
+            $routes->get('isi-presensi/(:num)/(:num)',
+                [[PresensiController::class, 'kehadiran_isi_presensi'], '$1/$2']);
             
-            $routes->get('tambah-presensi',
-                [PresensiController::class, 'kehadiran_tambah_presensi'], ['as' => 'admin.presensi.kehadiran.tambah_presensi']);
+            $routes->get('tambah-presensi/(:num)',
+                [[PresensiController::class, 'kehadiran_tambah_presensi'], '$1']);
             $routes->post('tambah-presensi',
                 [PresensiController::class, 'kehadiran_tambah_presensi_post'], ['as' => 'admin.presensi.kehadiran.tambah_presensi.post']);
-            $routes->get('ubah-presensi',
-                [PresensiController::class, 'kehadiran_ubah_presensi'], ['as' => 'admin.presensi.kehadiran.ubah_presensi']);
+            $routes->get('ubah-presensi/(:num)/(:num)',
+                [[PresensiController::class, 'kehadiran_ubah_presensi'], '$1/$2']);
             $routes->post('ubah-presensi',
                 [PresensiController::class, 'kehadiran_ubah_presensi_post'], ['as' => 'admin.presensi.kehadiran.ubah_presensi.post']);
-            $routes->get('hapus-presensi',
-                [PresensiController::class, 'kehadiran_hapus_presensi'], ['as' => 'admin.presensi.kehadiran.hapus_presensi']);
+            $routes->get('hapus-presensi/(:num)/(:num)',
+                [[PresensiController::class, 'kehadiran_hapus_presensi'], '$1/$2']);
+            
+            $routes->post('simpan-foto',
+                [PresensiController::class, 'kehadiran_simpan_foto'], ['as' => 'admin.presensi.kehadiran.simpan_foto']);
+            $routes->post('simpan-presensi',
+                [PresensiController::class, 'kehadiran_simpan_presensi'], ['as' => 'admin.presensi.kehadiran.simpan_presensi']);
+            $routes->post('simpan-catatan',
+                [PresensiController::class, 'kehadiran_simpan_catatan'], ['as' => 'admin.presensi.kehadiran.simpan_catatan']);
+            $routes->post('ambil-catatan',
+                [PresensiController::class, 'kehadiran_ambil_catatan'], ['as' => 'admin.presensi.kehadiran.ambil_catatan']);
         });
         
         $routes->group('pengaturan', function ($routes)
         {
             $routes->get('pilih-kelas',
                 [PresensiController::class, 'pengaturan_pilih_kelas'], ['as' => 'admin.presensi.pengaturan.pilih_kelas']);
-            $routes->get('lihat-kelas',
-                [PresensiController::class, 'pengaturan_lihat_kelas'], ['as' => 'admin.presensi.pengaturan.lihat_kelas']);
+            $routes->get('lihat-kelas/(:num)',
+                [[PresensiController::class, 'pengaturan_lihat_kelas'], '$1']);
             
             $routes->get('tambah-kelas',
                 [PresensiController::class, 'pengaturan_tambah_kelas'], ['as' => 'admin.presensi.pengaturan.tambah_kelas']);
             $routes->post('tambah-kelas',
                 [PresensiController::class, 'pengaturan_tambah_kelas_post'], ['as' => 'admin.presensi.pengaturan.tambah_kelas.post']);
-            $routes->get('ubah-kelas',
-                [PresensiController::class, 'pengaturan_ubah_kelas'], ['as' => 'admin.presensi.pengaturan.ubah_kelas']);
+            $routes->get('ubah-kelas/(:num)',
+                [[PresensiController::class, 'pengaturan_ubah_kelas'], '$1']);
             $routes->post('ubah-kelas',
                 [PresensiController::class, 'pengaturan_ubah_kelas_post'], ['as' => 'admin.presensi.pengaturan.ubah_kelas.post']);
             $routes->get('hapus-kelas',
@@ -86,6 +95,9 @@ $routes->group('admin', function ($routes)
                 [PresensiController::class, 'pengaturan_ubah_siswa_post'], ['as' => 'admin.presensi.pengaturan.ubah_siswa.post']);
             $routes->get('hapus-siswa',
                 [PresensiController::class, 'pengaturan_hapus_siswa'], ['as' => 'admin.presensi.pengaturan.hapus_siswa']);
+            
+            $routes->post('daftar-tingkat',
+                [PresensiController::class, 'pengaturan_daftar_tingkat'], ['as' => 'admin.presensi.pengaturan.daftar_tingkat']);
         });
     });
     

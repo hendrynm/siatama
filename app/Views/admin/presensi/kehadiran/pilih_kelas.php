@@ -23,60 +23,26 @@ Pilih Kelas
     </div>
     
     <div class="row align-middle">
+        <?php foreach($kelas as $k): ?>
         <div class="col-12 col-md-6 col-xl-3">
-            <a class="block block-link-pop block-link-shadow text-end" href="<?= route_to('admin.presensi.kehadiran.lihat_kelas') ?>">
+            <a class="block block-link-pop block-link-shadow text-end" href="<?= url_to('PresensiController::kehadiran_lihat_kelas',$k->id_kelas) ?>">
                 <div class="block-content block-content-full d-flex justify-content-between align-items-center">
                     <div class="text-start">
                         <div class="fw-medium fs-6">
                             Kelas
                         </div>
                         <div class="fw-semibold fs-1" style="line-height: 1">
-                            10
+                            <?= $k->nama_kelas ?>
                         </div>
                     </div>
                     <div class="text-end">
-                        <div class="fs-5 fw-semibold text-danger">SD</div>
-                        <div class="fw-semibold text-primary">Kelas 6</div>
+                        <div class="fs-5 fw-semibold text-<?= $k->warna ?>"><?= $k->nama_jenjang ?></div>
+                        <div class="fw-semibold text-primary"><?= ($k->jenis == 0) ? 'Reguler' : 'Privat' ?></div>
                     </div>
                 </div>
             </a>
         </div>
-        <div class="col-12 col-md-6 col-xl-3">
-            <a class="block block-link-pop block-link-shadow text-end" href="<?= route_to('admin.presensi.kehadiran.lihat_kelas') ?>">
-                <div class="block-content block-content-full d-flex justify-content-between align-items-center">
-                    <div class="text-start">
-                        <div class="fw-medium fs-6">
-                            Kelas
-                        </div>
-                        <div class="fw-semibold fs-1" style="line-height: 1">
-                            20
-                        </div>
-                    </div>
-                    <div class="text-end">
-                        <div class="fs-5 fw-semibold text-info">SMP</div>
-                        <div class="fw-semibold text-primary">Kelas 8</div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-12 col-md-6 col-xl-3">
-            <a class="block block-link-pop block-link-shadow text-end" href="<?= route_to('admin.presensi.kehadiran.lihat_kelas') ?>">
-                <div class="block-content block-content-full d-flex justify-content-between align-items-center">
-                    <div class="text-start">
-                        <div class="fw-medium fs-6">
-                            Kelas
-                        </div>
-                        <div class="fw-semibold fs-1" style="line-height: 1">
-                            30
-                        </div>
-                    </div>
-                    <div class="text-end">
-                        <div class="fs-5 fw-semibold text-secondary">SMA</div>
-                        <div class="fw-semibold text-primary">Kelas 12</div>
-                    </div>
-                </div>
-            </a>
-        </div>
+        <?php endforeach; ?>
     </div>
 </div>
 <?= $this->endSection() ?>

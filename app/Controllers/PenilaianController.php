@@ -3,8 +3,17 @@
 namespace App\Controllers;
 
 
+use App\Services\PenilaianService;
+
 class PenilaianController extends BaseController
 {
+    private PenilaianService $PenilaianService;
+    
+    public function __construct()
+    {
+        $this->PenilaianService = new PenilaianService();
+    }
+    
     public function index(): string
     {
         return view('admin/penilaian/index');
@@ -32,6 +41,12 @@ class PenilaianController extends BaseController
     
     public function lihat_komponen(): string
     {
-        return view('admin/penilaian/komponen/lihat_komponen');
+        $nilai = $this->PenilaianService->ambil_daftar_nilai();
+        $skor = $this->PenilaianService->ambil_daftar_skor($nilai);
+        
+        return view('admin/penilaian/komponen/lihat_komponen', [
+            'nilai' => $nilai,
+            'skor' => $skor,
+        ]);
     }
 }

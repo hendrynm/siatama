@@ -34,6 +34,7 @@ Beranda
                 </div>
             </a>
         </div>
+        <?php if(session()->get('hak_akses') == 'Admin'): ?>
         <div class="col-6 col-xl-3">
             <a class="block block-link-pop text-center" href="<?= route_to('admin.penilaian.lihat_komponen') ?>">
                 <div class="block-content py-4 py-xl-5">
@@ -46,6 +47,7 @@ Beranda
                 </div>
             </a>
         </div>
+        <?php endif; ?>
     </div>
 </div>
 <?= $this->endSection() ?>

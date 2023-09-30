@@ -11,83 +11,51 @@ Ubah Kelas
 <?= $this->section('content') ?>
 <div class="col-12">
     <div class="block block-bordered">
-        <div class="block-header bg-primary px-4 d-flex">
-            <a href="<?= route_to('admin.presensi.pengaturan.lihat_kelas') ?>" class="fa fa-arrow-circle-left text-white fs-3"></a>
+        <div class="block-header bg-info px-4 d-flex">
+            <a href="<?= url_to('PresensiController::pengaturan_lihat_kelas',$kelas->id_kelas) ?>" class="fa fa-arrow-circle-left text-white fs-3"></a>
             <span class="ms-3 me-auto text-white fs-5 fw-semibold">Ubah Kelas</span>
         </div>
         <div class="block-content">
-            <form action="<?= route_to('admin.presensi.pengaturan.ubah_kelas') ?>" method="post">
+            <form action="<?= route_to('admin.presensi.pengaturan.ubah_kelas.post') ?>" method="post">
+                <?= csrf_field() ?>
                 <div class="row">
                     <div class="col-12 col-md-3">
                         <div class="form-floating">
-                            <select class="form-select" id="jenjang" name="jenjang" size="1" required>
+                            <select class="form-select" id="id_jenjang" name="id_jenjang" size="1" required>
                                 <option value="" selected disabled>-- pilih salah satu --</option>
-                                <option value="1">SD</option>
-                                <option value="2">SMP</option>
-                                <option value="3">SMA</option>
+                                <?php foreach ($jenjang as $j): ?>
+                                    <option value="<?= $j->id_jenjang ?>"><?= $j->nama_jenjang ?></option>
+                                <?php endforeach; ?>
                             </select>
-                            <label class="form-label" for="jenjang">Jenjang</label>
+                            <label class="form-label" for="id_jenjang">Jenjang</label>
                         </div>
                     </div>
                     <div class="col-12 col-md-3 mt-4 mt-md-0">
                         <div class="form-floating">
-                            <select class="form-select" id="tingkat" name="tingkat" size="1" required>
+                            <select class="form-select" id="id_tingkat" name="id_tingkat" size="1" required>
                                 <option value="" selected disabled>-- pilih salah satu --</option>
-                                <option value="1">Kelas 1</option>
-                                <option value="2">Kelas 2</option>
-                                <option value="3">Kelas 3</option>
                             </select>
-                            <label class="form-label" for="tingkat">Kelas</label>
+                            <label class="form-label" for="id_tingkat">Kelas</label>
                         </div>
                     </div>
                     <div class="col-12 col-md-3 mt-4 mt-md-0">
                         <div class="form-floating">
-                            <select class="form-select" id="jenis_jadwal" name="jenis_jadwal" size="1" required>
+                            <select class="form-select" id="jenis" name="jenis" size="1" required>
                                 <option value="" selected disabled>-- pilih salah satu --</option>
-                                <option value="1">Tidak Terjadwal</option>
-                                <option value="2">1x Seminggu</option>
-                                <option value="3">2x Seminggu</option>
-                                <option value="4">3x Seminggu</option>
-                                <option value="5">5x Seminggu</option>
-                                <option value="6">Setiap Hari</option>
+                                <option value="0" <?= ($kelas->jenis == 0) ? 'selected' : '' ?>>Kelas Reguler</option>
+                                <option value="1" <?= ($kelas->jenis == 1) ? 'selected' : '' ?>>Kelas Privat</option>
                             </select>
-                            <label class="form-label" for="jenis_jadwal">Jenis Kelas</label>
+                            <label class="form-label" for="jenis">Jenis Kelas</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3 mt-4 mt-md-0">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="nama_kelas" name="nama_kelas" placeholder="Nama Kelas" value="<?= $kelas->nama_kelas ?>" required>
+                            <label class="form-label" for="nama_kelas">Nama Kelas</label>
                         </div>
                     </div>
                 </div>
-                <div class="row mb-4">
-                    <label class="form-label fs-lg mt-5 mb-n2 mb-md-3">Jadwal Les #1</label>
-                    <div class="col-12 col-md-3 mt-4 mt-md-0">
-                        <div class="form-floating">
-                            <input type="date" class="form-control" id="tanggal_1" name="tanggal_1" placeholder="" required>
-                            <label class="form-label" for="tanggal_1">Tanggal</label>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-2 mt-4 mt-md-0">
-                        <div class="form-floating">
-                            <input type="time" class="form-control" id="waktu_mulai_1" name="waktu_mulai_1" placeholder="" required>
-                            <label class="form-label" for="waktu_mulai_1">Waktu Mulai</label>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-2 mt-4 mt-md-0">
-                        <div class="form-floating">
-                            <input type="time" class="form-control" id="waktu_selesai_1" name="waktu_selesai_1" placeholder="" required>
-                            <label class="form-label" for="waktu_selesai_1">Waktu Selesai</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-5 mt-4 mt-md-0">
-                        <div class="form-floating">
-                            <select class="form-select" id="mentor_1" name="mentor_1" size="1" required>
-                                <option value="" selected disabled>-- pilih salah satu --</option>
-                                <option value="1">Hendry Naufal Marbella</option>
-                                <option value="2">Ening Tri Ayu</option>
-                                <option value="3">Brahmantyo Aditya</option>
-                            </select>
-                            <label class="form-label" for="mentor_1">Tentor</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-4">
+                <div class="row my-4">
                     <div class="col-12 col-md-2 ms-auto">
                         <button class="btn btn-info w-100 p-2">
                             <i class="fa fa-save me-2"></i>
@@ -103,5 +71,33 @@ Ubah Kelas
 <?= $this->endSection() ?>
 
 <?= $this->section('js') ?>
+<?= script_tag('src/assets/js/lib/jquery.min.js') ?>
+<script type="text/javascript">
+    $(document).ready(function() {
+        let id_jenjang = $('#id_jenjang');
+        let id_tingkat = $('#id_tingkat');
 
+        id_jenjang.change(function() {
+            let selectedJenjang = $(this).val();
+
+            $.ajax({
+                url: '<?= url_to('admin.presensi.pengaturan.daftar_tingkat') ?>',
+                method: 'POST',
+                data: {
+                    <?= csrf_token() ?>: '<?= csrf_hash() ?>',
+                    id_jenjang: selectedJenjang
+                },
+                dataType: 'json',
+                success: function(response) {
+                    id_tingkat.empty();
+                    id_tingkat.append('<option value="" selected disabled>-- pilih salah satu --</option>');
+
+                    $.each(response, function(key, value) {
+                        $('#id_tingkat').append('<option value="' + value.id_tingkat + '">' + value.nama_tingkat + '</option>');
+                    });
+                },
+            });
+        });
+    });
+</script>
 <?= $this->endSection() ?>

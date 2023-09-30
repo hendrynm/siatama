@@ -31,7 +31,7 @@ class AdminController extends BaseController
         {
             if (password_verify($password, $data_pengguna->password))
             {
-                $this->AutentikasiService->simpan_session($data_pengguna->id_akun);
+                $this->AutentikasiService->simpan_session($data_pengguna->id_akun, $data_pengguna->level);
                 return redirect()->to(route_to('admin.beranda.index'));
             }
         }

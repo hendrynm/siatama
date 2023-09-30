@@ -1,5 +1,7 @@
 <?= $this->extend('admin/_layout/master') ?>
 
+<?php helper(['ubah_tanggal', 'ubah_jam']) ?>
+
 <?= $this->section('menu') ?>
 Presensi
 <?= $this->endSection() ?>
@@ -18,49 +20,21 @@ Detail Kelas
         <div class="block-content px-3 py-4 d-flex row justify-content-between">
             <div class="col-12 col-xl-6 space-y-2">
                 <div class="d-flex row space-y-1">
-                    <div class="fs-base">
-                        <span class="badge bg-info">SMP</span>
-                        <span class="badge bg-primary-op">Kelas 7</span>
-                    </div>
                     <div class="fs-lg">
-                        <span class="fw-semibold">Reguler Kelas 20</span>
+                        <span class="badge bg-<?= $kelas->warna ?>"><?= $kelas->nama_jenjang ?></span>
+                        <span class="badge bg-primary-op"><?= ($kelas->jenis == 0) ? 'Reguler' : 'Privat' ?></span>
                     </div>
-                </div>
-                <div class="fs-sm row space-y-1">
-                    <div class="col-12 col-md-6 col-lg-12 col-xxl-6 row">
-                        <div class="col-5">
-                            <i class="far fa-calendar text-primary"></i><span class="ms-2">Senin</span>
-                        </div>
-                        <div class="col-auto">
-                            <i class="far fa-clock text-primary"></i><span class="ms-2">16:00 - 18:00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="fs-sm d-flex flex-column">
-                    <div class="fw-medium">Tentor:</div>
-                    <div class="">Hendry Naufal Marbella</div>
-                </div>
-            </div>
-            <div class="col-auto d-none d-xl-block">
-                <div class="row">
-                    <div class="col-12">
-                        <a class="btn btn-alt-primary text-center" href="<?= route_to('admin.presensi.kehadiran.tambah_presensi') ?>">
-                            <div class="block-content py-3 px-4">
-                                <div class="mb-3">
-                                    <i class="fa fa-plus fa-2x"></i>
-                                </div>
-                                <div class="fw-medium" style="line-height: 1.25">Tambah<br>Presensi</div>
-                            </div>
-                        </a>
+                    <div class="fs-1">
+                        <span class="fw-semibold">Kelas <?= $kelas->nama_kelas ?></span>
                     </div>
                 </div>
             </div>
-            <div class="col-auto mt-3 d-block d-xl-none">
+            <div class="col-auto mt-3">
                 <div class="row">
                     <div class="col-12">
-                        <a class="btn btn-alt-primary text-center" href="<?= route_to('admin.presensi.kehadiran.tambah_presensi') ?>">
+                        <a class="btn btn-alt-primary text-center py-lg-3 px-lg-4" href="<?= url_to('PresensiController::kehadiran_tambah_presensi', $kelas->id_kelas) ?>">
                             <i class="fa fa-plus"></i>
-                            <span class="fw-medium ms-2" style="line-height: 1.25">Tambah Presensi</span>
+                            <span class="fw-medium ms-2">Tambah Presensi</span>
                         </a>
                     </div>
                 </div>
@@ -82,61 +56,27 @@ Detail Kelas
                 </tr>
                 </thead>
                 <tbody class="align-middle fs-sm">
+                <?php foreach ($pertemuan as $p): ?>
                 <tr>
                     <th class="text-center fs-1 fw-medium" scope="row">
-                        1
+                        <?= $p->tatap_muka ?>
                     </th>
-                    <td class="">
-                        <div class="fw-medium"><i class="far fa-calendar me-2"></i>Senin, 20 September 2021</div>
-                        <div class=""><i class="far fa-clock me-2"></i>16:00 - 18:00</div>
+                    <td class="fs-base">
+                        <div class="fw-medium"><i class="far fa-calendar me-2"></i><?= ubah_tanggal($p->tanggal ) ?></div>
+                        <div class=""><i class="far fa-clock me-2"></i>Pukul <?= ubah_jam($p->tanggal) ?> WIB</div>
                     </td>
-                    <td class="">
-                        Hendry Naufal Marbella
+                    <td class="fs-base">
+                        <div class="fw-medium"><i class="far fa-user me-2"></i><?= $p->nama_pengajar ?></div>
                     </td>
                     <td class="text-center">
                         <div class="space-y-1">
-                            <a href="<?= route_to('admin.presensi.kehadiran.isi_presensi') ?>" class="btn btn-alt-primary btn-sm w-100"><i class="fa fa-eye me-2"></i>Presensi</a>
+                            <a href="<?= url_to('PresensiController::kehadiran_isi_presensi', $kelas->id_kelas, $p->id_pertemuan) ?>" class="btn btn-alt-primary btn-sm w-100"><i class="fa fa-eye me-2"></i>Presensi</a>
+                            <a href="<?= url_to('PresensiController::kehadiran_ubah_presensi', $kelas->id_kelas, $p->id_pertemuan) ?>" class="btn btn-alt-warning btn-sm w-100"><i class="fa fa-edit me-2"></i>Ubah</a>
+                            <a href="<?= url_to('PresensiController::kehadiran_hapus_presensi', $kelas->id_kelas, $p->id_pertemuan) ?>" class="btn btn-alt-danger btn-sm w-100"><i class="fa fa-trash me-2"></i>Hapus</a>
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <th class="text-center fs-1 fw-medium" scope="row">
-                        2
-                    </th>
-                    <td class="">
-                        <div class="fw-medium"><i class="far fa-calendar me-2"></i>Senin, 30 September 2021</div>
-                        <div class=""><i class="far fa-clock me-2"></i>16:00 - 18:00</div>
-                    </td>
-                    <td class="">
-                        Hendry Naufal Marbella
-                    </td>
-                    <td class="text-center">
-                        <div class="space-y-1">
-                            <a href="<?= route_to('admin.presensi.kehadiran.isi_presensi') ?>" class="btn btn-alt-primary btn-sm w-100"><i class="fa fa-eye me-2"></i>Presensi</a>
-                            <a href="<?= route_to('admin.presensi.kehadiran.ubah_presensi') ?>" class="btn btn-alt-warning btn-sm w-100"><i class="fa fa-edit me-2"></i>Ubah</a>
-                            <a href="#" class="btn btn-alt-danger btn-sm w-100"><i class="fa fa-trash me-2"></i>Hapus</a>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="text-center fs-1 fw-medium" scope="row">
-                        3
-                    </th>
-                    <td class="">
-                        <div class="fw-medium"><i class="far fa-calendar me-2"></i>Senin, 10 Oktober 2021</div>
-                        <div class=""><i class="far fa-clock me-2"></i>16:00 - 18:00</div>
-                    </td>
-                    <td class="">
-                        Hendry Naufal Marbella
-                    </td>
-                    <td class="text-center">
-                        <div class="space-y-1">
-                            <a href="<?= route_to('admin.presensi.kehadiran.isi_presensi') ?>" class="btn btn-alt-primary btn-sm w-100"><i class="fa fa-eye me-2"></i>Presensi</a>
-                            <a href="<?= route_to('admin.presensi.kehadiran.ubah_presensi') ?>" class="btn btn-alt-warning btn-sm w-100"><i class="fa fa-edit me-2"></i>Ubah</a>
-                            <a href="#" class="btn btn-alt-danger btn-sm w-100"><i class="fa fa-trash me-2"></i>Hapus</a>
-                        </div>
-                    </td>
-                </tr>
+                <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

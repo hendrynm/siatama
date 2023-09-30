@@ -12,7 +12,8 @@
     "require": {
         "php": "^8.2",
         "codeigniter4/framework": "^4.0",
-        "mpdf/mpdf": "^8.2"
+        "mpdf/mpdf": "^8.2",
+        "ext-intl": "*"
     },
     "require-dev": {
         "codeigniter/coding-standard": "^1.5",

@@ -140,7 +140,8 @@
                                 <span class="nav-main-link-name">Jadwal Les</span>
                             </a>
                         </li>
-
+                        
+                        <?php if(session()->get('hak_akses') == 'Admin'): ?>
                         <li class="nav-main-heading">Pengaturan</li>
                         <li class="nav-main-item">
                             <a class="nav-main-link <?= cek_aktif(route_to('admin.jenjang.index')) ?>" href="<?= route_to('admin.jenjang.index') ?>">
@@ -154,6 +155,7 @@
                                 <span class="nav-main-link-name">Semester</span>
                             </a>
                         </li>
+                        <?php endif; ?>
 
                         <li class="nav-main-heading d-block d-xl-none">Akun</li>
                         <li class="nav-main-item d-block d-xl-none">

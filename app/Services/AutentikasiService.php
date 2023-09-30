@@ -20,9 +20,10 @@ class AutentikasiService
             ->first();
     }
     
-    public function simpan_session(string $id_akun): void
+    public function simpan_session(string $id_akun, string $hak_akses): void
     {
         session()->set('id_akun', $id_akun);
+        session()->set('hak_akses', $hak_akses);
     }
     
     public function hapus_session(): void

@@ -24,7 +24,7 @@ Pilih Kelas
     
     <div class="row align-middle">
         <div class="col-12 col-md-6 col-xl-3">
-            <a class="block block-link-pop block-link-shadow text-end" href="<?= route_to('admin.presensi.kehadiran.lihat_kelas') ?>">
+            <a class="block block-link-pop block-link-shadow text-end" href="<?= route_to('admin.laporan.laporan_siswa') ?>">
                 <div class="block-content block-content-full d-flex justify-content-between align-items-center">
                     <div class="text-start">
                         <div class="fw-medium fs-6">
@@ -42,7 +42,7 @@ Pilih Kelas
             </a>
         </div>
         <div class="col-12 col-md-6 col-xl-3">
-            <a class="block block-link-pop block-link-shadow text-end" href="<?= route_to('admin.presensi.kehadiran.lihat_kelas') ?>">
+            <a class="block block-link-pop block-link-shadow text-end" href="<?= route_to('admin.laporan.laporan_siswa') ?>">
                 <div class="block-content block-content-full d-flex justify-content-between align-items-center">
                     <div class="text-start">
                         <div class="fw-medium fs-6">
@@ -60,7 +60,7 @@ Pilih Kelas
             </a>
         </div>
         <div class="col-12 col-md-6 col-xl-3">
-            <a class="block block-link-pop block-link-shadow text-end" href="<?= route_to('admin.presensi.kehadiran.lihat_kelas') ?>">
+            <a class="block block-link-pop block-link-shadow text-end" href="<?= route_to('admin.laporan.laporan_siswa') ?>">
                 <div class="block-content block-content-full d-flex justify-content-between align-items-center">
                     <div class="text-start">
                         <div class="fw-medium fs-6">
