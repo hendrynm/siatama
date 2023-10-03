@@ -30,7 +30,7 @@ Detail Kelas
             <div class="col-auto mt-3">
                 <div class="row">
                     <div class="col-4 col-lg-auto">
-                        <a class="btn btn-alt-info text-center p-lg-3" href="#" data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">
+                        <a class="btn btn-alt-info text-center p-lg-3" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#modal-tambah-siswa">
                             <i class="fa fa-user-plus"></i>
                             <span class="fw-medium ms-2" style="line-height: 1.25">Tambah Siswa</span>
                         </a>
@@ -75,7 +75,7 @@ Detail Kelas
                         <div class="fs-sm"><?= $s->asal_sekolah ?></div>
                     </td>
                     <td class="text-center">
-                        <a href="#" class="btn btn-outline-danger custom-btn-circle" data-bs-toggle="tooltip" title="Hapus Siswa">
+                        <a href="javascript:void(0)" class="btn btn-outline-danger custom-btn-circle" data-bs-toggle="tooltip" title="Hapus Siswa">
                             <i class="fa fa-user-slash"></i>
                         </a>
                     </td>

@@ -24,7 +24,7 @@ Beranda
             </div>
         </div>
         <div class="col-12 col-lg-auto ms-auto">
-            <a href="#" class="btn btn-alt-primary py-2 px-3 py-lg-3 px-lg-4 mt-3" data-bs-toggle="modal" data-bs-target="#modal-tambah-jenjang">
+            <a href="javascript:void(0)" class="btn btn-alt-primary py-2 px-3 py-lg-3 px-lg-4 mt-3" data-bs-toggle="modal" data-bs-target="#modal-tambah-jenjang">
                 <i class="fa fa-plus me-2"></i> Tambah Jenjang
             </a>
         </div>
@@ -40,13 +40,13 @@ Beranda
                                 SD/MI
                             </div>
                             <div class="text-end">
-                                <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modal-tambah-tingkat">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modal-tambah-tingkat">
                                     <i class="fa fa-plus"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -62,10 +62,10 @@ Beranda
                                 Kelas 1
                             </div>
                             <div class="text-end">
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -75,10 +75,10 @@ Beranda
                                 Kelas 2
                             </div>
                             <div class="text-end">
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -88,10 +88,10 @@ Beranda
                                 Kelas 3
                             </div>
                             <div class="text-end">
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -101,10 +101,10 @@ Beranda
                                 Kelas 4
                             </div>
                             <div class="text-end">
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -114,10 +114,10 @@ Beranda
                                 Kelas 5
                             </div>
                             <div class="text-end">
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -127,10 +127,10 @@ Beranda
                                 Kelas 6
                             </div>
                             <div class="text-end">
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -148,13 +148,13 @@ Beranda
                                 SMP/MTs
                             </div>
                             <div class="text-end">
-                                <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modal-tambah-tingkat">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modal-tambah-tingkat">
                                     <i class="fa fa-plus"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -170,10 +170,10 @@ Beranda
                                 Kelas 7
                             </div>
                             <div class="text-end">
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -183,10 +183,10 @@ Beranda
                                 Kelas 8
                             </div>
                             <div class="text-end">
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -196,10 +196,10 @@ Beranda
                                 Kelas 9
                             </div>
                             <div class="text-end">
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -217,13 +217,13 @@ Beranda
                                 SMA/MA IPA
                             </div>
                             <div class="text-end">
-                                <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modal-tambah-tingkat">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modal-tambah-tingkat">
                                     <i class="fa fa-plus"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -239,10 +239,10 @@ Beranda
                                 Kelas 10
                             </div>
                             <div class="text-end">
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -252,10 +252,10 @@ Beranda
                                 Kelas 11
                             </div>
                             <div class="text-end">
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -265,10 +265,10 @@ Beranda
                                 Kelas 12
                             </div>
                             <div class="text-end">
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -286,13 +286,13 @@ Beranda
                                 SMA/MA IPS
                             </div>
                             <div class="text-end">
-                                <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modal-tambah-tingkat">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modal-tambah-tingkat">
                                     <i class="fa fa-plus"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -308,10 +308,10 @@ Beranda
                                 Kelas 10
                             </div>
                             <div class="text-end">
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -321,10 +321,10 @@ Beranda
                                 Kelas 11
                             </div>
                             <div class="text-end">
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -334,10 +334,10 @@ Beranda
                                 Kelas 12
                             </div>
                             <div class="text-end">
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>

@@ -10,6 +10,7 @@ use App\Models\LiveSiswa;
 use App\Models\SettingJenjang;
 use App\Models\SettingTingkat;
 use Config\Services;
+use stdClass;
 
 class PresensiService
 {
@@ -37,7 +38,8 @@ class PresensiService
         return $this->LiveKelas
             ->join('setting_tingkat', 'setting_tingkat.id_tingkat = live_kelas.id_tingkat')
             ->join('setting_jenjang', 'setting_jenjang.id_jenjang = setting_tingkat.id_jenjang')
-            ->orderBy('live_kelas.id_tingkat', 'ASC')
+            ->orderBy('live_kelas.id_tingkat')
+            ->orderBy('live_kelas.nama_kelas')
             ->findAll();
     }
     
@@ -54,8 +56,9 @@ class PresensiService
     {
         return $this->LivePertemuan
             ->join('live_pengajar', 'live_pengajar.id_pengajar = live_pertemuan.id_pengajar')
+            ->join('setting_nilai', 'setting_nilai.id_nilai = live_pertemuan.id_nilai')
             ->where('id_kelas', $id_kelas)
-            ->orderBy('tatap_muka', 'ASC')
+            ->orderBy('tatap_muka')
             ->findAll();
     }
     
@@ -67,14 +70,15 @@ class PresensiService
             ->first();
     }
     
-    public function simpan_presensi(int $id_kelas, int $tatap_muka, string $tanggal, int $id_pengajar, int $id_pertemuan = null): bool
+    public function simpan_presensi(int $id_kelas, int $tatap_muka, string $tanggal, int $id_pengajar, int $id_nilai, int $id_pertemuan = null): bool
     {
         $data = [
             'id_pertemuan' => $id_pertemuan,
             'id_kelas' => $id_kelas,
             'tatap_muka' => $tatap_muka,
             'tanggal' => $tanggal,
-            'id_pengajar' => $id_pengajar
+            'id_pengajar' => $id_pengajar,
+            'id_nilai' => $id_nilai
         ];
         
         return $this->LivePertemuan->upsert($data);
@@ -85,7 +89,7 @@ class PresensiService
         return $this->LiveKelas
             ->join('live_siswa', 'live_siswa.id_kelas = live_kelas.id_kelas')
             ->where('live_kelas.id_kelas', $id_kelas)
-            ->orderBy('nama_siswa', 'ASC')
+            ->orderBy('nama_siswa')
             ->findAll();
     }
     
@@ -96,7 +100,6 @@ class PresensiService
         Services::image()
             ->withFile($foto)
             ->convert(IMAGETYPE_JPEG)
-            ->resize(1600, 1200, true)
             ->save(ROOTPATH . 'public/uploads/'. $nama_file);
         
         $data = [
@@ -170,7 +173,7 @@ class PresensiService
             ->join('live_siswa', 'live_siswa.id_kelas = live_kelas.id_kelas')
             ->where('live_siswa.id_tingkat', $id_tingkat)
             ->where('live_siswa.id_kelas !=', $id_kelas)
-            ->orderBy('nama_siswa', 'ASC')
+            ->orderBy('nama_siswa')
             ->findAll();
     }
     
@@ -206,5 +209,44 @@ class PresensiService
         ];
         
         return $this->LiveKelas->upsert($data);
+    }
+    
+    public function cek_presensi_terisi(array $pertemuan): stdClass
+    {
+        $cek = new stdClass();
+        
+        foreach ($pertemuan as $k=>$p)
+        {
+            $query = $this->LivePresensi
+                ->where('id_pertemuan', $p->id_pertemuan)
+                ->countAllResults();
+            
+            $cek->{$k} = $query <= 0;
+        }
+        
+        return $cek;
+    }
+    
+    public function ambil_tatap_muka_terakhir(int $id_kelas)
+    {
+        $tatap_muka = $this->LivePertemuan
+            ->where('id_kelas', $id_kelas)
+            ->orderBy('tatap_muka', 'DESC')
+            ->findColumn('tatap_muka')[0];
+        
+        return ++$tatap_muka;
+    }
+    
+    public function cek_presensi_expired(int $id_pertemuan): bool
+    {
+        $cek = $this->LivePertemuan
+            ->where('id_pertemuan', $id_pertemuan)
+            ->first();
+        
+        $sekarang = strtotime(date('Y-m-d H:i:s'));
+        $tanggal = strtotime($cek->tanggal);
+        $tanggal = strtotime("+2 days", $tanggal);
+        
+        return $sekarang < $tanggal;
     }
 }

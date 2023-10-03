@@ -63,7 +63,7 @@
                                 <img class="img-avatar img-avatar48" src="<?= base_url('src/assets/media/avatars/avatar15.jpg') ?>" alt="">
                             </div>
                             <div class="col-9">
-                                <span href="#" class="fs-base fw-bold text-uppercase text-black" style="line-height: 0 !important;">
+                                <span href="javascript:void(0)" class="fs-base fw-bold text-uppercase text-black" style="line-height: 0 !important;">
                                     <?= view_cell('NamaAkunCell') ?>
                                 </span>
                                 <br>
@@ -109,12 +109,6 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link <?= cek_aktif(route_to('admin.penilaian.index')) ?>" href="<?= route_to('admin.penilaian.index') ?>">
-                                <i class="nav-main-link-icon fa fa-marker"></i>
-                                <span class="nav-main-link-name">Penilaian</span>
-                            </a>
-                        </li>
-                        <li class="nav-main-item">
                             <a class="nav-main-link <?= cek_aktif(route_to('admin.laporan.index')) ?>" href="<?= route_to('admin.laporan.index') ?>">
                                 <i class="nav-main-link-icon fa fa-book-open-reader"></i>
                                 <span class="nav-main-link-name">Laporan</span>
@@ -140,6 +134,14 @@
                                 <span class="nav-main-link-name">Jadwal Les</span>
                             </a>
                         </li>
+                        <?php if(session()->get('hak_akses') == 'Admin'): ?>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link <?= cek_aktif(route_to('admin.penilaian.index')) ?>" href="<?= route_to('admin.penilaian.index') ?>">
+                                <i class="nav-main-link-icon fa fa-marker"></i>
+                                <span class="nav-main-link-name">Komponen Nilai</span>
+                            </a>
+                        </li>
+                        <?php endif; ?>
                         
                         <?php if(session()->get('hak_akses') == 'Admin'): ?>
                         <li class="nav-main-heading">Pengaturan</li>
@@ -232,7 +234,7 @@
             <div class="row fs-xs">
                 <div class="col-12 py-1 text-center">
                     Dibuat dengan <i class="fa fa-heart text-danger"></i> oleh
-                    <a class="fw-medium" href="#">Siatama Privat</a> &copy;
+                    <a class="fw-medium" href="javascript:void(0)">Siatama Privat</a> &copy;
                     <span data-toggle="year-copy"></span>
                 </div>
             </div>

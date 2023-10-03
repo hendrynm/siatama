@@ -37,19 +37,19 @@ Ubah Presensi
                 <?= form_hidden('id_kelas', $kelas->id_kelas) ?>
                 <?= form_hidden('id_pertemuan', $pertemuan->id_pertemuan) ?>
                 <div class="row mb-4">
-                    <div class="col-12 col-md-2">
+                    <div class="col-12 col-lg-2">
                         <div class="form-floating">
                             <input type="number" class="form-control" id="tatap_muka" name="tatap_muka" placeholder="" value="<?= $pertemuan->tatap_muka ?>" required>
                             <label class="form-label" for="tatap_muka">Tatap Muka Ke-</label>
                         </div>
                     </div>
-                    <div class="col-12 col-md-4 mt-4 mt-md-0">
+                    <div class="col-12 col-lg-3 mt-4 mt-md-0">
                         <div class="form-floating">
                             <input type="datetime-local" class="form-control" id="tanggal" name="tanggal" placeholder="" value="<?= $pertemuan->tanggal ?>" required>
-                            <label class="form-label" for="waktu">Tanggal dan Waktu</label>
+                            <label class="form-label" for="tanggal">Tanggal dan Waktu</label>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 mt-4 mt-md-0">
+                    <div class="col-12 col-lg-4 mt-4 mt-md-0">
                         <div class="form-floating">
                             <select class="form-select" id="id_pengajar" name="id_pengajar" required>
                                 <option value="" selected disabled>-- Pilih Tentor --</option>
@@ -58,6 +58,17 @@ Ubah Presensi
                                 <?php endforeach; ?>
                             </select>
                             <label class="form-label" for="id_pengajar">Tentor</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3 mt-4 mt-lg-0">
+                        <div class="form-floating">
+                            <select class="form-select" id="id_nilai" name="id_nilai" required>
+                                <option value="" selected disabled>-- Pilih Penilaian --</option>
+                                <?php foreach ($nilai as $n): ?>
+                                    <option value="<?= $n->id_nilai ?>" <?= $pertemuan->id_nilai == $n->id_nilai ? 'selected' : '' ?>><?= $n->nama_nilai ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <label class="form-label" for="id_nilai">Jenis Penilaian</label>
                         </div>
                     </div>
                 </div>

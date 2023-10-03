@@ -34,7 +34,7 @@ Beranda
                         </div>
                     </div>
                     <div class="text-end mt-4 mt-md-0">
-                        <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-ganti-semester">
+                        <a href="javascript:void(0)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-ganti-semester">
                             <i class="fa fa-person-arrow-up-from-line me-2"></i> Ganti ke Semester Berikutnya
                         </a>
                     </div>

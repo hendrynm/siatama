@@ -37,7 +37,7 @@ Pilih Kelas
                     </div>
                     <div class="text-end">
                         <div class="fs-5 fw-semibold text-<?= $k->warna ?>"><?= $k->nama_jenjang ?></div>
-                        <div class="fw-semibold text-primary"><?= ($k->jenis == 0) ? 'Reguler' : 'Privat' ?></div>
+                        <div class="fw-semibold text-primary"><?= ($k->jenis == 0) ? 'Reguler' : '<span class="bg-primary text-white px-1">Privat</span>' ?></div>
                     </div>
                 </div>
             </a>

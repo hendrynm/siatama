@@ -22,7 +22,7 @@
     <!-- Main Container -->
     <main id="main-container">
         <!-- Page Content -->
-        <div class="bg-image" style="background-image: url('https://priba.id/wp-content/uploads/2020/06/Les-Privat-Calistung-Membaca-Menulis-dan-Berhitung.jpg');">
+        <div class="bg-image" style="background-image: url('<?= base_url('login-sd.jpg') ?>');">
             <div class="row mx-0 bg-black-25">
                 <div class="hero-static col-md-6 col-xl-8 d-none d-md-flex align-items-md-end">
                     <div class="p-4 bg-black-50">
@@ -39,7 +39,7 @@
                     <div class="content content-full">
                         <!-- Header -->
                         <div class="px-4 py-2 mb-4">
-                            <a class="link-fx fw-bold" href="#">
+                            <a class="link-fx fw-bold" href="javascript:void(0)">
                                 <span class="fs-4 text-primary">Siatama</span> <span class="fs-4 text-dual">Privat</span>
                             </a>
                             <h1 class="h3 fw-bold mt-4 mb-2">Selamat Datang</h1>

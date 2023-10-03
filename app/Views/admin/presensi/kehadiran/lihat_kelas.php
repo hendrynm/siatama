@@ -51,12 +51,12 @@ Detail Kelas
                 <tr class="bg-gray text-sm text-center">
                     <th class="col-2">Tatap Muka</th>
                     <th class="col-4">Jadwal</th>
-                    <th class="col-4">Tentor</th>
+                    <th class="col-4">Detail</th>
                     <th class="col-2">Aksi</th>
                 </tr>
                 </thead>
                 <tbody class="align-middle fs-sm">
-                <?php foreach ($pertemuan as $p): ?>
+                <?php foreach ($pertemuan as $k=>$p): ?>
                 <tr>
                     <th class="text-center fs-1 fw-medium" scope="row">
                         <?= $p->tatap_muka ?>
@@ -67,12 +67,15 @@ Detail Kelas
                     </td>
                     <td class="fs-base">
                         <div class="fw-medium"><i class="far fa-user me-2"></i><?= $p->nama_pengajar ?></div>
+                        <div class=""><i class="far fa-file-lines me-2"></i><?= $p->nama_nilai ?></div>
                     </td>
                     <td class="text-center">
                         <div class="space-y-1">
-                            <a href="<?= url_to('PresensiController::kehadiran_isi_presensi', $kelas->id_kelas, $p->id_pertemuan) ?>" class="btn btn-alt-primary btn-sm w-100"><i class="fa fa-eye me-2"></i>Presensi</a>
+                            <a href="<?= url_to('PresensiController::kehadiran_isi_presensi', $kelas->id_kelas, $p->id_pertemuan) ?>" class="btn btn-alt-primary btn-sm w-100"><i class="fa fa-eye me-2"></i>Lihat</a>
+                            <?php if($cek_presensi->{$k} == true): ?>
                             <a href="<?= url_to('PresensiController::kehadiran_ubah_presensi', $kelas->id_kelas, $p->id_pertemuan) ?>" class="btn btn-alt-warning btn-sm w-100"><i class="fa fa-edit me-2"></i>Ubah</a>
                             <a href="<?= url_to('PresensiController::kehadiran_hapus_presensi', $kelas->id_kelas, $p->id_pertemuan) ?>" class="btn btn-alt-danger btn-sm w-100"><i class="fa fa-trash me-2"></i>Hapus</a>
+                            <?php endif; ?>
                         </div>
                     </td>
                 </tr>

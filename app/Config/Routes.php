@@ -106,17 +106,14 @@ $routes->group('admin', function ($routes)
         $routes->get('',
             [PenilaianController::class, 'index'], ['as' => 'admin.penilaian.index']);
         
-        $routes->get('pilih-kelas',
-            [PenilaianController::class, 'pilih_kelas'], ['as' => 'admin.penilaian.pilih_kelas']);
-        $routes->get('lihat-kelas',
-            [PenilaianController::class, 'lihat_kelas'], ['as' => 'admin.penilaian.lihat_kelas']);
-        $routes->get('tambah-penilaian',
-            [PenilaianController::class, 'tambah_penilaian'], ['as' => 'admin.penilaian.tambah_penilaian']);
-        $routes->get('isi-penilaian',
-            [PenilaianController::class, 'isi_penilaian'], ['as' => 'admin.penilaian.isi_penilaian']);
-        
         $routes->get('lihat-komponen',
             [PenilaianController::class, 'lihat_komponen'], ['as' => 'admin.penilaian.lihat_komponen']);
+        $routes->post('simpan-komponen',
+            [PenilaianController::class, 'simpan_komponen'], ['as' => 'admin.penilaian.simpan_komponen']);
+        $routes->post('ambil-nilai',
+            [PenilaianController::class, 'ambil_nilai'], ['as' => 'admin.penilaian.ambil_nilai']);
+        $routes->post('simpan-nilai',
+            [PenilaianController::class, 'simpan_nilai'], ['as' => 'admin.penilaian.simpan_nilai']);
     });
     
     $routes->group('laporan', function ($routes)

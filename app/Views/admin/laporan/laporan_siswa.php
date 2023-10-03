@@ -27,7 +27,7 @@ Laporan Siswa
                         <span class="ms-3 me-auto text-white fs-5 fw-semibold">Laporan Kemajuan Siswa</span>
                     </div>
                     <div>
-                        <a href="#" class="btn btn-alt-info btn-sm" id="tombol-cetak">
+                        <a href="javascript:void(0)" class="btn btn-alt-info btn-sm" id="tombol-cetak">
                             <i class="fa fa-print me-2"></i>Cetak
                         </a>
                     </div>

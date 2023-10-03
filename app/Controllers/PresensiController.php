@@ -2,15 +2,19 @@
 
 namespace App\Controllers;
 
+use App\Services\PenilaianService;
 use App\Services\PresensiService;
 use CodeIgniter\HTTP\RedirectResponse;
 
 class PresensiController extends BaseController
 {
     private PresensiService $PresensiService;
+    private PenilaianService $PenilaianService;
+    
     public function __construct()
     {
         $this->PresensiService = new PresensiService();
+        $this->PenilaianService = new PenilaianService();
     }
     
     public function index(): string
@@ -31,21 +35,27 @@ class PresensiController extends BaseController
     {
         $kelas = $this->PresensiService->ambil_detail_kelas($id_kelas);
         $pertemuan = $this->PresensiService->ambil_daftar_pertemuan($id_kelas);
+        $cek_presensi = $this->PresensiService->cek_presensi_terisi($pertemuan);
         
         return view('admin/presensi/kehadiran/lihat_kelas', [
             'kelas' => $kelas,
-            'pertemuan' => $pertemuan
+            'pertemuan' => $pertemuan,
+            'cek_presensi' => $cek_presensi
         ]);
     }
     
     public function kehadiran_tambah_presensi(int $id_kelas): string
     {
+        $tatap_muka = $this->PresensiService->ambil_tatap_muka_terakhir($id_kelas);
         $kelas = $this->PresensiService->ambil_detail_kelas($id_kelas);
         $pengajar = $this->PresensiService->ambil_daftar_pengajar();
+        $nilai = $this->PenilaianService->ambil_daftar_nilai();
         
         return view('admin/presensi/kehadiran/tambah_presensi', [
+            'tatap_muka' => $tatap_muka,
             'kelas' => $kelas,
-            'pengajar' => $pengajar
+            'pengajar' => $pengajar,
+            'nilai' => $nilai
         ]);
     }
     
@@ -55,8 +65,9 @@ class PresensiController extends BaseController
         $tatap_muka = $this->request->getPost('tatap_muka');
         $tanggal = $this->request->getPost('tanggal');
         $id_pengajar = $this->request->getPost('id_pengajar');
+        $id_nilai = $this->request->getPost('id_nilai');
         
-        $simpan = $this->PresensiService->simpan_presensi($id_kelas, $tatap_muka, $tanggal, $id_pengajar);
+        $simpan = $this->PresensiService->simpan_presensi($id_kelas, $tatap_muka, $tanggal, $id_pengajar, $id_nilai);
         
         if($simpan)
         {
@@ -72,11 +83,13 @@ class PresensiController extends BaseController
         $kelas = $this->PresensiService->ambil_detail_kelas($id_kelas);
         $pertemuan = $this->PresensiService->ambil_detail_pertemuan($id_pertemuan);
         $pengajar = $this->PresensiService->ambil_daftar_pengajar();
+        $nilai = $this->PenilaianService->ambil_daftar_nilai();
         
         return view('admin/presensi/kehadiran/ubah_presensi', [
             'kelas' => $kelas,
             'pertemuan' => $pertemuan,
-            'pengajar' => $pengajar
+            'pengajar' => $pengajar,
+            'nilai' => $nilai
         ]);
     }
     
@@ -87,8 +100,9 @@ class PresensiController extends BaseController
         $tatap_muka = $this->request->getPost('tatap_muka');
         $tanggal = $this->request->getPost('tanggal');
         $id_pengajar = $this->request->getPost('id_pengajar');
+        $id_nilai = $this->request->getPost('id_nilai');
         
-        $simpan = $this->PresensiService->simpan_presensi($id_kelas, $tatap_muka, $tanggal, $id_pengajar,  $id_pertemuan);
+        $simpan = $this->PresensiService->simpan_presensi($id_kelas, $tatap_muka, $tanggal, $id_pengajar,  $id_nilai, $id_pertemuan);
         
         if($simpan)
         {
@@ -105,12 +119,16 @@ class PresensiController extends BaseController
         $pertemuan = $this->PresensiService->ambil_detail_pertemuan($id_pertemuan);
         $siswa = $this->PresensiService->ambil_daftar_siswa_kelas($id_kelas);
         $presensi = $this->PresensiService->ambil_detail_presensi($id_pertemuan);
+        $nilai = $this->PenilaianService->ambil_nilai_presensi($pertemuan->id_nilai);
+        $cek_presensi = $this->PresensiService->cek_presensi_expired($id_pertemuan);
         
         return view('admin/presensi/kehadiran/isi_presensi', [
             'kelas' => $kelas,
             'pertemuan' => $pertemuan,
             'siswa' => $siswa,
-            'presensi' => $presensi
+            'presensi' => $presensi,
+            'nilai' => $nilai,
+            'cek_presensi' => $cek_presensi
         ]);
     }
     

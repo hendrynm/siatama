@@ -83,10 +83,10 @@ Siswa
                             -
                         </td>
                         <td class="text-center space-y-1">
-                            <a href="#" class="btn btn-sm btn-alt-warning" data-bs-toggle="tooltip" title="Ubah">
+                            <a href="javascript:void(0)" class="btn btn-sm btn-alt-warning" data-bs-toggle="tooltip" title="Ubah">
                                 <i class="fa fa-pen"></i>
                             </a>
-                            <a href="#" class="btn btn-sm btn-alt-danger" data-bs-toggle="tooltip" title="Hapus">
+                            <a href="javascript:void(0)" class="btn btn-sm btn-alt-danger" data-bs-toggle="tooltip" title="Hapus">
                                 <i class="fa fa-trash"></i>
                             </a>
                         </td>
@@ -122,10 +122,10 @@ Siswa
                             -
                         </td>
                         <td class="text-center space-y-1">
-                            <a href="#" class="btn btn-sm btn-alt-warning" data-bs-toggle="tooltip" title="Ubah">
+                            <a href="javascript:void(0)" class="btn btn-sm btn-alt-warning" data-bs-toggle="tooltip" title="Ubah">
                                 <i class="fa fa-pen"></i>
                             </a>
-                            <a href="#" class="btn btn-sm btn-alt-danger" data-bs-toggle="tooltip" title="Hapus">
+                            <a href="javascript:void(0)" class="btn btn-sm btn-alt-danger" data-bs-toggle="tooltip" title="Hapus">
                                 <i class="fa fa-trash"></i>
                             </a>
                         </td>
