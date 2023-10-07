@@ -23,7 +23,7 @@ Beranda
     
     <div class="row align-middle">
         <div class="col-6 col-xl-3">
-            <a class="block block-link-pop text-center" href="<?= route_to('admin.mentor.mentor_aktif') ?>">
+            <a class="block block-link-pop text-center" href="<?= route_to('admin.tentor.tentor_aktif') ?>">
                 <div class="block-content py-4 py-xl-5">
                     <div class="fs-1 text-primary">
                         <i class="fa fa-users fa-2x"></i>
@@ -35,7 +35,7 @@ Beranda
             </a>
         </div>
         <div class="col-6 col-xl-3">
-            <a class="block block-link-pop text-center" href="<?= route_to('admin.mentor.mentor_nonaktif') ?>">
+            <a class="block block-link-pop text-center" href="<?= route_to('admin.tentor.tentor_nonaktif') ?>">
                 <div class="block-content py-4 py-xl-5">
                     <div class="fs-1 text-danger">
                         <i class="fa fa-users-slash fa-2x"></i>
@@ -47,7 +47,7 @@ Beranda
             </a>
         </div>
         <div class="col-6 col-xl-3">
-            <a class="block block-link-pop text-center" href="<?= route_to('admin.mentor.tambah_mentor') ?>">
+            <a class="block block-link-pop text-center" href="<?= route_to('admin.tentor.tambah_tentor') ?>">
                 <div class="block-content py-4 py-xl-5">
                     <div class="fs-1 text-info">
                         <i class="fa fa-user-plus fa-2x"></i>

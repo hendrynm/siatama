@@ -227,14 +227,16 @@ class PresensiService
         return $cek;
     }
     
-    public function ambil_tatap_muka_terakhir(int $id_kelas)
+    public function ambil_tatap_muka_terakhir(int $id_kelas): int
     {
         $tatap_muka = $this->LivePertemuan
             ->where('id_kelas', $id_kelas)
             ->orderBy('tatap_muka', 'DESC')
-            ->findColumn('tatap_muka')[0];
+            ->findColumn('tatap_muka');
         
-        return ++$tatap_muka;
+        $nomor = $tatap_muka[0] ?? 0;
+        
+        return ++$nomor;
     }
     
     public function cek_presensi_expired(int $id_pertemuan): bool

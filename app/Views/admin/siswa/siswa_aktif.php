@@ -50,7 +50,7 @@ Siswa Aktif
                     <tbody class="align-middle">
                     <?php foreach ($siswa as $key => $value): ?>
                     <tr>
-                        <th class="text-center fw-medium" scope="row">
+                        <th class="text-center fw-medium fs-lg" scope="row">
                             <?= $key+1 ?>
                         </th>
                         <td class="">
@@ -75,10 +75,10 @@ Siswa Aktif
                         </td>
                         <td class="">
                             <div class="fw-medium">
-                                Paket <?= $value->nama_paket ?>
+                                <?= $value->nama_paket ?>
                             </div>
                             <div class="fs-sm">
-                                <?= ubah_harga($value->harga_paket) ?>
+                                <?= ubah_harga($value->harga_paket) ?><?= ($value->jenis) == 0 ? '/bulan' : '/pertemuan' ?>
                             </div>
                         </td>
                         <td class="text-center space-y-1">
@@ -157,6 +157,14 @@ Siswa Aktif
                 title: 'Berhasil!',
                 html: '<?= session()->getFlashdata("success") ?>',
                 icon: 'success'
+            });
+            <?php endif; ?>
+            
+            <?php if (session()->getFlashdata('error')): ?>
+            e.fire({
+                title: 'Kesalahan Aplikasi!',
+                html: '<?= session()->getFlashdata("error") ?>',
+                icon: 'error'
             });
             <?php endif; ?>
         }

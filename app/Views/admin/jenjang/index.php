@@ -23,334 +23,352 @@ Beranda
                 Silakan memilih menu di bawah ini
             </div>
         </div>
-        <div class="col-12 col-lg-auto ms-auto">
-            <a href="javascript:void(0)" class="btn btn-alt-primary py-2 px-3 py-lg-3 px-lg-4 mt-3" data-bs-toggle="modal" data-bs-target="#modal-tambah-jenjang">
-                <i class="fa fa-plus me-2"></i> Tambah Jenjang
-            </a>
-        </div>
+<!--        <div class="col-12 col-lg-auto ms-auto">-->
+<!--            <a href="javascript:void(0)" class="btn btn-alt-primary py-2 px-3 py-lg-3 px-lg-4 mt-3" data-bs-toggle="modal" data-bs-target="#modal-tambah-jenjang">-->
+<!--                <i class="fa fa-plus me-2"></i> Tambah Jenjang-->
+<!--            </a>-->
+<!--        </div>-->
     </div>
     
-    <div class="row">
-        <div class="col-12 col-xl-3">
-            <div class="row">
-                <div class="col-12">
-                    <div class="block my-0">
-                        <div class="block-content block-content-full bg-danger text-white fw-semibold py-2 ps-3 pe-2 fs-5 d-flex justify-content-between align-items-center">
-                            <div class="text-start">
-                                SD/MI
-                            </div>
-                            <div class="text-end">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modal-tambah-tingkat">
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-trash"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-2"></div>
-                <div class="col-10">
-                    <div class="block">
-                        <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
-                            <div class="text-start">
-                                Kelas 1
-                            </div>
-                            <div class="text-end">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-trash"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
-                            <div class="text-start">
-                                Kelas 2
-                            </div>
-                            <div class="text-end">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-trash"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
-                            <div class="text-start">
-                                Kelas 3
-                            </div>
-                            <div class="text-end">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-trash"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
-                            <div class="text-start">
-                                Kelas 4
-                            </div>
-                            <div class="text-end">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-trash"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
-                            <div class="text-start">
-                                Kelas 5
-                            </div>
-                            <div class="text-end">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-trash"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
-                            <div class="text-start">
-                                Kelas 6
-                            </div>
-                            <div class="text-end">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-trash"></i>
-                                </a>
+    <?php if(getenv('CI_ENVIRONMENT') == 'development'): ?>
+        <div class="row">
+            <div class="col-12 col-xl-3">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="block my-0">
+                            <div class="block-content block-content-full bg-danger text-white fw-semibold py-2 ps-3 pe-2 fs-5 d-flex justify-content-between align-items-center">
+                                <div class="text-start">
+                                    SD/MI
+                                </div>
+                                <div class="text-end">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modal-tambah-tingkat">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-xl-3">
-            <div class="row">
-                <div class="col-12">
-                    <div class="block my-0">
-                        <div class="block-content block-content-full bg-info text-white fw-semibold py-2 ps-3 pe-2 fs-5 d-flex justify-content-between align-items-center">
-                            <div class="text-start">
-                                SMP/MTs
-                            </div>
-                            <div class="text-end">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modal-tambah-tingkat">
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-trash"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-2"></div>
-                <div class="col-10">
-                    <div class="block">
-                        <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
-                            <div class="text-start">
-                                Kelas 7
+                    <div class="col-2"></div>
+                    <div class="col-10">
+                        <div class="block">
+                            <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
+                                <div class="text-start">
+                                    Kelas 1
+                                </div>
+                                <div class="text-end">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="text-end">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-trash"></i>
-                                </a>
+                            <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
+                                <div class="text-start">
+                                    Kelas 2
+                                </div>
+                                <div class="text-end">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
-                            <div class="text-start">
-                                Kelas 8
+                            <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
+                                <div class="text-start">
+                                    Kelas 3
+                                </div>
+                                <div class="text-end">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="text-end">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-trash"></i>
-                                </a>
+                            <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
+                                <div class="text-start">
+                                    Kelas 4
+                                </div>
+                                <div class="text-end">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
-                            <div class="text-start">
-                                Kelas 9
+                            <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
+                                <div class="text-start">
+                                    Kelas 5
+                                </div>
+                                <div class="text-end">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="text-end">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-trash"></i>
-                                </a>
+                            <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
+                                <div class="text-start">
+                                    Kelas 6
+                                </div>
+                                <div class="text-end">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12 col-xl-3">
-            <div class="row">
-                <div class="col-12">
-                    <div class="block my-0">
-                        <div class="block-content block-content-full bg-secondary text-white fw-semibold py-2 ps-3 pe-2 fs-5 d-flex justify-content-between align-items-center">
-                            <div class="text-start">
-                                SMA/MA IPA
-                            </div>
-                            <div class="text-end">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modal-tambah-tingkat">
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-trash"></i>
-                                </a>
+            <div class="col-12 col-xl-3">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="block my-0">
+                            <div class="block-content block-content-full bg-info text-white fw-semibold py-2 ps-3 pe-2 fs-5 d-flex justify-content-between align-items-center">
+                                <div class="text-start">
+                                    SMP/MTs
+                                </div>
+                                <div class="text-end">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modal-tambah-tingkat">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-2"></div>
-                <div class="col-10">
-                    <div class="block">
-                        <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
-                            <div class="text-start">
-                                Kelas 10
+                    <div class="col-2"></div>
+                    <div class="col-10">
+                        <div class="block">
+                            <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
+                                <div class="text-start">
+                                    Kelas 7
+                                </div>
+                                <div class="text-end">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="text-end">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-trash"></i>
-                                </a>
+                            <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
+                                <div class="text-start">
+                                    Kelas 8
+                                </div>
+                                <div class="text-end">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
-                            <div class="text-start">
-                                Kelas 11
-                            </div>
-                            <div class="text-end">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-trash"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
-                            <div class="text-start">
-                                Kelas 12
-                            </div>
-                            <div class="text-end">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-trash"></i>
-                                </a>
+                            <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
+                                <div class="text-start">
+                                    Kelas 9
+                                </div>
+                                <div class="text-end">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12 col-xl-3">
-            <div class="row">
-                <div class="col-12">
-                    <div class="block my-0">
-                        <div class="block-content block-content-full bg-black-75 text-white fw-semibold py-2 ps-3 pe-2 fs-5 d-flex justify-content-between align-items-center">
-                            <div class="text-start">
-                                SMA/MA IPS
-                            </div>
-                            <div class="text-end">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modal-tambah-tingkat">
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-trash"></i>
-                                </a>
+            <div class="col-12 col-xl-3">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="block my-0">
+                            <div class="block-content block-content-full bg-secondary text-white fw-semibold py-2 ps-3 pe-2 fs-5 d-flex justify-content-between align-items-center">
+                                <div class="text-start">
+                                    SMA/MA IPA
+                                </div>
+                                <div class="text-end">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modal-tambah-tingkat">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-2"></div>
-                <div class="col-10">
-                    <div class="block">
-                        <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
-                            <div class="text-start">
-                                Kelas 10
+                    <div class="col-2"></div>
+                    <div class="col-10">
+                        <div class="block">
+                            <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
+                                <div class="text-start">
+                                    Kelas 10
+                                </div>
+                                <div class="text-end">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="text-end">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-trash"></i>
-                                </a>
+                            <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
+                                <div class="text-start">
+                                    Kelas 11
+                                </div>
+                                <div class="text-end">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
+                                <div class="text-start">
+                                    Kelas 12
+                                </div>
+                                <div class="text-end">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
-                            <div class="text-start">
-                                Kelas 11
-                            </div>
-                            <div class="text-end">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-trash"></i>
-                                </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-3">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="block my-0">
+                            <div class="block-content block-content-full bg-black-75 text-white fw-semibold py-2 ps-3 pe-2 fs-5 d-flex justify-content-between align-items-center">
+                                <div class="text-start">
+                                    SMA/MA IPS
+                                </div>
+                                <div class="text-end">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modal-tambah-tingkat">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
-                            <div class="text-start">
-                                Kelas 12
+                    </div>
+
+                    <div class="col-2"></div>
+                    <div class="col-10">
+                        <div class="block">
+                            <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
+                                <div class="text-start">
+                                    Kelas 10
+                                </div>
+                                <div class="text-end">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="text-end">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light">
-                                    <i class="fa fa-trash"></i>
-                                </a>
+                            <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
+                                <div class="text-start">
+                                    Kelas 11
+                                </div>
+                                <div class="text-end">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="block-content block-content-full fw-medium py-2 py-2 ps-3 pe-2 fs-sm d-flex justify-content-between align-items-center">
+                                <div class="text-start">
+                                    Kelas 12
+                                </div>
+                                <div class="text-end">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    <?php else: ?>
+        <div class="row">
+            <div class="col-12">
+                <div class="hero-sm bg-body-extra-light">
+                    <div class="hero-inner">
+                        <div class="content">
+                            <div class="py-4 text-center">
+                                <i class="si si-chemistry text-primary display-2"></i>
+                                <h1 class="h1 fw-bold mt-4 mb-3">Fitur Dalam Pengembangan!</h1>
+                                <h2 class="h4 fw-medium text-muted mb-5">Silakan cek kembali lain waktu 😇🙏</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
 </div>
 
 <div class="modal fade" id="modal-tambah-jenjang" tabindex="-1" role="dialog" aria-labelledby="modal-tambah-jenjang" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="block block-rounded shadow-none mb-0">
                 <div class="block-header block-header-default">
@@ -381,7 +399,7 @@ Beranda
 </div>
 
 <div class="modal fade" id="modal-tambah-tingkat" tabindex="-1" role="dialog" aria-labelledby="modal-tambah-tingkat" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="block block-rounded shadow-none mb-0">
                 <div class="block-header block-header-default">

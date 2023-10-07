@@ -1,11 +1,17 @@
 <?= $this->extend('admin/_layout/master') ?>
 
+<?php helper(['form']); ?>
+
 <?= $this->section('menu') ?>
 Presensi
 <?= $this->endSection() ?>
 
 <?= $this->section('submenu') ?>
 Detail Kelas
+<?= $this->endSection() ?>
+
+<?= $this->section('css') ?>
+<?= link_tag('src/assets/js/plugins/select2/css/select2.min.css') ?>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
@@ -103,14 +109,14 @@ Detail Kelas
                     </div>
                 </div>
                 <div class="block-content fs-sm">
+                    <label class="form-label" for="id-siswa">Nama Siswa</label>
                     <div class="form-floating mb-5">
-                        <select class="form-select" id="id-siswa" name="id-siswa">
-                            <option value="" selected disabled>-- pilih salah satu --</option>
+                        <select class="form-select js-select2 fs-lg" id="id-siswa" name="id-siswa" data-container="#modal-tambah-siswa" data-placeholder="-- pilih salah satu --" style="width: 100%">
+                            <option></option>
                             <?php foreach ($siswa_aktif as $sa): ?>
                             <option value="<?= $sa->id_siswa ?>"><?= $sa->nama_siswa ?></option>
                             <?php endforeach; ?>
                         </select>
-                        <label class="form-label" for="id-siswa">Nama Siswa</label>
                     </div>
                 </div>
                 <div class="block-content block-content-full block-content-sm text-end border-top">
@@ -126,4 +132,13 @@ Detail Kelas
     </div>
 </div>
 </form>
+<?= $this->endSection() ?>
+
+<?= $this->section('js') ?>
+<?= script_tag('src/assets/js/lib/jquery.min.js') ?>
+<?= script_tag('src/assets/js/plugins/select2/js/select2.full.min.js') ?>
+
+<script>
+    Codebase.helpersOnLoad(['jq-select2']);
+</script>
 <?= $this->endSection() ?>

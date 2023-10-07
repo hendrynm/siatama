@@ -3,7 +3,7 @@
 <?php helper(['form']) ?>
 
 <?= $this->section('menu') ?>
-Penilaian
+Komponen Penilaian
 <?= $this->endSection() ?>
 
 <?= $this->section('submenu') ?>

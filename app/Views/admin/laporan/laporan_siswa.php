@@ -171,7 +171,7 @@ Laporan Siswa
     </div>
     
     <div class="row mt-auto">
-        <div class="col-12 col-lg-6">
+        <div class="col-12">
             <div class="block">
                 <div class="block-header">
                     <h3 class="block-title">Catatan Perkembangan Siswa</h3>

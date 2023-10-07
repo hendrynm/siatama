@@ -114,6 +114,14 @@
                                 <span class="nav-main-link-name">Laporan</span>
                             </a>
                         </li>
+                        <?php if(session()->get('hak_akses') == 'Admin'): ?>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link <?= cek_aktif(route_to('admin.pembayaran.index')) ?>" href="<?= route_to('admin.pembayaran.index') ?>">
+                                <i class="nav-main-link-icon fa fa-wallet"></i>
+                                <span class="nav-main-link-name">Pembayaran</span>
+                            </a>
+                        </li>
+                        <?php endif; ?>
                         
                         <li class="nav-main-heading">Manajemen Data</li>
                         <li class="nav-main-item">
@@ -123,7 +131,7 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link <?= cek_aktif(route_to('admin.mentor.index')) ?>" href="<?= route_to('admin.mentor.index') ?>">
+                            <a class="nav-main-link <?= cek_aktif(route_to('admin.tentor.index')) ?>" href="<?= route_to('admin.tentor.index') ?>">
                                 <i class="nav-main-link-icon fa fa-chalkboard-user"></i>
                                 <span class="nav-main-link-name">Data Tentor</span>
                             </a>
@@ -139,6 +147,13 @@
                             <a class="nav-main-link <?= cek_aktif(route_to('admin.penilaian.index')) ?>" href="<?= route_to('admin.penilaian.index') ?>">
                                 <i class="nav-main-link-icon fa fa-marker"></i>
                                 <span class="nav-main-link-name">Komponen Nilai</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-main-item">
+                            <a class="nav-main-link <?= cek_aktif(route_to('admin.paket.index')) ?>" href="<?= route_to('admin.paket.index') ?>">
+                                <i class="nav-main-link-icon fa fa-rupiah-sign"></i>
+                                <span class="nav-main-link-name">Harga Paket</span>
                             </a>
                         </li>
                         <?php endif; ?>

@@ -12,15 +12,15 @@ Beranda
 <div class="col-12">
     <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center py-2 text-center text-md-start">
         <div class="flex-grow-1 mb-1 mb-md-0">
-            <h1 class="fs-4 fw-semibold mb-1">
+            <div class="fs-3 fw-semibold mb-1">
                 Selamat datang
-            </h1>
-            <h1 class="fs-3 fw-bold mb-3 text-primary">
+            </div>
+            <div class="fs-1 fw-bold mb-3 text-primary" style="line-height: 1">
                 <?= view_cell('NamaAkunCell') ?>
-            </h1>
-            <h1 class="fs-6 fw-medium">
+            </div>
+            <span class="fs-4">
                 Semoga harimu menyenangkan 😇
-            </h1>
+            </span>
         </div>
     </div>
 </div>

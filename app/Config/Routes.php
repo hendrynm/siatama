@@ -6,6 +6,8 @@ use App\Controllers\AdminController;
 use App\Controllers\JadwalController;
 use App\Controllers\JenjangController;
 use App\Controllers\LaporanController;
+use App\Controllers\PaketController;
+use App\Controllers\PembayaranController;
 use App\Controllers\TentorController;
 use App\Controllers\PenilaianController;
 use App\Controllers\PresensiController;
@@ -154,26 +156,28 @@ $routes->group('admin', function ($routes)
             [SiswaController::class, 'aktif_siswa'], ['as' => 'admin.siswa.aktif_siswa']);
     });
     
-    $routes->group('mentor', function ($routes)
+    $routes->group('tentor', function ($routes)
     {
         $routes->get('',
-            [TentorController::class, 'index'], ['as' => 'admin.mentor.index']);
-        $routes->get('mentor-aktif',
-            [TentorController::class, 'mentor_aktif'], ['as' => 'admin.mentor.mentor_aktif']);
-        $routes->get('mentor-nonaktif',
-            [TentorController::class, 'mentor_nonaktif'], ['as' => 'admin.mentor.mentor_nonaktif']);
-        $routes->get('tambah-mentor',
-            [TentorController::class, 'tambah_mentor'], ['as' => 'admin.mentor.tambah_mentor']);
-        $routes->post('tambah-mentor',
-            [TentorController::class, 'tambah_mentor_post'], ['as' => 'admin.mentor.tambah_mentor.post']);
-        $routes->get('ubah-mentor',
-            [TentorController::class, 'ubah_mentor'], ['as' => 'admin.mentor.ubah_mentor']);
-        $routes->post('ubah-mentor',
-            [TentorController::class, 'ubah_mentor_post'], ['as' => 'admin.mentor.ubah_mentor.post']);
-        $routes->get('hapus-mentor',
-            [TentorController::class, 'hapus_mentor'], ['as' => 'admin.mentor.hapus_mentor']);
-        $routes->get('arsip-mentor',
-            [TentorController::class, 'arsip_mentor'], ['as' => 'admin.mentor.arsip_mentor']);
+            [TentorController::class, 'index'], ['as' => 'admin.tentor.index']);
+        $routes->get('tentor-aktif',
+            [TentorController::class, 'tentor_aktif'], ['as' => 'admin.tentor.tentor_aktif']);
+        $routes->get('tentor-nonaktif',
+            [TentorController::class, 'tentor_nonaktif'], ['as' => 'admin.tentor.tentor_nonaktif']);
+        $routes->get('tambah-tentor',
+            [TentorController::class, 'tambah_tentor'], ['as' => 'admin.tentor.tambah_tentor']);
+        $routes->post('tambah-tentor',
+            [TentorController::class, 'tambah_tentor_post'], ['as' => 'admin.tentor.tambah_tentor.post']);
+        $routes->get('ubah-tentor/(:num)',
+            [[TentorController::class, 'ubah_tentor'], '$1']);
+        $routes->post('ubah-tentor',
+            [TentorController::class, 'ubah_tentor_post'], ['as' => 'admin.tentor.ubah_tentor.post']);
+        $routes->post('hapus-tentor',
+            [TentorController::class, 'hapus_tentor'], ['as' => 'admin.tentor.hapus_tentor']);
+        $routes->post('arsip-tentor',
+            [TentorController::class, 'arsip_tentor'], ['as' => 'admin.tentor.arsip_tentor']);
+        $routes->post('aktif-tentor',
+            [TentorController::class, 'aktif_tentor'], ['as' => 'admin.tentor.aktif_tentor']);
     });
     
     $routes->group('jadwal', function ($routes)
@@ -182,8 +186,8 @@ $routes->group('admin', function ($routes)
             [JadwalController::class, 'index'], ['as' => 'admin.jadwal.index']);
         $routes->get('siswa-aktif',
             [JadwalController::class, 'siswa_aktif'], ['as' => 'admin.jadwal.siswa_aktif']);
-        $routes->get('mentor-aktif',
-            [JadwalController::class, 'mentor_aktif'], ['as' => 'admin.jadwal.mentor_aktif']);
+        $routes->get('tentor-aktif',
+            [JadwalController::class, 'tentor_aktif'], ['as' => 'admin.jadwal.tentor_aktif']);
     });
     
     $routes->group('jenjang', function ($routes)
@@ -230,6 +234,18 @@ $routes->group('admin', function ($routes)
             [SemesterController::class, 'ubah_semester_post'], ['as' => 'admin.semester.ubah_semester.post']);
         $routes->get('hapus-semester',
             [SemesterController::class, 'hapus_semester'], ['as' => 'admin.semester.hapus_semester']);
+    });
+    
+    $routes->group('pembayaran', function ($routes)
+    {
+        $routes->get('',
+            [PembayaranController::class, 'index'], ['as' => 'admin.pembayaran.index']);
+    });
+    
+    $routes->group('paket', function ($routes)
+    {
+        $routes->get('',
+            [PaketController::class, 'index'], ['as' => 'admin.paket.index']);
     });
 });
 

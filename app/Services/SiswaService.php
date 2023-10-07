@@ -29,7 +29,8 @@ class SiswaService
             'nama_ortu',
             'telepon_ortu',
             'nama_paket',
-            'harga_paket'
+            'harga_paket',
+            'jenis'
         ])
             ->join('setting_tingkat',
                 'setting_tingkat.id_tingkat = live_siswa.id_tingkat')
@@ -53,7 +54,8 @@ class SiswaService
             'nama_ortu',
             'telepon_ortu',
             'nama_paket',
-            'harga_paket'
+            'harga_paket',
+            'jenis'
         ])
             ->join('setting_tingkat',
                 'setting_tingkat.id_tingkat = history_siswa.id_tingkat')
@@ -80,7 +82,8 @@ class SiswaService
             'telepon_ortu',
             'setting_paket.id_paket',
             'nama_paket',
-            'harga_paket'
+            'harga_paket',
+            'jenis'
         ])
             ->join('setting_tingkat',
                 'setting_tingkat.id_tingkat = live_siswa.id_tingkat')

@@ -10,6 +10,10 @@ Presensi
 Tambah Presensi
 <?= $this->endSection() ?>
 
+<?= $this->section('css') ?>
+<?= link_tag('src/assets/js/plugins/select2/css/select2.min.css') ?>
+<?= $this->endSection() ?>
+
 <?= $this->section('content') ?>
 <div class="col-12">
     <div class="block block-bordered">
@@ -48,15 +52,15 @@ Tambah Presensi
                             <label class="form-label" for="tanggal">Tanggal dan Waktu</label>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-4 mt-4 mt-lg-0">
+                    <div class="col-12 col-lg-4 mt-4 mt-md-0">
+                        <label class="form-label fs-sm text-gray-dark" for="id_pengajar" style="line-height: 0;">Tentor</label>
                         <div class="form-floating">
-                            <select class="form-select" id="id_pengajar" name="id_pengajar" required>
-                                <option value="" selected disabled>-- Pilih Tentor --</option>
+                            <select class="form-select js-select2 w-100" id="id_pengajar" name="id_pengajar" data-placeholder="-- pilih salah satu --" required>
+                                <option></option>
                                 <?php foreach ($pengajar as $p): ?>
-                                <option value="<?= $p->id_pengajar ?>"><?= $p->nama_pengajar ?></option>
+                                    <option value="<?= $p->id_pengajar ?>"><?= $p->nama_pengajar ?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <label class="form-label" for="id_pengajar">Tentor</label>
                         </div>
                     </div>
                     <div class="col-12 col-lg-3 mt-4 mt-lg-0">
@@ -88,5 +92,10 @@ Tambah Presensi
 <?= $this->endSection() ?>
 
 <?= $this->section('js') ?>
+<?= script_tag('src/assets/js/lib/jquery.min.js') ?>
+<?= script_tag('src/assets/js/plugins/select2/js/select2.full.min.js') ?>
 
+<script>
+    Codebase.helpersOnLoad(['jq-select2']);
+</script>
 <?= $this->endSection() ?>
