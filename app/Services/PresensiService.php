@@ -56,7 +56,6 @@ class PresensiService
     {
         return $this->LivePertemuan
             ->join('live_pengajar', 'live_pengajar.id_pengajar = live_pertemuan.id_pengajar')
-            ->join('setting_nilai', 'setting_nilai.id_nilai = live_pertemuan.id_nilai')
             ->where('id_kelas', $id_kelas)
             ->orderBy('tatap_muka')
             ->findAll();
@@ -70,15 +69,14 @@ class PresensiService
             ->first();
     }
     
-    public function simpan_presensi(int $id_kelas, int $tatap_muka, string $tanggal, int $id_pengajar, int $id_nilai, int $id_pertemuan = null): bool
+    public function simpan_presensi(int $id_kelas, int $tatap_muka, string $tanggal, int $id_pengajar, int $id_pertemuan = null): bool
     {
         $data = [
             'id_pertemuan' => $id_pertemuan,
             'id_kelas' => $id_kelas,
             'tatap_muka' => $tatap_muka,
             'tanggal' => $tanggal,
-            'id_pengajar' => $id_pengajar,
-            'id_nilai' => $id_nilai
+            'id_pengajar' => $id_pengajar
         ];
         
         return $this->LivePertemuan->upsert($data);

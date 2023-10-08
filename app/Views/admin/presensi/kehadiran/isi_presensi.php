@@ -165,22 +165,27 @@ Isi Kehadiran
                         </button>
                     </div>
                 </div>
-                <div class="block-content fs-sm">
+                <div class="block-content fs-sm form-nilai">
+                    <?php foreach($nilai as $k=>$n): ?>
+                    <?= form_hidden('id_nilai[]', $n->id_nilai) ?>
                     <div class="form-floating mb-4">
-                        <?php if($nilai[0]->jenis == 0): ?>
-                        <select class="form-select" id="skor" name="skor">
-                            <option value="" selected disabled>-- Pilih nilai--</option>
-                            <?php foreach ($nilai as $n): ?>
-                            <option value="<?= $n->skor ?>"><?= $n->skor ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                        <?php if($n->jenis == 0): ?>
+                            <select class="form-select nilai-skor" id="skor<?= $n->id_nilai ?>" name="skor_select[]">
+                                <option value="" selected disabled>-- Pilih nilai--</option>
+                                <?php foreach ($skor->{$n->id_nilai} as $s): ?>
+                                    <option value="<?= $s->skor ?>"><?= $s->skor ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <label for="skor<?= $n->id_nilai ?>"><?= $n->nama_nilai ?></label>
                         <?php else: ?>
-                        <input class="form-control" type="number" name="skor" id="skor" placeholder="Masukkan nilai disini" min="<?= $nilai[0]->skor ?>" max="<?= $nilai[1]->skor ?>" required>
+                            <input class="form-control nilai-skor" type="number" name="skor[]" id="skor<?= $n->id_nilai ?>" placeholder="Masukkan nilai disini" min="<?= $skor->{$n->id_nilai}[0]->skor ?>" max="<?= $skor->{$n->id_nilai}[1]->skor ?>" required>
+                            <label for="skor<?= $n->id_nilai ?>"><?= $n->nama_nilai ?> (Skala: <?= $skor->{$n->id_nilai}[0]->skor ?> - <?= $skor->{$n->id_nilai}[1]->skor ?>)</label>
                         <?php endif; ?>
-                        <label for="skor">Nilai</label>
-                        <input type="hidden" name="id_siswa">
-                        <input type="hidden" name="id_penilaian">
+                        
+                        <input type="hidden" name="id_penilaian[]">
                     </div>
+                    <?php endforeach; ?>
+                    <input type="hidden" name="id_siswa">
                 </div>
                 <div class="block-content block-content-full block-content-sm text-end border-top">
                     <button type="button" class="btn btn-alt-danger btn-sm" data-bs-dismiss="modal">
@@ -363,8 +368,7 @@ Isi Kehadiran
         // Ketika tombol "Tampilkan Modal" diklik
         $(".tombol-penilaian").click(function() {
             let id_siswa = $(this).data('id-siswa');
-            let jenis = parseInt('<?= $nilai[0]->jenis ?>');
-
+            
             // Lakukan pemanggilan Ajax untuk mengambil data
             $.ajax({
                 url: '<?= url_to('admin.penilaian.ambil_nilai') ?>', // Ganti dengan URL yang sesuai
@@ -376,45 +380,43 @@ Isi Kehadiran
                 type: "POST",
                 dataType: "json",
                 success: function(data) {
-                    if(jenis === 0)
+                    console.log(data);
+                    let id_penilaian_array = [];
+                    
+                    if(data.length > 0)
                     {
-                        let select = $("select[name=skor]");
+                        $.each(data, function(i, item) {
+                            if (item.jenis === 0) {
+                                $("#skor" + item.id_nilai).children("option").filter(function() {
+                                    return $(this).val() === item.nilai;
+                                }).prop('selected', true);
+                            } else {
+                                $("#skor" + item.id_nilai).val(item.nilai);
+                            }
 
-                        if(data != null){
-                            select.children("option").remove();
-                            $("input[name=id_penilaian]").val(data.id_penilaian);
-                            
-                            let option = '';
-                            <?php foreach ($nilai as $n): ?>
-                            option += '<option value="<?= $n->skor ?>" ' + ((data.nilai === "<?= $n->skor ?>") ? 'selected' : '') + '><?= $n->skor ?></option>';
-                            <?php endforeach; ?>
-                            select.append(option);
-                        }
-                        else {
-                            select.children("option").remove();
-                            $("input[name=id_penilaian]").val('');
+                            if (id_penilaian_array.indexOf(item.id_penilaian) === -1) {
+                                id_penilaian_array.push(item.id_penilaian);
+                            }
+                        });
 
-                            let option = '';
-                            option += '<option value="" selected disabled>-- Pilih nilai--</option>';
-                            <?php foreach ($nilai as $n): ?>
-                            option += '<option value="<?= $n->skor ?>"><?= $n->skor ?></option>';
-                            <?php endforeach; ?>
-                            select.append(option);
-                        }
+                        $("input[name='id_penilaian[]']").each(function(i) {
+                            $(this).val(id_penilaian_array[i]);
+                        });
                     }
-                    else {
-                        let input = $("input[name=skor]");
-                        
-                        if(data != null){
-                            input.val(data.nilai);
-                            $("input[name=id_penilaian]").val(data.id_penilaian);
-                        }
-                        else {
-                            input.val('');
-                            $("input[name=id_penilaian]").val('');
-                        }
+                    else
+                    {
+                        $(".nilai-skor").each(function() {
+                            if ($(this).is("input")) {
+                                $(this).val("");
+                            } else if ($(this).is("select")) {
+                                $(this).val("");
+                            }
+                        });
+                        $("input[name='id_penilaian[]']").each(function() {
+                            $(this).val("");
+                        });
                     }
-
+                    
                     $("input[name=id_siswa]").val(id_siswa);
                     $("#modal-penilaian").modal("show");
                 },
@@ -477,79 +479,190 @@ Isi Kehadiran
         // Ketika tombol "Simpan" di dalam modal diklik
         $("#modal-penilaian").on("click", ".btn-alt-primary", function() {
             let id_siswa = $("input[name=id_siswa]").val();
-            let jenis = parseInt('<?= $nilai[0]->jenis ?>');
-            let id_nilai = parseInt('<?= $pertemuan->id_nilai ?>');
-            let min_skor = parseInt('<?= $nilai[0]->skor ?>');
-            let max_skor = parseInt('<?= $nilai[1]->skor ?>');
-            let id_penilaian = parseInt($("input[name=id_penilaian]").val());
-            let skor_int = parseInt($("input[name=skor]").val());
-            let skor_str = $("select[name=skor]").children("option").filter(":selected").val();
+            let skor = [];
+            let jenis = [<?php foreach($nilai as $n)  { echo $n->jenis . ","; } ?>];
+            let min_skor = [
+                <?php foreach($nilai as $k=>$n)
+                {
+                    if($n->jenis == 1) echo $skor->{$n->id_nilai}[0]->skor . ",";
+                    else echo "-1,";
+                }
+                ?>];
+            let max_skor = [
+                <?php foreach($nilai as $k=>$n)
+                {
+                    if($n->jenis == 1) echo $skor->{$n->id_nilai}[1]->skor . ",";
+                    else echo "-1,";
+                }
+                ?>];
             
-            // Lakukan pemanggilan Ajax untuk mengirim data
-            if(jenis === 0 || (jenis === 1 && skor_int >= min_skor && skor_int <= max_skor))
+            $(".form-nilai").find(".nilai-skor").each(function() {
+                if ($(this).is("input")) {
+                    skor.push($(this).val());
+                } else if ($(this).is("select")) {
+                    skor.push($(this).val());
+                }
+            });
+            
+            let id_nilai = ($("input[name='id_nilai[]']").map(function(){
+                return $(this).val();
+            }).get());
+            let id_penilaian = ($("input[name='id_penilaian[]']").map(function(){
+                return $(this).val();
+            }).get());
+            
+            console.log(skor, id_nilai, id_penilaian, jenis, min_skor, max_skor);
+            
+            if(belum_expired)
             {
-                let data;
-                if(!isNaN(id_penilaian))
-                {
-                    data = {
-                        <?= csrf_token() ?>: '<?= csrf_hash() ?>',
-                        id_siswa: id_siswa,
-                        id_pertemuan: id_pertemuan,
-                        id_nilai: id_nilai,
-                        id_penilaian: id_penilaian,
-                    };
-                }
-                else
-                {
-                    data = {
-                        <?= csrf_token() ?>: '<?= csrf_hash() ?>',
-                        id_siswa: id_siswa,
-                        id_pertemuan: id_pertemuan,
-                        id_nilai: id_nilai,
-                    };
-                }
-                if(jenis === 0) data.nilai = skor_str;
-                else data.nilai = skor_int;
-
-                $.ajax({
-                    url: '<?= url_to('admin.penilaian.simpan_nilai') ?>', // Ganti dengan URL yang sesuai
-                    type: "POST",
-                    data: data,
-                    success: function() {
-                        // Tutup modal setelah berhasil menyimpan data
-                        $("#modal-penilaian").modal("hide");
-                        sa.fire({
-                            icon: 'success',
-                            title: 'Penilaian Disimpan!',
-                            html: '<span>Penilaian siswa telah <b>disimpan</b> atau <b>diperbarui</b>.</span>',
-                        });
-                    },
-                    error: function() {
-                        // Jika ada kesalahan, tampilkan pesan kesalahan
+                let nilai = [];
+                let data = {
+                    <?= csrf_token() ?>: '<?= csrf_hash() ?>',
+                    id_siswa: id_siswa,
+                    id_pertemuan: id_pertemuan,
+                    nilai_arr: nilai,
+                };
+                let aman = 0;
+                
+                $(id_nilai).each(function(i, item) {
+                    if ((jenis[i] === 0 && skor[i] !== null) || (jenis[i] === 1 && skor[i] >= min_skor[i] && skor[i] <= max_skor[i])) {
+                        if (id_penilaian[i] !== "") {
+                            nilai.push({
+                                id_nilai: item,
+                                id_penilaian: id_penilaian[i],
+                                nilai: skor[i],
+                            });
+                        } else {
+                            nilai.push({
+                                id_nilai: item,
+                                nilai: skor[i],
+                            });
+                        }
+                        aman += 1;
+                    } else if (jenis[i] === 1) {
                         sa.fire({
                             icon: 'error',
-                            title: 'Kesalahan Server!',
-                            html: '<span>Data gagal disimpan, mohon <b>ulangi</b> pengisian formulir.</span>',
+                            title: 'Input Tidak Valid!',
+                            html: '<span>Nilai harus antara <b>' + min_skor[i] + '</b> sampai <b>' + max_skor[i] + '</b></span>',
+                        });
+                    } else if (jenis[i] === 0) {
+                        sa.fire({
+                            icon: 'error',
+                            title: 'Input Tidak Valid!',
+                            html: '<span>Nilai harus dipilih dari <b>dropdown</b> yang ada</span>',
                         });
                     }
                 });
+                console.log(data);
+
+                if(aman === id_nilai.length)
+                {
+                    $.ajax({
+                        url: '<?= url_to('admin.penilaian.simpan_nilai') ?>',
+                        type: "POST",
+                        data: data,
+                        success: function() {
+                            // Tutup modal setelah berhasil menyimpan data
+                            $("#modal-penilaian").modal("hide");
+                            sa.fire({
+                                icon: 'success',
+                                title: 'Penilaian Disimpan!',
+                                html: '<span>Penilaian siswa telah <b>disimpan</b> atau <b>diperbarui</b>.</span>',
+                            });
+                        },
+                        error: function() {
+                            // Jika ada kesalahan, tampilkan pesan kesalahan
+                            sa.fire({
+                                icon: 'error',
+                                title: 'Kesalahan Server!',
+                                html: '<span>Data gagal disimpan, mohon <b>ulangi</b> pengisian formulir.</span>',
+                            });
+                        }
+                    });
+                }
             }
-            else if(jenis === 1)
+            else
             {
                 sa.fire({
                     icon: 'error',
-                    title: 'Input Tidak Valid!',
-                    html: '<span>Nilai harus antara <b><?= $nilai[0]->skor ?></b> sampai <b><?= $nilai[1]->skor ?></b></span>',
+                    title: 'Pengisian Expired!',
+                    html: '<span>Penilaian siswa tidak bisa diubah karena <b>melewati batas waktu</b>.</span>',
                 });
             }
-            else if(jenis === 0)
-            {
-                sa.fire({
-                    icon: 'error',
-                    title: 'Input Tidak Valid!',
-                    html: '<span>Nilai harus dipilih dari <b>dropdown</b> yang ada</span>',
-                });
-            }
+            
+            //let jenis = parseInt('<?php //= $nilai[0]->jenis ?>//');
+            //let id_nilai = parseInt('<?php //= $pertemuan->id_nilai ?>//');
+            //let min_skor = parseInt('<?php //= $nilai[0]->skor ?>//');
+            //let max_skor = parseInt('<?php //= $nilai[1]->skor ?>//');
+            //let id_penilaian = parseInt($("input[name=id_penilaian]").val());
+            //let skor_int = parseInt($("input[name=skor]").val());
+            //let skor_str = $("select[name=skor]").children("option").filter(":selected").val();
+            //
+            //// Lakukan pemanggilan Ajax untuk mengirim data
+            //if(jenis === 0 || (jenis === 1 && skor_int >= min_skor && skor_int <= max_skor))
+            //{
+            //    let data;
+            //    if(!isNaN(id_penilaian))
+            //    {
+            //        data = {
+            //            <?php //= csrf_token() ?>//: '<?php //= csrf_hash() ?>//',
+            //            id_siswa: id_siswa,
+            //            id_pertemuan: id_pertemuan,
+            //            id_nilai: id_nilai,
+            //            id_penilaian: id_penilaian,
+            //        };
+            //    }
+            //    else
+            //    {
+            //        data = {
+            //            <?php //= csrf_token() ?>//: '<?php //= csrf_hash() ?>//',
+            //            id_siswa: id_siswa,
+            //            id_pertemuan: id_pertemuan,
+            //            id_nilai: id_nilai,
+            //        };
+            //    }
+            //    if(jenis === 0) data.nilai = skor_str;
+            //    else data.nilai = skor_int;
+            //
+            //    $.ajax({
+            //        url: '<?php //= url_to('admin.penilaian.simpan_nilai') ?>//', // Ganti dengan URL yang sesuai
+            //        type: "POST",
+            //        data: data,
+            //        success: function() {
+            //            // Tutup modal setelah berhasil menyimpan data
+            //            $("#modal-penilaian").modal("hide");
+            //            sa.fire({
+            //                icon: 'success',
+            //                title: 'Penilaian Disimpan!',
+            //                html: '<span>Penilaian siswa telah <b>disimpan</b> atau <b>diperbarui</b>.</span>',
+            //            });
+            //        },
+            //        error: function() {
+            //            // Jika ada kesalahan, tampilkan pesan kesalahan
+            //            sa.fire({
+            //                icon: 'error',
+            //                title: 'Kesalahan Server!',
+            //                html: '<span>Data gagal disimpan, mohon <b>ulangi</b> pengisian formulir.</span>',
+            //            });
+            //        }
+            //    });
+            //}
+            //else if(jenis === 1)
+            //{
+            //    sa.fire({
+            //        icon: 'error',
+            //        title: 'Input Tidak Valid!',
+            //        html: '<span>Nilai harus antara <b><?php //= $nilai[0]->skor ?>//</b> sampai <b><?php //= $nilai[1]->skor ?>//</b></span>',
+            //    });
+            //}
+            //else if(jenis === 0)
+            //{
+            //    sa.fire({
+            //        icon: 'error',
+            //        title: 'Input Tidak Valid!',
+            //        html: '<span>Nilai harus dipilih dari <b>dropdown</b> yang ada</span>',
+            //    });
+            //}
         });
     });
 

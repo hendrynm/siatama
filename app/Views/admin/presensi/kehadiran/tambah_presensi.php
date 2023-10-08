@@ -46,13 +46,13 @@ Tambah Presensi
                             <label class="form-label" for="tatap_muka">Tatap Muka Ke-</label>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-3 mt-4 mt-lg-0">
+                    <div class="col-12 col-lg-4 mt-4 mt-lg-0">
                         <div class="form-floating">
                             <input type="datetime-local" class="form-control" id="tanggal" name="tanggal" placeholder="" required>
                             <label class="form-label" for="tanggal">Tanggal dan Waktu</label>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-4 mt-4 mt-md-0">
+                    <div class="col-12 col-lg-6 mt-4 mt-md-0">
                         <label class="form-label fs-sm text-gray-dark" for="id_pengajar" style="line-height: 0;">Tentor</label>
                         <div class="form-floating">
                             <select class="form-select js-select2 w-100" id="id_pengajar" name="id_pengajar" data-placeholder="-- pilih salah satu --" required>
@@ -61,17 +61,6 @@ Tambah Presensi
                                     <option value="<?= $p->id_pengajar ?>"><?= $p->nama_pengajar ?></option>
                                 <?php endforeach; ?>
                             </select>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-3 mt-4 mt-lg-0">
-                        <div class="form-floating">
-                            <select class="form-select" id="id_nilai" name="id_nilai" required>
-                                <option value="" selected disabled>-- Pilih Penilaian --</option>
-                                <?php foreach ($nilai as $n): ?>
-                                <option value="<?= $n->id_nilai ?>"><?= $n->nama_nilai ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <label class="form-label" for="id_nilai">Jenis Penilaian</label>
                         </div>
                     </div>
                 </div>

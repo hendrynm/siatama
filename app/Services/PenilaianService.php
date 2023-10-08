@@ -41,32 +41,28 @@ class PenilaianService
         return $skor;
     }
     
-    public function simpan_komponen(array $id_nilai, array $nama_nilai, array $jenis, array $id_skor, array $skor): void
+    public function simpan_komponen(array $id_nilai, array $nama_nilai, array $jenis, array $deskripsi, array $id_skor, array $skor): void
     {
-        foreach ($nama_nilai as $k=>$n)
-        {
-            $db = Database::connect();
-            $db->transStart();
-            
-            try
-            {
+        $db = Database::connect();
+        $db->transStart();
+        try {
+            foreach ($nama_nilai as $k => $n) {
                 $this->SettingNilai
                     ->upsert([
                         'id_nilai' => $id_nilai[$k] ?? null,
                         'nama_nilai' => $n,
                         'jenis' => $jenis[$k],
+                        'deskripsi' => $deskripsi[$k],
                     ]);
                 
                 $id_nilai_baru = $db->insertID();
                 
-                foreach ($skor[$k] as $i=>$s)
-                {
-                    if($s != '')
-                    {
+                foreach ($skor[$k] as $i => $s) {
+                    if ($s != '') {
                         $this->SettingSkor
                             ->upsert([
                                 'id_skor' => $id_skor[$k][$i] ?? null,
-                                'urut' => $i+1,
+                                'urut' => $i + 1,
                                 'id_nilai' => $id_nilai[$k] ?? $id_nilai_baru,
                                 'skor' => $s,
                             ]);
@@ -75,11 +71,10 @@ class PenilaianService
                 
                 $db->transCommit();
             }
-            catch (DatabaseException $e)
-            {
-                $db->transRollback();
-                throw $e;
-            }
+        }
+        catch (DatabaseException $e) {
+            $db->transRollback();
+            throw $e;
         }
     }
     
@@ -91,29 +86,41 @@ class PenilaianService
             ->findAll();
     }
     
-    public function ambil_detail_nilai(int $id_pertemuan, int $id_siswa): ?object
+    public function ambil_detail_nilai(int $id_pertemuan, int $id_siswa): ?array
     {
         $nilai = $this->LivePenilaian
             ->join('setting_nilai', 'setting_nilai.id_nilai = live_penilaian.id_nilai')
             ->join('setting_skor', 'setting_skor.id_nilai = setting_nilai.id_nilai')
             ->where('id_pertemuan', $id_pertemuan)
             ->where('id_siswa', $id_siswa)
-            ->first();
+            ->findAll();
         
         return $nilai ?? null;
     }
     
-    public function simpan_nilai(int $id_pertemuan, int $id_siswa, int $id_nilai, int|string $nilai, int $id_penilaian = null): bool
+    public function simpan_nilai(int $id_siswa, int $id_pertemuan, array $nilai_arr): void
     {
-        $nilai = $this->LivePenilaian
-            ->upsert([
-                'id_penilaian' => $id_penilaian,
-                'id_nilai' => $id_nilai,
-                'id_pertemuan' => $id_pertemuan,
-                'id_siswa' => $id_siswa,
-                'nilai' => $nilai,
-            ]);
-        
-        return $nilai;
+        $db = Database::connect();
+        $db->transStart();
+        try
+        {
+            foreach ($nilai_arr as $n)
+            {
+                $this->LivePenilaian
+                    ->upsert([
+                        'id_penilaian' => $n['id_penilaian'] ?? null,
+                        'id_siswa' => $id_siswa,
+                        'id_pertemuan' => $id_pertemuan,
+                        'id_nilai' => $n['id_nilai'],
+                        'nilai' => $n['nilai']
+                    ]);
+            }
+            $db->transCommit();
+        }
+        catch (DatabaseException $e)
+        {
+            $db->transRollback();
+            throw $e;
+        }
     }
 }

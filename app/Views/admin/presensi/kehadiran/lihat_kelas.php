@@ -51,7 +51,7 @@ Detail Kelas
                 <tr class="bg-gray text-sm text-center">
                     <th class="col-2">Tatap Muka</th>
                     <th class="col-4">Jadwal</th>
-                    <th class="col-4">Detail</th>
+                    <th class="col-4">Tentor</th>
                     <th class="col-2">Aksi</th>
                 </tr>
                 </thead>
@@ -67,7 +67,6 @@ Detail Kelas
                     </td>
                     <td class="fs-base">
                         <div class="fw-medium"><i class="far fa-user me-2"></i><?= $p->nama_pengajar ?></div>
-                        <div class=""><i class="far fa-file-lines me-2"></i><?= $p->nama_nilai ?></div>
                     </td>
                     <td class="text-center">
                         <div class="space-y-1">

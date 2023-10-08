@@ -35,10 +35,16 @@ Lihat Komponen
                                 <div class="form-floating">
                                     <select class="form-select" id="jenis[]" name="jenis[]" size="1" required>
                                         <option value="" selected disabled>-- pilih salah satu --</option>
-                                        <option value="1" <?= ($n->jenis == 1) ? 'selected' : '' ?>>Objektif (berdasarkan angka/skor)</option>
-                                        <option value="0" <?= ($n->jenis == 0) ? 'selected' : '' ?>>Subjektif (berdasarkan perspektif mentor)</option>
+                                        <option value="1" <?= ($n->jenis == 1) ? 'selected' : '' ?>>Kuantitatif (berdasarkan angka/skor)</option>
+                                        <option value="0" <?= ($n->jenis == 0) ? 'selected' : '' ?>>Kualitatif (berdasarkan perspektif tentor)</option>
                                     </select>
-                                    <label class="form-label" for="jenis[]">Jenis Nilai</label>
+                                    <label class="form-label" for="jenis[]">Jenis Penilaian</label>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="deskripsi[]" name="deskripsi[]" style="height: 100px" placeholder=""><?= $n->deskripsi ?></textarea>
+                                    <label class="form-label" for="deskripsi[]">Deskripsi Penilaian</label>
                                 </div>
                             </div>
                             <?php foreach ($skor->{$n->id_nilai} as $i=>$s): ?>
@@ -106,7 +112,7 @@ Lihat Komponen
                             <select class="form-select" id="jenis[]" name="jenis[]" size="1" required>
                                 <option value="" selected disabled>-- pilih salah satu --</option>
                                 <option value="1">Objektif (berdasarkan angka/skor)</option>
-                                <option value="0">Subjektif (berdasarkan perspektif mentor)</option>
+                                <option value="0">Subjektif (berdasarkan perspektif tentor)</option>
                             </select>
                             <label class="form-label" for="jenis[]">Jenis Nilai</label>
                         </div>
