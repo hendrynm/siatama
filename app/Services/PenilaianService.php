@@ -35,6 +35,7 @@ class PenilaianService
         foreach($nilai as $value) {
             $skor->{$value->id_nilai} = $this->SettingSkor
                 ->where('id_nilai', $value->id_nilai)
+                ->orderBy('urut')
                 ->findAll();
         }
         

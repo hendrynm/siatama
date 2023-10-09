@@ -4,7 +4,9 @@ namespace App\Controllers;
 
 use App\Services\PenilaianService;
 use App\Services\PresensiService;
+use CodeIgniter\Database\Exceptions\DatabaseException;
 use CodeIgniter\HTTP\RedirectResponse;
+use Config\Database;
 
 class PresensiController extends BaseController
 {
@@ -105,6 +107,25 @@ class PresensiController extends BaseController
         }
         return redirect()->back()->withInput()
             ->with('error', 'Gagal mengubah presensi');
+    }
+    
+    public function kehadiran_hapus_presensi(): string
+    {
+        $id_pertemuan = $this->request->getPost('id_pertemuan');
+        
+        $db = Database::connect();
+        try
+        {
+            $db->transException(true)->transStart();
+            $this->PresensiService->hapus_presensi($id_pertemuan);
+            $db->transComplete();
+            
+            return 'sukses';
+        }
+        catch (DatabaseException $e)
+        {
+            return $e->getMessage();
+        }
     }
     
     public function kehadiran_isi_presensi(int $id_kelas, int $id_pertemuan): string

@@ -173,9 +173,14 @@
                             </a>
                         </li>
                         <?php endif; ?>
-
-                        <li class="nav-main-heading d-block d-xl-none">Akun</li>
-                        <li class="nav-main-item d-block d-xl-none">
+                        
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="<?= route_to('admin.akun.index') ?>">
+                                <i class="nav-main-link-icon fa fa-user-pen"></i>
+                                <span class="nav-main-link-name">Ubah Akun</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
                             <a class="nav-main-link" href="<?= route_to('admin.beranda.keluar') ?>">
                                 <i class="nav-main-link-icon fa fa-sign-out-alt"></i>
                                 <span class="nav-main-link-name">Keluar</span>

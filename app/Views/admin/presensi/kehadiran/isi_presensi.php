@@ -173,7 +173,12 @@ Isi Kehadiran
                             <select class="form-select nilai-skor" id="skor<?= $n->id_nilai ?>" name="skor_select[]">
                                 <option value="" selected disabled>-- Pilih nilai--</option>
                                 <?php foreach ($skor->{$n->id_nilai} as $s): ?>
-                                    <option value="<?= $s->skor ?>"><?= $s->skor ?></option>
+                                    <?php
+                                        $skor_full = $s->skor;
+                                        $skor_int = intval($skor_full);
+                                        $skor_str = explode($skor_int . " - ", $skor_full)[1];
+                                    ?>
+                                    <option value="<?= $skor_int ?>"><?= $skor_str ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <label for="skor<?= $n->id_nilai ?>"><?= $n->nama_nilai ?></label>
@@ -380,16 +385,20 @@ Isi Kehadiran
                 type: "POST",
                 dataType: "json",
                 success: function(data) {
-                    console.log(data);
                     let id_penilaian_array = [];
                     
                     if(data.length > 0)
                     {
                         $.each(data, function(i, item) {
                             if (item.jenis === 0) {
-                                $("#skor" + item.id_nilai).children("option").filter(function() {
-                                    return $(this).val() === item.nilai;
-                                }).prop('selected', true);
+                                $("#skor" + item.id_nilai).children("option").each(function() {
+                                    let skor_dropdown = $(this).val();
+                                    let skor_saja = parseInt(skor_dropdown);
+                                    
+                                    if (skor_saja === item.nilai) {
+                                        $(this).prop('selected', true);
+                                    }
+                                });
                             } else {
                                 $("#skor" + item.id_nilai).val(item.nilai);
                             }
@@ -511,8 +520,6 @@ Isi Kehadiran
                 return $(this).val();
             }).get());
             
-            console.log(skor, id_nilai, id_penilaian, jenis, min_skor, max_skor);
-            
             if(belum_expired)
             {
                 let nilai = [];
@@ -553,7 +560,6 @@ Isi Kehadiran
                         });
                     }
                 });
-                console.log(data);
 
                 if(aman === id_nilai.length)
                 {

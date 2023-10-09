@@ -82,6 +82,11 @@ class PresensiService
         return $this->LivePertemuan->upsert($data);
     }
     
+    public function hapus_presensi(int $id_pertemuan): bool
+    {
+        return $this->LivePertemuan->delete($id_pertemuan);
+    }
+    
     public function ambil_daftar_siswa_kelas(int $id_kelas): ?array
     {
         return $this->LiveKelas

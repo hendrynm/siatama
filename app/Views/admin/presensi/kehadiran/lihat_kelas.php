@@ -10,6 +10,10 @@ Presensi
 Detail Kelas
 <?= $this->endSection() ?>
 
+<?= $this->section('css') ?>
+<?= link_tag('src/assets/js/plugins/sweetalert2/sweetalert2.min.css') ?>
+<?= $this->endSection() ?>
+
 <?= $this->section('content') ?>
 <div class="col-12">
     <div class="block block-bordered">
@@ -73,7 +77,7 @@ Detail Kelas
                             <a href="<?= url_to('PresensiController::kehadiran_isi_presensi', $kelas->id_kelas, $p->id_pertemuan) ?>" class="btn btn-alt-primary btn-sm w-100"><i class="fa fa-eye me-2"></i>Lihat</a>
                             <?php if($cek_presensi->{$k} == true): ?>
                             <a href="<?= url_to('PresensiController::kehadiran_ubah_presensi', $kelas->id_kelas, $p->id_pertemuan) ?>" class="btn btn-alt-warning btn-sm w-100"><i class="fa fa-edit me-2"></i>Ubah</a>
-                            <a href="<?= url_to('PresensiController::kehadiran_hapus_presensi', $kelas->id_kelas, $p->id_pertemuan) ?>" class="btn btn-alt-danger btn-sm w-100"><i class="fa fa-trash me-2"></i>Hapus</a>
+                            <button class="btn btn-alt-danger btn-sm w-100" data-pertemuan-id="<?= $p->id_pertemuan ?>"><i class="fa fa-trash me-2"></i>Hapus</button>
                             <?php endif; ?>
                         </div>
                     </td>
@@ -84,4 +88,94 @@ Detail Kelas
         </div>
     </div>
 </div>
+<?= $this->endSection() ?>
+
+<?= $this->section('js') ?>
+<?= script_tag('src/assets/js/lib/jquery.min.js') ?>
+<?= script_tag('src/assets/js/plugins/sweetalert2/sweetalert2.min.js') ?>
+
+<script type="text/javascript">
+    !function() {
+        class a {
+            static sweetAlert2() {
+                let e = Swal.mixin({
+                    buttonsStyling: !1,
+                    target: "#page-container",
+                    customClass: {
+                        confirmButton: "btn btn-alt-primary m-1",
+                        cancelButton: "btn btn-alt-danger m-1",
+                        input: "form-control"
+                    }
+                });
+                <?php if (session()->getFlashdata('success')): ?>
+                e.fire({
+                    title: 'Berhasil!',
+                    html: '<?= session()->getFlashdata("success") ?>',
+                    icon: 'success'
+                });
+                <?php endif; ?>
+                
+                <?php if (session()->getFlashdata('error')): ?>
+                e.fire({
+                    title: 'Kesalahan Aplikasi!',
+                    html: '<?= session()->getFlashdata("error") ?>',
+                    icon: 'error'
+                });
+                <?php endif; ?>
+            }
+            static konfirmasiHapus() {
+                $('button[data-pertemuan-id]').click(function () {
+                    const id_pertemuan = $(this).data('pertemuan-id');
+                    
+                    let e = Swal.mixin({
+                        buttonsStyling: !1,
+                        target: "#page-container",
+                        customClass: {
+                            confirmButton: "btn btn-alt-danger m-1",
+                            cancelButton: "btn btn-alt-secondary m-1",
+                            input: "form-control",
+                            icon: "border-0"
+                        }
+                    });
+                    e.fire({
+                        title: 'Konfirmasi Hapus',
+                        html: 'Apakah Anda yakin ingin menghapus pertemuan ini?',
+                        iconHtml: '<i class="fa fa-trash text-danger"></i>',
+                        showCancelButton: true,
+                        confirmButtonText: 'Hapus',
+                        cancelButtonText: 'Batal',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Mengirim permintaan AJAX POST untuk menghapus data
+                            $.ajax({
+                                url: '<?= url_to('PresensiController::kehadiran_hapus_presensi') ?>',
+                                type: 'POST',
+                                data: {
+                                    '<?= csrf_token() ?>': '<?= csrf_hash() ?>',
+                                    id_pertemuan: id_pertemuan
+                                },
+                                success: function (response) {
+                                    if (response === 'sukses') {
+                                        e.fire('Berhasil!', 'Pertemuan berhasil dihapus!', 'success').then(() => window.location.reload());
+                                    } else {
+                                        e.fire('Kesalahan Program!', response, 'error')
+                                    }
+                                },
+                                error: function () {
+                                    e.fire('Server Error!', 'Terjadi kegagalan proses di sisi Server!. Coba beberapa saat lagi', 'error');
+                                },
+                            });
+                        }
+                    });
+                });
+            }
+            static init() {
+                this.sweetAlert2();
+                this.konfirmasiHapus();
+            }
+        }
+        Codebase.onLoad((() => a.init()))
+    }();
+</script>
 <?= $this->endSection() ?>

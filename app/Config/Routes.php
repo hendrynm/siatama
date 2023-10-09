@@ -3,6 +3,7 @@
 namespace Config;
 
 use App\Controllers\AdminController;
+use App\Controllers\AkunController;
 use App\Controllers\JadwalController;
 use App\Controllers\JenjangController;
 use App\Controllers\LaporanController;
@@ -56,8 +57,8 @@ $routes->group('admin', function ($routes)
                 [[PresensiController::class, 'kehadiran_ubah_presensi'], '$1/$2']);
             $routes->post('ubah-presensi',
                 [PresensiController::class, 'kehadiran_ubah_presensi_post'], ['as' => 'admin.presensi.kehadiran.ubah_presensi.post']);
-            $routes->get('hapus-presensi/(:num)/(:num)',
-                [[PresensiController::class, 'kehadiran_hapus_presensi'], '$1/$2']);
+            $routes->post('hapus-presensi',
+                [PresensiController::class, 'kehadiran_hapus_presensi'], ['as' => 'admin.presensi.kehadiran.hapus_presensi']);
             
             $routes->post('simpan-foto',
                 [PresensiController::class, 'kehadiran_simpan_foto'], ['as' => 'admin.presensi.kehadiran.simpan_foto']);
@@ -246,6 +247,16 @@ $routes->group('admin', function ($routes)
     {
         $routes->get('',
             [PaketController::class, 'index'], ['as' => 'admin.paket.index']);
+    });
+    
+    $routes->group('akun', function ($routes)
+    {
+        $routes->get('',
+            [AkunController::class, 'index'], ['as' => 'admin.akun.index']);
+        $routes->get('ubah-password',
+            [AkunController::class, 'ubah_password'], ['as' => 'admin.akun.ubah_password']);
+        $routes->post('ubah-password',
+            [AkunController::class, 'ubah_password_post'], ['as' => 'admin.akun.ubah_password.post']);
     });
 });
 
