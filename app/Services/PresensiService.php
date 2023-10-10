@@ -69,13 +69,14 @@ class PresensiService
             ->first();
     }
     
-    public function simpan_presensi(int $id_kelas, int $tatap_muka, string $tanggal, int $id_pengajar, int $id_pertemuan = null): bool
+    public function simpan_presensi(int $id_kelas, int $tatap_muka, string $tanggal, string $selesai, int $id_pengajar, int $id_pertemuan = null): bool
     {
         $data = [
             'id_pertemuan' => $id_pertemuan,
             'id_kelas' => $id_kelas,
             'tatap_muka' => $tatap_muka,
             'tanggal' => $tanggal,
+            'selesai' => $selesai,
             'id_pengajar' => $id_pengajar
         ];
         
@@ -170,12 +171,14 @@ class PresensiService
         return $cek->catatan;
     }
     
-    public function ambil_daftar_siswa_aktif_nonkelas(int $id_tingkat, int $id_kelas): ?array
+    public function ambil_daftar_siswa_aktif_nonkelas(int $id_kelas): ?array
     {
         return $this->LiveKelas
+            ->select(['id_siswa','nama_siswa','nama_tingkat'])
             ->join('live_siswa', 'live_siswa.id_kelas = live_kelas.id_kelas')
-            ->where('live_siswa.id_tingkat', $id_tingkat)
+            ->join('setting_tingkat', 'setting_tingkat.id_tingkat = live_kelas.id_tingkat')
             ->where('live_siswa.id_kelas !=', $id_kelas)
+            ->orderBy('live_siswa.id_tingkat')
             ->orderBy('nama_siswa')
             ->findAll();
     }

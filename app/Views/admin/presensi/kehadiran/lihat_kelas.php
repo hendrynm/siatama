@@ -67,7 +67,7 @@ Detail Kelas
                     </th>
                     <td class="fs-base">
                         <div class="fw-medium"><i class="far fa-calendar me-2"></i><?= ubah_tanggal($p->tanggal ) ?></div>
-                        <div class=""><i class="far fa-clock me-2"></i>Pukul <?= ubah_jam($p->tanggal) ?> WIB</div>
+                        <div class=""><i class="far fa-clock me-2"></i><?= ubah_jam($p->tanggal) ?> - <?= ubah_jam($p->selesai) ?> WIB</div>
                     </td>
                     <td class="fs-base">
                         <div class="fw-medium"><i class="far fa-user me-2"></i><?= $p->nama_pengajar ?></div>

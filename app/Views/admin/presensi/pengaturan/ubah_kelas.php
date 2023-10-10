@@ -1,5 +1,7 @@
 <?= $this->extend('admin/_layout/master') ?>
 
+<?php helper('form') ?>
+
 <?= $this->section('menu') ?>
 Presensi
 <?= $this->endSection() ?>
@@ -18,6 +20,7 @@ Ubah Kelas
         <div class="block-content">
             <form action="<?= route_to('admin.presensi.pengaturan.ubah_kelas.post') ?>" method="post">
                 <?= csrf_field() ?>
+                <?= form_hidden('id_kelas',$kelas->id_kelas) ?>
                 <div class="row">
                     <div class="col-12 col-md-3">
                         <div class="form-floating">

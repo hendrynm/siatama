@@ -114,7 +114,7 @@ Detail Kelas
                         <select class="form-select js-select2 fs-lg" id="id-siswa" name="id-siswa" data-container="#modal-tambah-siswa" data-placeholder="-- pilih salah satu --" style="width: 100%">
                             <option></option>
                             <?php foreach ($siswa_aktif as $sa): ?>
-                            <option value="<?= $sa->id_siswa ?>"><?= $sa->nama_siswa ?></option>
+                            <option value="<?= $sa->id_siswa ?>"><?= $sa->nama_tingkat . ' - ' . $sa->nama_siswa ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>

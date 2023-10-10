@@ -64,9 +64,10 @@ class PresensiController extends BaseController
         $id_kelas = $this->request->getPost('id_kelas');
         $tatap_muka = $this->request->getPost('tatap_muka');
         $tanggal = $this->request->getPost('tanggal');
+        $selesai = $this->request->getPost('selesai');
         $id_pengajar = $this->request->getPost('id_pengajar');
         
-        $simpan = $this->PresensiService->simpan_presensi($id_kelas, $tatap_muka, $tanggal, $id_pengajar);
+        $simpan = $this->PresensiService->simpan_presensi($id_kelas, $tatap_muka, $tanggal, $selesai, $id_pengajar);
         
         if($simpan)
         {
@@ -96,9 +97,10 @@ class PresensiController extends BaseController
         $id_pertemuan = $this->request->getPost('id_pertemuan');
         $tatap_muka = $this->request->getPost('tatap_muka');
         $tanggal = $this->request->getPost('tanggal');
+        $selesai = $this->request->getPost('selesai');
         $id_pengajar = $this->request->getPost('id_pengajar');
         
-        $simpan = $this->PresensiService->simpan_presensi($id_kelas, $tatap_muka, $tanggal, $id_pengajar,  $id_pertemuan);
+        $simpan = $this->PresensiService->simpan_presensi($id_kelas, $tatap_muka, $tanggal, $selesai, $id_pengajar,  $id_pertemuan);
         
         if($simpan)
         {
@@ -212,7 +214,7 @@ class PresensiController extends BaseController
     {
         $kelas = $this->PresensiService->ambil_detail_kelas($id_kelas);
         $siswa = $this->PresensiService->ambil_daftar_siswa_kelas($id_kelas);
-        $siswa_aktif = $this->PresensiService->ambil_daftar_siswa_aktif_nonkelas($kelas->id_tingkat, $id_kelas);
+        $siswa_aktif = $this->PresensiService->ambil_daftar_siswa_aktif_nonkelas($id_kelas);
         
         return view('admin/presensi/pengaturan/lihat_kelas', [
             'kelas' => $kelas,
