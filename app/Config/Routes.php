@@ -125,10 +125,10 @@ $routes->group('admin', function ($routes)
             [LaporanController::class, 'index'], ['as' => 'admin.laporan.index']);
         $routes->get('pilih-kelas',
             [LaporanController::class, 'pilih_kelas'], ['as' => 'admin.laporan.pilih_kelas']);
-        $routes->get('lihat-kelas',
-            [LaporanController::class, 'lihat_kelas'], ['as' => 'admin.laporan.lihat_kelas']);
-        $routes->get('laporan-siswa',
-            [LaporanController::class, 'laporan_siswa'], ['as' => 'admin.laporan.laporan_siswa']);
+        $routes->get('lihat-kelas/(:num)',
+            [[LaporanController::class, 'lihat_kelas'], '$1']);
+        $routes->get('laporan-siswa/(:num)/(:num)',
+            [[LaporanController::class, 'laporan_siswa'], '$1/$2']);
         $routes->post('cetak',
             [LaporanController::class, 'cetak'], ['as' => 'admin.laporan.cetak']);
     });

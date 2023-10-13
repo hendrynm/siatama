@@ -77,7 +77,7 @@ Isi Kehadiran
                 <tbody class="align-middle">
                 <?php foreach ($siswa as $k=>$s): ?>
                 <tr>
-                    <th class="text-center fw-medium" scope="row">
+                    <th class="text-center fw-medium fs-3" scope="row">
                         <?= $k+1 ?>
                     </th>
                     <td class="">
@@ -90,25 +90,25 @@ Isi Kehadiran
                     <?php if($p->id_siswa == $s->id_siswa && $p->id_pertemuan = $pertemuan->id_pertemuan): ?>
                         <a href="javascript:void(0)" class="btn btn-<?= $p->status == 'H' ? '' : 'outline-'?>success custom-btn-circle" data-action="H" data-id-siswa="<?= $s->id_siswa ?>" data-bs-toggle="tooltip" title="Hadir">H</a>
                         <a href="javascript:void(0)" class="btn btn-<?= $p->status == 'S' ? '' : 'outline-'?>info custom-btn-circle" data-action="S" data-id-siswa="<?= $s->id_siswa ?>" data-bs-toggle="tooltip" title="Sakit">S</a>
-                        <a href="javascript:void(0)" class="btn btn-<?= $p->status == 'I' ? '' : 'outline-'?>warning custom-btn-circle" data-action="I" data-id-siswa="<?= $s->id_siswa ?>" data-bs-toggle="tooltip" title="Izin">I</a>
-                        <a href="javascript:void(0)" class="btn btn-<?= $p->status == 'A' ? '' : 'outline-'?>danger custom-btn-circle" data-action="A" data-id-siswa="<?= $s->id_siswa ?>" data-bs-toggle="tooltip" title="Alpa">A</a>
-                        <a href="javascript:void(0)" class="btn btn-<?= $p->status == 'N' ? '' : 'outline-'?>secondary custom-btn-circle" data-action="N" data-id-siswa="<?= $s->id_siswa ?>" data-bs-toggle="tooltip" title="None">N</a>
+                        <a href="javascript:void(0)" class="btn btn-<?= $p->status == 'I' ? '' : 'outline-'?>warning custom-btn-circle mt-2 mt-lg-0" data-action="I" data-id-siswa="<?= $s->id_siswa ?>" data-bs-toggle="tooltip" title="Izin">I</a>
+                        <a href="javascript:void(0)" class="btn btn-<?= $p->status == 'A' ? '' : 'outline-'?>danger custom-btn-circle mt-2 mt-lg-0" data-action="A" data-id-siswa="<?= $s->id_siswa ?>" data-bs-toggle="tooltip" title="Alpa">A</a>
+                        <a href="javascript:void(0)" class="btn btn-<?= $p->status == 'N' ? '' : 'outline-'?>secondary custom-btn-circle mt-2 mt-lg-0" data-action="N" data-id-siswa="<?= $s->id_siswa ?>" data-bs-toggle="tooltip" title="None">N</a>
                     <?php $ketemu = true; ?>
                     <?php endif; ?>
                     <?php endforeach; ?>
                     <?php if(!$ketemu): ?>
                         <a href="javascript:void(0)" class="btn btn-outline-success custom-btn-circle" data-action="H" data-id-siswa="<?= $s->id_siswa ?>" data-bs-toggle="tooltip" title="Hadir">H</a>
                         <a href="javascript:void(0)" class="btn btn-outline-info custom-btn-circle" data-action="S" data-id-siswa="<?= $s->id_siswa ?>" data-bs-toggle="tooltip" title="Sakit">S</a>
-                        <a href="javascript:void(0)" class="btn btn-outline-warning custom-btn-circle" data-action="I" data-id-siswa="<?= $s->id_siswa ?>" data-bs-toggle="tooltip" title="Izin">I</a>
-                        <a href="javascript:void(0)" class="btn btn-outline-danger custom-btn-circle" data-action="A" data-id-siswa="<?= $s->id_siswa ?>" data-bs-toggle="tooltip" title="Alpa">A</a>
-                        <a href="javascript:void(0)" class="btn btn-outline-secondary custom-btn-circle" data-action="N" data-id-siswa="<?= $s->id_siswa ?>" data-bs-toggle="tooltip" title="None">N</a>
+                        <a href="javascript:void(0)" class="btn btn-outline-warning custom-btn-circle mt-2 mt-lg-0" data-action="I" data-id-siswa="<?= $s->id_siswa ?>" data-bs-toggle="tooltip" title="Izin">I</a>
+                        <a href="javascript:void(0)" class="btn btn-outline-danger custom-btn-circle mt-2 mt-lg-0" data-action="A" data-id-siswa="<?= $s->id_siswa ?>" data-bs-toggle="tooltip" title="Alpa">A</a>
+                        <a href="javascript:void(0)" class="btn btn-outline-secondary custom-btn-circle mt-2 mt-lg-0" data-action="N" data-id-siswa="<?= $s->id_siswa ?>" data-bs-toggle="tooltip" title="None">N</a>
                     <?php endif; ?>
                     </td>
                     <td class="text-center">
                         <a class="btn btn-outline-primary btn-sm tombol-catatan" data-id-siswa="<?= $s->id_siswa ?>" data-bs-toggle="tooltip" title="Catatan">
                             <i class="far fa-pen-to-square"></i>
                         </a>
-                        <a class="btn btn-outline-info btn-sm tombol-penilaian" data-id-siswa="<?= $s->id_siswa ?>" data-bs-toggle="tooltip" title="Penilaian">
+                        <a class="btn btn-outline-info btn-sm tombol-penilaian mt-2 mt-lg-0" data-id-siswa="<?= $s->id_siswa ?>" data-bs-toggle="tooltip" title="Penilaian">
                             <i class="fa fa-book"></i>
                         </a>
                     </td>
@@ -595,80 +595,6 @@ Isi Kehadiran
                     html: '<span>Penilaian siswa tidak bisa diubah karena <b>melewati batas waktu</b>.</span>',
                 });
             }
-            
-            //let jenis = parseInt('<?php //= $nilai[0]->jenis ?>//');
-            //let id_nilai = parseInt('<?php //= $pertemuan->id_nilai ?>//');
-            //let min_skor = parseInt('<?php //= $nilai[0]->skor ?>//');
-            //let max_skor = parseInt('<?php //= $nilai[1]->skor ?>//');
-            //let id_penilaian = parseInt($("input[name=id_penilaian]").val());
-            //let skor_int = parseInt($("input[name=skor]").val());
-            //let skor_str = $("select[name=skor]").children("option").filter(":selected").val();
-            //
-            //// Lakukan pemanggilan Ajax untuk mengirim data
-            //if(jenis === 0 || (jenis === 1 && skor_int >= min_skor && skor_int <= max_skor))
-            //{
-            //    let data;
-            //    if(!isNaN(id_penilaian))
-            //    {
-            //        data = {
-            //            <?php //= csrf_token() ?>//: '<?php //= csrf_hash() ?>//',
-            //            id_siswa: id_siswa,
-            //            id_pertemuan: id_pertemuan,
-            //            id_nilai: id_nilai,
-            //            id_penilaian: id_penilaian,
-            //        };
-            //    }
-            //    else
-            //    {
-            //        data = {
-            //            <?php //= csrf_token() ?>//: '<?php //= csrf_hash() ?>//',
-            //            id_siswa: id_siswa,
-            //            id_pertemuan: id_pertemuan,
-            //            id_nilai: id_nilai,
-            //        };
-            //    }
-            //    if(jenis === 0) data.nilai = skor_str;
-            //    else data.nilai = skor_int;
-            //
-            //    $.ajax({
-            //        url: '<?php //= url_to('admin.penilaian.simpan_nilai') ?>//', // Ganti dengan URL yang sesuai
-            //        type: "POST",
-            //        data: data,
-            //        success: function() {
-            //            // Tutup modal setelah berhasil menyimpan data
-            //            $("#modal-penilaian").modal("hide");
-            //            sa.fire({
-            //                icon: 'success',
-            //                title: 'Penilaian Disimpan!',
-            //                html: '<span>Penilaian siswa telah <b>disimpan</b> atau <b>diperbarui</b>.</span>',
-            //            });
-            //        },
-            //        error: function() {
-            //            // Jika ada kesalahan, tampilkan pesan kesalahan
-            //            sa.fire({
-            //                icon: 'error',
-            //                title: 'Kesalahan Server!',
-            //                html: '<span>Data gagal disimpan, mohon <b>ulangi</b> pengisian formulir.</span>',
-            //            });
-            //        }
-            //    });
-            //}
-            //else if(jenis === 1)
-            //{
-            //    sa.fire({
-            //        icon: 'error',
-            //        title: 'Input Tidak Valid!',
-            //        html: '<span>Nilai harus antara <b><?php //= $nilai[0]->skor ?>//</b> sampai <b><?php //= $nilai[1]->skor ?>//</b></span>',
-            //    });
-            //}
-            //else if(jenis === 0)
-            //{
-            //    sa.fire({
-            //        icon: 'error',
-            //        title: 'Input Tidak Valid!',
-            //        html: '<span>Nilai harus dipilih dari <b>dropdown</b> yang ada</span>',
-            //    });
-            //}
         });
     });
 

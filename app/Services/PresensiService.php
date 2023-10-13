@@ -252,7 +252,7 @@ class PresensiService
             ->first();
         
         $sekarang = strtotime(date('Y-m-d H:i:s'));
-        $tanggal = strtotime($cek->tanggal);
+        $tanggal = strtotime($cek->selesai);
         $tanggal = strtotime("+2 days", $tanggal);
         
         return $sekarang < $tanggal;

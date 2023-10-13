@@ -1,5 +1,7 @@
 <?= $this->extend('admin/_layout/master') ?>
 
+<?php helper(['ubah_tanggal']) ?>
+
 <?= $this->section('menu') ?>
 Laporan
 <?= $this->endSection() ?>
@@ -23,7 +25,7 @@ Laporan Siswa
             <div class="block block-bordered">
                 <div class="block-header bg-primary px-4 d-flex justify-content-between align-items-center">
                     <div>
-                        <a href="<?= route_to('admin.laporan.index') ?>" class="fa fa-arrow-circle-left text-white fs-3"></a>
+                        <a href="<?= url_to('LaporanController::lihat_kelas', $kelas->id_kelas) ?>" class="fa fa-arrow-circle-left text-white fs-3"></a>
                         <span class="ms-3 me-auto text-white fs-5 fw-semibold">Laporan Kemajuan Siswa</span>
                     </div>
                     <div>
@@ -37,33 +39,15 @@ Laporan Siswa
     </div>
     
     <div class="row">
-        <div class="col-12 col-lg-5">
+        <div class="col-12 col-lg-8">
             <div class="block">
                 <div class="block-content block-content-full d-flex justify-content-between align-items-center">
                     <div class="text-start">
-                        <div class="fs-4 fw-semibold">Hendry Naufal Marbella</div>
-                        <div class="fs-sm fw-medium text-muted">SMPN 1 Surabaya</div>
+                        <div class="fs-3 fw-semibold"><?= $siswa->nama_siswa ?></div>
+                        <div class="fs-6 fw-medium text-muted"><?= $siswa->asal_sekolah ?></div>
                     </div>
                     <div class="text-end">
                         <i class="fa fa-user-graduate fa-2x opacity-25"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-lg-3">
-            <div class="block">
-                <div class="block-content block-content-full d-flex justify-content-between align-items-center">
-                    <div class="text-start">
-                        <div class="fw-medium fs-sm">
-                            Kelas
-                        </div>
-                        <div class="fw-semibold fs-2" style="line-height: 1">
-                            20
-                        </div>
-                    </div>
-                    <div class="text-end">
-                        <div class="fs-5 fw-semibold text-info">SMP</div>
-                        <div class="fw-semibold text-primary">Kelas 8</div>
                     </div>
                 </div>
             </div>
@@ -72,11 +56,16 @@ Laporan Siswa
             <div class="block">
                 <div class="block-content block-content-full d-flex justify-content-between align-items-center">
                     <div class="text-start">
-                        <div class="fs-sm fw-medium text-muted">Tentor</div>
-                        <div class="fs-5 fw-semibold">Ening Tri Ayu</div>
+                        <div class="fw-medium fs-6">
+                            Kelas
+                        </div>
+                        <div class="fw-semibold fs-1" style="line-height: 1">
+                            <?= $kelas->nama_kelas ?>
+                        </div>
                     </div>
                     <div class="text-end">
-                        <i class="fa fa-chalkboard-user fa-2x opacity-25"></i>
+                        <div class="fs-5 fw-semibold text-<?= $kelas->warna ?>"><?= $kelas->nama_jenjang ?></div>
+                        <div class="fw-semibold text-primary"><?= ($kelas->jenis == 0) ? 'Reguler' : '<span class="bg-primary text-white px-1">Privat</span>' ?></div>
                     </div>
                 </div>
             </div>
@@ -101,25 +90,25 @@ Laporan Siswa
                         <div class="col-6 col-lg-3 text-center border-end">
                             <div>
                                 <div class="fs-sm fw-medium text-uppercase text-muted">Hadir</div>
-                                <div class="fs-1 fw-semibold text-success">16</div>
+                                <div class="fs-1 fw-semibold text-success"><?= $total_hadir ?></div>
                             </div>
                         </div>
                         <div class="col-6 col-lg-3 text-center border-end">
                             <div>
                                 <div class="fs-sm fw-medium text-uppercase text-muted">Sakit</div>
-                                <div class="fs-1 fw-semibold text-info">2</div>
+                                <div class="fs-1 fw-semibold text-info"><?= $total_sakit ?></div>
                             </div>
                         </div>
                         <div class="col-6 col-lg-3 text-center border-end">
                             <div>
                                 <div class="fs-sm fw-medium text-uppercase text-muted">Izin</div>
-                                <div class="fs-1 fw-semibold text-warning">1</div>
+                                <div class="fs-1 fw-semibold text-warning"><?= $total_izin ?></div>
                             </div>
                         </div>
                         <div class="col-6 col-lg-3 text-center">
                             <div>
                                 <div class="fs-sm fw-medium text-uppercase text-muted">Alfa</div>
-                                <div class="fs-1 fw-semibold text-danger">1</div>
+                                <div class="fs-1 fw-semibold text-danger"><?= $total_alfa ?></div>
                             </div>
                         </div>
                     </div>
@@ -143,25 +132,25 @@ Laporan Siswa
                         <div class="col-6 col-lg-3 text-center border-end">
                             <div>
                                 <div class="fs-sm fw-medium text-uppercase text-muted">Jml Nilai</div>
-                                <div class="fs-1 fw-semibold text-info">5</div>
+                                <div class="fs-1 fw-semibold text-info"><?= $total_nilai ?></div>
                             </div>
                         </div>
                         <div class="col-6 col-lg-3 text-center border-end">
                             <div>
                                 <div class="fs-sm fw-medium text-uppercase text-muted">Terendah</div>
-                                <div class="fs-1 fw-semibold text-danger">75</div>
+                                <div class="fs-1 fw-semibold text-danger"><?= $kalkulasi[0] ?></div>
                             </div>
                         </div>
                         <div class="col-6 col-lg-3 text-center border-end">
                             <div>
                                 <div class="fs-sm fw-medium text-uppercase text-muted">Tertinggi</div>
-                                <div class="fs-1 fw-semibold text-success">90</div>
+                                <div class="fs-1 fw-semibold text-success"><?= $kalkulasi[1] ?></div>
                             </div>
                         </div>
                         <div class="col-6 col-lg-3 text-center">
                             <div>
                                 <div class="fs-sm fw-medium text-uppercase text-muted">Rerata</div>
-                                <div class="fs-1 fw-semibold text-warning">84.5</div>
+                                <div class="fs-1 fw-semibold text-warning"><?= $kalkulasi[2] ?></div>
                             </div>
                         </div>
                     </div>
@@ -178,33 +167,17 @@ Laporan Siswa
                 </div>
                 <div class="block-content bg-light">
                     <ul class="timeline timeline-modern pull-t space-y-5 pb-5">
+                        <?php foreach ($catatan as $c): ?>
                         <li class="timeline-event">
                             <div class="timeline-event-time pt-lg-0">
-                                Senin, 12 Agustus 2023
+                                <?= ubah_tanggal($c->tanggal) ?>
                             </div>
                             <i class="timeline-event-icon fa fa-note-sticky bg-info"></i>
                             <div class="timeline-event-block pt-lg-0">
-                                Ananda sudah mengerjakan tugas dengan baik.
+                                <?= $c->catatan ?? '<span class="fst-italic">Tidak ada catatan</span>' ?>
                             </div>
                         </li>
-                        <li class="timeline-event">
-                            <div class="timeline-event-time pt-lg-0">
-                                Sabtu, 8 Agustus 2023
-                            </div>
-                            <i class="timeline-event-icon fa fa-note-sticky bg-info"></i>
-                            <div class="timeline-event-block pt-lg-0">
-                                Ananda tidak hadir.
-                            </div>
-                        </li>
-                        <li class="timeline-event">
-                            <div class="timeline-event-time pt-lg-0">
-                                Senin, 1 Agustus 2023
-                            </div>
-                            <i class="timeline-event-icon fa fa-note-sticky bg-info"></i>
-                            <div class="timeline-event-block pt-lg-0">
-                                Ananda mengerjakan PR, tetapi tidak paham pada bagian Persamaan Linier. Ananda akan mengikuti les privat tambahan pada hari Sabtu.
-                            </div>
-                        </li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
             </div>
@@ -241,7 +214,12 @@ Laporan Siswa
                     datasets: [
                         {
                             fill: !0,
-                            data: [16, 2, 1, 1],
+                            data: [
+                                <?= $total_hadir ?>,
+                                <?= $total_sakit ?>,
+                                <?= $total_izin ?>,
+                                <?= $total_alfa ?>
+                            ],
                             backgroundColor: [
                                 "rgba(101, 163, 13, 1)",
                                 "rgba(8, 145, 178, 1)",
@@ -264,7 +242,7 @@ Laporan Siswa
             })), null !== o && (t = new Chart(o, {
                 type: "line",
                 data: {
-                    labels: ["Penilaian ke-1", "Penilaian ke-2", "Penilaian ke-3", "Penilaian ke-4", "Penilaian ke-5"],
+                    labels: [<?php foreach($kalkulasi[3] as $k=>$v) {  echo '"Penilaian ke-' . $k+1 . '", '; } ?>],
                     datasets: [
                         {
                             fill: !0,
@@ -274,7 +252,9 @@ Laporan Siswa
                             pointBorderColor: "#fff",
                             pointHoverBackgroundColor: "#fff",
                             pointHoverBorderColor: "rgba(2, 132, 199, 1)",
-                            data: [75, 84, 90, 80, 85]
+                            data: [
+                                <?php foreach($kalkulasi[3] as $v) { echo $v . ", "; } ?>
+                            ]
                         },
                     ]
                 },
@@ -340,9 +320,21 @@ Laporan Siswa
             mapInput2.name = "penilaian";
             mapInput2.value = penilaian;
 
+            let mapInput3 = document.createElement("input");
+            mapInput3.type = "hidden";
+            mapInput3.name = "id_siswa";
+            mapInput3.value = <?= $siswa->id_siswa ?>;
+
+            let mapInput4 = document.createElement("input");
+            mapInput4.type = "hidden";
+            mapInput4.name = "id_kelas";
+            mapInput4.value = <?= $kelas->id_kelas ?>;
+
             mapForm.appendChild(mapInput0);
             mapForm.appendChild(mapInput1);
             mapForm.appendChild(mapInput2);
+            mapForm.appendChild(mapInput3);
+            mapForm.appendChild(mapInput4);
 
             document.body.appendChild(mapForm);
 
