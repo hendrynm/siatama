@@ -80,11 +80,20 @@ class JenjangController extends BaseController
         return json_encode(['status' => 'ok']);
     }
     
-    public function cek_tingkat(): string
+    public function cek_jenjang(): string
     {
         $id_jenjang = $this->request->getPost('id_jenjang');
         
-        $data = $this->JenjangService->cek_tingkat($id_jenjang);
+        $data = $this->JenjangService->cek_jenjang($id_jenjang);
+        
+        return json_encode($data);
+    }
+    
+    public function cek_tingkat(): string
+    {
+        $id_tingkat = $this->request->getPost('id_tingkat');
+        
+        $data = $this->JenjangService->cek_tingkat($id_tingkat);
         
         return json_encode($data);
     }

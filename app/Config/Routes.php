@@ -202,6 +202,8 @@ $routes->group('admin', function ($routes)
             [JenjangController::class, 'simpan_jenjang'], ['as' => 'admin.jenjang.simpan_jenjang']);
         $routes->post('hapus-jenjang',
             [JenjangController::class, 'hapus_jenjang'], ['as' => 'admin.jenjang.hapus_jenjang']);
+        $routes->post('cek-jenjang',
+            [JenjangController::class, 'cek_jenjang'], ['as' => 'admin.jenjang.cek_jenjang']);
         
         $routes->post('ambil-tingkat',
             [JenjangController::class, 'ambil_tingkat'], ['as' => 'admin.jenjang.ambil_tingkat']);
@@ -241,6 +243,18 @@ $routes->group('admin', function ($routes)
     {
         $routes->get('',
             [PaketController::class, 'index'], ['as' => 'admin.paket.index']);
+        $routes->get('daftar-paket',
+            [PaketController::class, 'daftar_paket'], ['as' => 'admin.paket.daftar_paket']);
+        $routes->get('tambah-paket',
+            [PaketController::class, 'tambah_paket'], ['as' => 'admin.paket.tambah_paket']);
+        $routes->post('tambah-paket',
+            [PaketController::class, 'tambah_paket_post'], ['as' => 'admin.paket.tambah_paket.post']);
+        $routes->get('ubah-paket/(:num)',
+            [[PaketController::class, 'ubah_paket'], '$1']);
+        $routes->post('ubah-paket',
+            [PaketController::class, 'ubah_paket_post'], ['as' => 'admin.paket.ubah_paket.post']);
+        $routes->post('hapus-paket',
+            [PaketController::class, 'hapus_paket'], ['as' => 'admin.paket.hapus_paket']);
     });
     
     $routes->group('akun', function ($routes)

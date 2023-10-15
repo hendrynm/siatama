@@ -115,7 +115,7 @@
                 });
                 <?php if (session()->getFlashdata('error')): ?>
                 e.fire({
-                    title: "Kesalahan!",
+                    title: "Kesalahan Pengguna!",
                     html: "<?= session()->getFlashdata('error') ?>",
                     icon: "error"
                 });

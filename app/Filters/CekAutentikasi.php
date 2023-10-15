@@ -27,7 +27,7 @@ class CekAutentikasi implements FilterInterface
     {
         if(!session()->has('id_akun')){
             return redirect()->to(route_to('admin.masuk.index'))
-                ->with('error', 'Anda harus <b>masuk / login</b> terlebih dahulu!');
+                ->with('error', 'Anda harus <b>login</b> terlebih dahulu!');
         }
         return $request;
     }

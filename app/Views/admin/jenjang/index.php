@@ -275,7 +275,7 @@ Beranda
             let id_jenjang = $(this).data('jenjang-id');
             
             $.ajax({
-                url: '<?= url_to('admin.jenjang.cek_tingkat') ?>',
+                url: '<?= url_to('admin.jenjang.cek_jenjang') ?>',
                 method: 'post',
                 data: {
                     <?= csrf_token() ?>: '<?= csrf_hash() ?>',
@@ -401,43 +401,63 @@ Beranda
         $('.tombol-hapus-tingkat').on('click', function () {
             let id_tingkat = $(this).data('tingkat-id');
             
-            sa.fire({
-                icon: 'question',
-                title: 'Konfirmasi',
-                text: 'Apakah Anda yakin ingin menghapus data tingkat ini?',
-                showCancelButton: true,
-                reverseButtons: true,
-                confirmButtonText: 'Ya',
-                cancelButtonText: 'Batal',
-            }).then(function (result) {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: '<?= url_to('admin.jenjang.hapus_tingkat') ?>',
-                        method: 'post',
-                        data: {
-                            <?= csrf_token() ?>: '<?= csrf_hash() ?>',
-                            id_tingkat: id_tingkat
-                        },
-                        dataType: 'json',
-                        success: function () {
-                            sa.fire({
-                                icon: 'success',
-                                title: 'Berhasil!',
-                                text: 'Data tingkat berhasil dihapus!',
-                            }).then(function (){
-                                window.location.reload();
-                            });
-                        },
-                        error: function () {
-                            sa.fire({
-                                icon: 'error',
-                                title: 'Kesalahan Server!',
-                                text: 'Data tingkat gagal dihapus. Mohon dicoba ulang.',
-                            });
-                        }
-                    });
+            $.ajax({
+                url: '<?= url_to('admin.jenjang.cek_tingkat') ?>',
+                method: 'post',
+                data: {
+                    <?= csrf_token() ?>: '<?= csrf_hash() ?>',
+                    id_tingkat: id_tingkat
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if(data === 0) {
+                        sa.fire({
+                            icon: 'question',
+                            title: 'Konfirmasi',
+                            text: 'Apakah Anda yakin ingin menghapus data tingkat ini?',
+                            showCancelButton: true,
+                            reverseButtons: true,
+                            confirmButtonText: 'Ya',
+                            cancelButtonText: 'Batal',
+                        }).then(function (result) {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    url: '<?= url_to('admin.jenjang.hapus_tingkat') ?>',
+                                    method: 'post',
+                                    data: {
+                                        <?= csrf_token() ?>: '<?= csrf_hash() ?>',
+                                        id_tingkat: id_tingkat
+                                    },
+                                    dataType: 'json',
+                                    success: function () {
+                                        sa.fire({
+                                            icon: 'success',
+                                            title: 'Berhasil!',
+                                            text: 'Data tingkat berhasil dihapus!',
+                                        }).then(function (){
+                                            window.location.reload();
+                                        });
+                                    },
+                                    error: function () {
+                                        sa.fire({
+                                            icon: 'error',
+                                            title: 'Kesalahan Server!',
+                                            text: 'Data tingkat gagal dihapus. Mohon dicoba ulang.',
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    else {
+                        sa.fire({
+                            icon: 'error',
+                            title: 'Kesalahan Pengguna!',
+                            text: 'Hapus dulu data siswa, baru data tingkat!',
+                        });
+                    }
                 }
-            });
+            })
         });
     });
 </script>

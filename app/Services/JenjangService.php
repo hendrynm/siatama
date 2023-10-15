@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\LiveSiswa;
 use App\Models\SettingJenjang;
 use App\Models\SettingTingkat;
 
@@ -9,11 +10,13 @@ class JenjangService
 {
     private SettingJenjang $SettingJenjang;
     private SettingTingkat $SettingTingkat;
+    private LiveSiswa $LiveSiswa;
     
     public function __construct()
     {
         $this->SettingJenjang = new SettingJenjang();
         $this->SettingTingkat = new SettingTingkat();
+        $this->LiveSiswa = new LiveSiswa();
     }
     
     public function ambil_daftar_jenjang(): ?array
@@ -85,10 +88,17 @@ class JenjangService
             ->delete($id_tingkat);
     }
     
-    public function cek_tingkat(int $id_jenjang): int
+    public function cek_jenjang(int $id_jenjang): int
     {
         return $this->SettingTingkat
             ->where('id_jenjang', $id_jenjang)
+            ->countAllResults();
+    }
+    
+    public function cek_tingkat(int $id_tingkat): int
+    {
+        return $this->LiveSiswa
+            ->where('id_tingkat', $id_tingkat)
             ->countAllResults();
     }
 }
