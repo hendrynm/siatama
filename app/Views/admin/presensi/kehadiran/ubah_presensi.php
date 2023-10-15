@@ -12,6 +12,7 @@ Ubah Presensi
 
 <?= $this->section('css') ?>
 <?= link_tag('src/assets/js/plugins/select2/css/select2.min.css') ?>
+<?= link_tag('src/assets/js/plugins/sweetalert2/sweetalert2.min.css') ?>
 
 <style>
     .select2-selection__rendered {
@@ -42,7 +43,7 @@ Ubah Presensi
         </div>
 
         <div class="block-content">
-            <form action="<?= route_to('admin.presensi.kehadiran.ubah_presensi.post') ?>" method="post">
+            <form action="<?= route_to('admin.presensi.kehadiran.ubah_presensi.post') ?>" method="post" id="form-tambah">
                 <?= csrf_field() ?>
                 <?= form_hidden('id_kelas', $kelas->id_kelas) ?>
                 <?= form_hidden('id_pertemuan', $pertemuan->id_pertemuan) ?>
@@ -96,8 +97,58 @@ Ubah Presensi
 <?= $this->section('js') ?>
 <?= script_tag('src/assets/js/lib/jquery.min.js') ?>
 <?= script_tag('src/assets/js/plugins/select2/js/select2.full.min.js') ?>
+<?= script_tag('src/assets/js/plugins/sweetalert2/sweetalert2.min.js') ?>
 
-<script>
-    Codebase.helpersOnLoad(['jq-select2']);
+<script type="text/javascript">
+    let sa;
+    ! function() {
+        class e {
+            static sweetAlert2() {
+                sa = Swal.mixin({
+                    buttonsStyling: !1,
+                    target: "#page-container",
+                    customClass: {
+                        confirmButton: "btn btn-alt-primary m-1",
+                        cancelButton: "btn btn-alt-danger m-1",
+                        input: "form-control"
+                    }
+                });
+            }
+            static init() {
+                this.sweetAlert2()
+            }
+        }
+        Codebase.onLoad((() => e.init()))
+        Codebase.helpersOnLoad(["jq-select2"])
+    }();
+
+    $(document).ready(function() {
+        $('#form-tambah').on('click', '.btn-info', function(e) {
+            e.preventDefault();
+            let form = $(this).parents('form');
+
+            let tanggal = $('#tanggal').val();
+            let selesai = $('#selesai').val();
+
+            if(tanggal >= selesai) {
+                sa.fire({
+                    icon: 'error',
+                    title: 'Kesalahan Pengguna!',
+                    html: 'Waktu selesai <b>tidak boleh</b> kurang dari Waktu mulai!',
+                });
+            }
+            else if(new Date(tanggal) < new Date(new Date().setDate(new Date().getDate() - 2))) {
+                sa.fire({
+                    icon: 'error',
+                    title: 'Kesalahan Pengguna!',
+                    html: 'Waktu mulai <b>sudah lewat</b> batas pengisian maksimal!',
+                });
+            }
+            else
+            {
+                form.submit();
+            }
+        });
+    });
 </script>
 <?= $this->endSection() ?>

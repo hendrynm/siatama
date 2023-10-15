@@ -173,10 +173,10 @@ class PresensiService
     
     public function ambil_daftar_siswa_aktif_nonkelas(int $id_kelas): ?array
     {
-        return $this->LiveKelas
+        return $this->LiveSiswa
             ->select(['id_siswa','nama_siswa','nama_tingkat'])
-            ->join('live_siswa', 'live_siswa.id_kelas = live_kelas.id_kelas')
-            ->join('setting_tingkat', 'setting_tingkat.id_tingkat = live_kelas.id_tingkat')
+            ->join('live_kelas', 'live_siswa.id_kelas = live_kelas.id_kelas')
+            ->join('setting_tingkat', 'setting_tingkat.id_tingkat = live_siswa.id_tingkat')
             ->where('live_siswa.id_kelas !=', $id_kelas)
             ->orderBy('live_siswa.id_tingkat')
             ->orderBy('nama_siswa')
@@ -253,7 +253,7 @@ class PresensiService
         
         $sekarang = strtotime(date('Y-m-d H:i:s'));
         $tanggal = strtotime($cek->selesai);
-        $tanggal = strtotime("+2 days", $tanggal);
+        $tanggal = strtotime("+7 days", $tanggal);
         
         return $sekarang < $tanggal;
     }

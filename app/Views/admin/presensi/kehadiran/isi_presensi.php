@@ -250,26 +250,6 @@ Isi Kehadiran
     let sa;
     ! function() {
         class e {
-            static initValidationSignIn() {
-                Codebase.helpers("jq-validation"), jQuery(".form-masuk").validate({
-                    rules: {
-                        "username": {
-                            required: !0,
-                        },
-                        "password": {
-                            required: !0,
-                        }
-                    },
-                    messages: {
-                        "username": {
-                            required: "Username wajib diisi!",
-                        },
-                        "password": {
-                            required: "Password wajib diisi!",
-                        }
-                    }
-                })
-            }
             static sweetAlert2() {
                 sa = Swal.mixin({
                     buttonsStyling: !1,
@@ -282,7 +262,6 @@ Isi Kehadiran
                 });
             }
             static init() {
-                this.initValidationSignIn()
                 this.sweetAlert2()
             }
         }

@@ -196,27 +196,21 @@ $routes->group('admin', function ($routes)
         $routes->get('',
             [JenjangController::class, 'index'], ['as' => 'admin.jenjang.index']);
         
-        $routes->get('tambah-jenjang',
-            [JenjangController::class, 'tambah_jenjang'], ['as' => 'admin.jenjang.tambah_jenjang']);
-        $routes->post('tambah-jenjang',
-            [JenjangController::class, 'tambah_jenjang_post'], ['as' => 'admin.jenjang.tambah_jenjang.post']);
-        $routes->get('ubah-jenjang',
-            [JenjangController::class, 'ubah_jenjang'], ['as' => 'admin.jenjang.ubah_jenjang']);
-        $routes->post('ubah-jenjang',
-            [JenjangController::class, 'ubah_jenjang_post'], ['as' => 'admin.jenjang.ubah_jenjang.post']);
-        $routes->get('hapus-jenjang',
+        $routes->post('ambil-jenjang',
+            [JenjangController::class, 'ambil_jenjang'], ['as' => 'admin.jenjang.ambil_jenjang']);
+        $routes->post('simpan-jenjang',
+            [JenjangController::class, 'simpan_jenjang'], ['as' => 'admin.jenjang.simpan_jenjang']);
+        $routes->post('hapus-jenjang',
             [JenjangController::class, 'hapus_jenjang'], ['as' => 'admin.jenjang.hapus_jenjang']);
         
-        $routes->get('tambah-tingkat',
-            [JenjangController::class, 'tambah_tingkat'], ['as' => 'admin.jenjang.tambah_tingkat']);
-        $routes->post('tambah-tingkat',
-            [JenjangController::class, 'tambah_tingkat_post'], ['as' => 'admin.jenjang.tambah_tingkat.post']);
-        $routes->get('ubah-tingkat',
-            [JenjangController::class, 'ubah_tingkat'], ['as' => 'admin.jenjang.ubah_tingkat']);
-        $routes->post('ubah-tingkat',
-            [JenjangController::class, 'ubah_tingkat_post'], ['as' => 'admin.jenjang.ubah_tingkat.post']);
-        $routes->get('hapus-tingkat',
+        $routes->post('ambil-tingkat',
+            [JenjangController::class, 'ambil_tingkat'], ['as' => 'admin.jenjang.ambil_tingkat']);
+        $routes->post('simpan-tingkat',
+            [JenjangController::class, 'simpan_tingkat'], ['as' => 'admin.jenjang.simpan_tingkat']);
+        $routes->post('hapus-tingkat',
             [JenjangController::class, 'hapus_tingkat'], ['as' => 'admin.jenjang.hapus_tingkat']);
+        $routes->post('cek-tingkat',
+            [JenjangController::class, 'cek_tingkat'], ['as' => 'admin.jenjang.cek_tingkat']);
     });
     
     $routes->group('semester', function ($routes)
