@@ -125,3 +125,10 @@ nb-configuration.xml
 /phpunit*.xml
 /.phpunit.*.cache
 
+#-------------------------
+# Custom
+#-------------------------
+public/*
+!public/assets/css
+!public/assets/js
+!public/assets/fonts
