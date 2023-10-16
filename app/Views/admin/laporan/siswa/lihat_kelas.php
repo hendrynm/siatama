@@ -70,3 +70,30 @@ Lihat Kelas
 </div>
 
 <?= $this->endSection() ?>
+
+<?= $this->section('js') ?>
+<?= script_tag('src/assets/js/lib/jquery.min.js') ?>
+<?= script_tag('src/assets/js/plugins/sweetalert2/sweetalert2.all.min.js') ?>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        sa = Swal.mixin({
+            buttonsStyling: !1,
+            target: "#page-container",
+            customClass: {
+                confirmButton: "btn btn-alt-primary m-1",
+                cancelButton: "btn btn-alt-danger m-1",
+                input: "form-control"
+            }
+        });
+        
+        <?php if(session()->getFlashdata('error')): ?>
+            sa.fire({
+                icon: 'error',
+                title: 'Kesalahan Pengguna!',
+                html: '<?= session()->getFlashdata('error') ?>'
+            });
+        <?php endif; ?>
+    });
+</script>
+<?= $this->endSection() ?>

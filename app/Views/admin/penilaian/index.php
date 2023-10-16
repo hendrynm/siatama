@@ -1,7 +1,7 @@
 <?= $this->extend('admin/_layout/master') ?>
 
 <?= $this->section('menu') ?>
-Penilaian
+Komponen Nilai
 <?= $this->endSection() ?>
 
 <?= $this->section('submenu') ?>
@@ -13,7 +13,7 @@ Beranda
     <div class="row mb-4">
         <div class="col-12">
             <div class="fs-1 fw-semibold">
-                Penilaian Siswa
+                Komponen Nilai
             </div>
             <div class="fs-5">
                 Silakan memilih menu di bawah ini

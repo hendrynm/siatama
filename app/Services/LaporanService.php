@@ -7,12 +7,14 @@ use App\Models\LivePertemuan;
 use App\Models\LivePresensi;
 use App\Models\SettingNilai;
 use App\Models\SettingSkor;
+use Exception;
 use http\Params;
 
 class LaporanService
 {
     private PresensiService $PresensiService;
     private SiswaService $SiswaService;
+    private TentorService $TentorService;
     private LivePertemuan $LivePertemuan;
     private LivePresensi $LivePresensi;
     private LivePenilaian $LivePenilaian;
@@ -23,6 +25,7 @@ class LaporanService
     {
         $this->PresensiService = new PresensiService();
         $this->SiswaService = new SiswaService();
+        $this->TentorService = new TentorService();
         $this->LivePertemuan = new LivePertemuan();
         $this->LivePresensi = new LivePresensi();
         $this->LivePenilaian = new LivePenilaian();
@@ -228,5 +231,67 @@ class LaporanService
         }
         
         return $nilai_fix;
+    }
+    
+    public function ambil_daftar_tentor(): ?array
+    {
+        return $this->TentorService->ambil_daftar_tentor_aktif();
+    }
+    
+    public function ambil_detail_tentor(int $id_tentor): ?object
+    {
+        return $this->TentorService->ambil_detail_tentor($id_tentor);
+    }
+    
+    public function ambil_waktu_mengajar(int $id_tentor): ?array
+    {
+        $query1 = $this->LivePertemuan
+            ->join('live_kelas', 'live_pertemuan.id_kelas = live_kelas.id_kelas')
+            ->join('setting_tingkat', 'live_kelas.id_tingkat = setting_tingkat.id_tingkat')
+            ->join('setting_jenjang', 'setting_tingkat.id_jenjang = setting_jenjang.id_jenjang')
+            ->where('id_pengajar', $id_tentor)
+            ->orderBy('setting_jenjang.id_jenjang')
+            ->orderBy('jenis')
+            ->orderBy('tanggal')
+            ->findAll();
+        
+        // Inisialisasi array untuk hasil pengelompokan
+        $groupedData = [];
+        foreach ($query1 as $item) {
+            $jenjang = $item->id_jenjang;
+            $jenis = $item->jenis;
+            
+            // Tambahkan item ke kelompok berdasarkan jenis
+            if (!isset($groupedData[$jenjang][$jenis]))
+            {
+                $groupedData[$jenjang][$jenis] = [
+                    'items' => [],
+                    'total_durasi' => 0,
+                ];
+            }
+            
+            $groupedData[$jenjang][$jenis]['items'][] = $item;
+            
+            // Hitung durasi mengajar dan tambahkan ke total_durasi
+            $tanggalMulai = strtotime($item->tanggal);
+            $tanggalSelesai = strtotime($item->selesai);
+            $durasi = $tanggalSelesai - $tanggalMulai;
+            $groupedData[$jenjang][$jenis]['total_durasi'] += $durasi;
+        }
+        
+        foreach ($groupedData as $jenjang => $jenjangData)
+        {
+            foreach ($jenjangData as $jenis => $jenisData)
+            {
+                $totalDurasi = $jenisData['total_durasi'];
+                $totalJam = floor($totalDurasi / 3600); // 3600 detik dalam 1 jam
+                $totalSisaDetik = $totalDurasi % 3600;
+                $totalMenit = floor($totalSisaDetik / 60); // 60 detik dalam 1 menit
+                $groupedData[$jenjang][$jenis]['durasi_jam'] = $totalJam;
+                $groupedData[$jenjang][$jenis]['durasi_menit'] = $totalMenit;
+            }
+        }
+        
+        return $groupedData;
     }
 }

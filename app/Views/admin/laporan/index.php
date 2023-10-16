@@ -36,9 +36,8 @@ Beranda
             </a>
         </div>
         
-        <?php if(getenv('CI_ENVIRONMENT') === 'development'): ?>
         <div class="col-6 col-xl-3">
-            <a class="block block-link-pop text-center" href="<?= route_to('admin.laporan.pilih_kelas') ?>">
+            <a class="block block-link-pop text-center" href="<?= route_to('admin.laporan.daftar_tentor') ?>">
                 <div class="block-content py-4 py-xl-5">
                     <div class="fs-1 text-info">
                         <i class="fa fa-chalkboard-user fa-2x"></i>
@@ -49,7 +48,6 @@ Beranda
                 </div>
             </a>
         </div>
-        <?php endif; ?>
     </div>
 </div>
 <?= $this->endSection() ?>
