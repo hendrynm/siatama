@@ -12,6 +12,7 @@ Detail Kelas
 
 <?= $this->section('css') ?>
 <?= link_tag('src/assets/js/plugins/select2/css/select2.min.css') ?>
+<?= link_tag('src/assets/js/plugins/sweetalert2/sweetalert2.min.css') ?>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
@@ -48,10 +49,10 @@ Detail Kelas
                         </a>
                     </div>
                     <div class="col-4 col-lg-auto">
-                        <a class="btn btn-alt-danger text-center p-lg-3" href="<?= route_to('admin.presensi.pengaturan.hapus_kelas') ?>">
+                        <button class="btn btn-alt-danger text-center p-lg-3 tombol-hapus-kelas" data-id-kelas="<?= $kelas->id_kelas ?>">
                             <i class="fa fa-trash"></i>
                             <span class="fw-medium ms-2" style="line-height: 1.25">Hapus Kelas</span>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -137,8 +138,70 @@ Detail Kelas
 <?= $this->section('js') ?>
 <?= script_tag('src/assets/js/lib/jquery.min.js') ?>
 <?= script_tag('src/assets/js/plugins/select2/js/select2.full.min.js') ?>
+<?= script_tag('src/assets/js/plugins/sweetalert2/sweetalert2.min.js') ?>
 
-<script>
-    Codebase.helpersOnLoad(['jq-select2']);
+<script type="text/javascript">
+    let sa;
+    ! function() {
+        class e {
+            static sweetAlert2() {
+                sa = Swal.mixin({
+                    buttonsStyling: !1,
+                    target: "#page-container",
+                    customClass: {
+                        confirmButton: "btn btn-alt-primary m-1",
+                        cancelButton: "btn btn-alt-danger m-1",
+                        input: "form-control"
+                    }
+                });
+            }
+            static init() {
+                this.sweetAlert2()
+            }
+        }
+        Codebase.onLoad((() => e.init()));
+        Codebase.helpersOnLoad(['jq-select2']);
+    }();
+    
+    $(document).ready(function() {
+        $('.tombol-hapus-kelas').on('click', function() {
+            let id_kelas = $(this).data('id-kelas');
+            
+            sa.fire({
+                title: 'Konfirmasi',
+                text: 'Apakah Anda yakin ingin menghapus kelas ini?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '<?= route_to('admin.presensi.pengaturan.hapus_kelas') ?>',
+                        type: 'post',
+                        data: {
+                            <?= csrf_token() ?>: '<?= csrf_hash() ?>',
+                            id_kelas: id_kelas
+                        },
+                        success: function() {
+                            sa.fire({
+                                title: 'Berhasil',
+                                text: 'Kelas berhasil dihapus',
+                                icon: 'success',
+                                showCancelButton: false,
+                                confirmButtonText: 'OK',
+                                reverseButtons: true
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = '<?= route_to('admin.presensi.pengaturan.pilih_kelas') ?>';
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    });
 </script>
 <?= $this->endSection() ?>

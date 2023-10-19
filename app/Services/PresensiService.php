@@ -257,4 +257,9 @@ class PresensiService
         
         return $sekarang < $tanggal;
     }
+    
+    public function hapus_kelas(int $id_kelas): void
+    {
+        $this->LiveKelas->delete($id_kelas);
+    }
 }

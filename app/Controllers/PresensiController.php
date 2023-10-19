@@ -296,6 +296,25 @@ class PresensiController extends BaseController
             ->with('error', 'Gagal mengubah kelas');
     }
     
+    public function pengaturan_hapus_kelas(): string
+    {
+        $id_kelas = $this->request->getPost('id_kelas');
+        
+        $db = Database::connect();
+        try
+        {
+            $db->transException(true)->transStart();
+            $this->PresensiService->hapus_kelas($id_kelas);
+            $db->transComplete();
+            
+            return 'sukses';
+        }
+        catch (DatabaseException $e)
+        {
+            return $e->getMessage();
+        }
+    }
+    
     public function pengaturan_daftar_tingkat(): string
     {
         $id_jenjang = $this->request->getPost('id_jenjang');
