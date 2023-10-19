@@ -85,7 +85,7 @@ $routes->group('admin', function ($routes)
                 [[PresensiController::class, 'pengaturan_ubah_kelas'], '$1']);
             $routes->post('ubah-kelas',
                 [PresensiController::class, 'pengaturan_ubah_kelas_post'], ['as' => 'admin.presensi.pengaturan.ubah_kelas.post']);
-            $routes->get('hapus-kelas',
+            $routes->post('hapus-kelas',
                 [PresensiController::class, 'pengaturan_hapus_kelas'], ['as' => 'admin.presensi.pengaturan.hapus_kelas']);
             
             $routes->get('tambah-siswa',
@@ -243,6 +243,14 @@ $routes->group('admin', function ($routes)
     {
         $routes->get('',
             [PembayaranController::class, 'index'], ['as' => 'admin.pembayaran.index']);
+        $routes->get('daftar-bayar',
+            [PembayaranController::class, 'daftar_bayar'], ['as' => 'admin.pembayaran.daftar_bayar']);
+        $routes->get('detail-bayar/(:num)',
+            [[PembayaranController::class, 'detail_bayar'], '$1']);
+        $routes->post('simpan-bayar',
+            [PembayaranController::class, 'simpan_bayar'], ['as' => 'admin.pembayaran.simpan_bayar']);
+        $routes->post('hapus-bayar',
+            [PembayaranController::class, 'hapus_bayar'], ['as' => 'admin.pembayaran.hapus_bayar']);
     });
     
     $routes->group('paket', function ($routes)

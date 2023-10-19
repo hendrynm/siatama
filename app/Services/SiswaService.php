@@ -28,6 +28,7 @@ class SiswaService
             'nama_tingkat',
             'nama_ortu',
             'telepon_ortu',
+            'live_siswa.id_paket',
             'nama_paket',
             'harga_paket',
             'jenis'

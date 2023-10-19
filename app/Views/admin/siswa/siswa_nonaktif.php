@@ -75,7 +75,7 @@ Siswa Nonaktif
                             </td>
                             <td class="">
                                 <div class="fw-medium">
-                                    Paket <?= $value->nama_paket ?>
+                                    <?= $value->jenis === '0' ? 'Reguler' : 'Privat' ?> - <?= $value->nama_paket ?>
                                 </div>
                                 <div class="fs-sm">
                                     <?= ubah_harga($value->harga_paket) ?>

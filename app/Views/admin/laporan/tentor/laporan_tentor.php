@@ -102,7 +102,7 @@ Laporan Tentor
                                         </thead>
                                         <tbody>
                                         <?php foreach($v2['items'] as $k3=>$v3): ?>
-                                            <tr class="text-center">
+                                            <tr class="text-center align-middle">
                                                 <th role="row"><?= $k3+1 ?></th>
                                                 <td>
                                                     <?= ubah_tanggal($v3->tanggal) ?><br/>

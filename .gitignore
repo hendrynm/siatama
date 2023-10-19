@@ -128,7 +128,6 @@ nb-configuration.xml
 #-------------------------
 # Custom
 #-------------------------
-public/*
-!public/assets/css
-!public/assets/js
-!public/assets/fonts
+public/src/*
+public/uploads/*
+!public/src/assets/*

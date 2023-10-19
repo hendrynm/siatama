@@ -20,6 +20,21 @@ Beranda
             </div>
         </div>
     </div>
+
+    <div class="row align-middle">
+        <div class="col-6 col-xl-3">
+            <a class="block block-link-pop text-center" href="<?= route_to('admin.pembayaran.daftar_bayar') ?>">
+                <div class="block-content py-4 py-xl-5">
+                    <div class="fs-1 text-primary">
+                        <i class="fa fa-file-invoice-dollar fa-2x"></i>
+                    </div>
+                    <div class="fw-medium fs-3 mt-3">
+                        Cek Pembayaran
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
     
     <?php if(getenv('CI_ENVIRONMENT') == 'development'): ?>
     <?php else: ?>
