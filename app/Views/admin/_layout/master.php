@@ -175,7 +175,7 @@
                         <?php endif; ?>
                         
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="<?= route_to('admin.akun.index') ?>">
+                            <a class="nav-main-link <?= cek_aktif(route_to('admin.akun.index')) ?>" href="<?= route_to('admin.akun.index') ?>">
                                 <i class="nav-main-link-icon fa fa-user-pen"></i>
                                 <span class="nav-main-link-name">Ubah Akun</span>
                             </a>

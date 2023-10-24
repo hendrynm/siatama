@@ -234,18 +234,8 @@ $routes->group('admin', function ($routes)
     {
         $routes->get('',
             [SemesterController::class, 'index'], ['as' => 'admin.semester.index']);
-        $routes->get('daftar-semester',
-            [SemesterController::class, 'daftar_semester'], ['as' => 'admin.semester.daftar_semester']);
-        $routes->get('tambah-semester',
-            [SemesterController::class, 'tambah_semester'], ['as' => 'admin.semester.tambah_semester']);
-        $routes->post('tambah-semester',
-            [SemesterController::class, 'tambah_semester_post'], ['as' => 'admin.semester.tambah_semester.post']);
-        $routes->get('ubah-semester',
-            [SemesterController::class, 'ubah_semester'], ['as' => 'admin.semester.ubah_semester']);
-        $routes->post('ubah-semester',
-            [SemesterController::class, 'ubah_semester_post'], ['as' => 'admin.semester.ubah_semester.post']);
-        $routes->get('hapus-semester',
-            [SemesterController::class, 'hapus_semester'], ['as' => 'admin.semester.hapus_semester']);
+        $routes->post('ganti',
+            [SemesterController::class, 'ganti'], ['as' => 'admin.semester.ganti']);
     });
     
     $routes->group('pembayaran', function ($routes)
