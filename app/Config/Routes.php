@@ -191,10 +191,19 @@ $routes->group('admin', function ($routes)
     {
         $routes->get('',
             [JadwalController::class, 'index'], ['as' => 'admin.jadwal.index']);
-        $routes->get('siswa-aktif',
-            [JadwalController::class, 'siswa_aktif'], ['as' => 'admin.jadwal.siswa_aktif']);
-        $routes->get('tentor-aktif',
-            [JadwalController::class, 'tentor_aktif'], ['as' => 'admin.jadwal.tentor_aktif']);
+        $routes->get('jadwal-tentor',
+            [JadwalController::class, 'jadwal_tentor'], ['as' => 'admin.jadwal.jadwal_tentor']);
+        
+        $routes->get('daftar-tentor',
+            [JadwalController::class, 'daftar_tentor'], ['as' => 'admin.jadwal.daftar_tentor']);
+        $routes->get('detail-tentor/(:num)',
+            [[JadwalController::class, 'detail_tentor'], '$1']);
+        $routes->post('detail-jadwal',
+            [JadwalController::class, 'detail_jadwal'], ['as' => 'admin.jadwal.detail_jadwal']);
+        $routes->post('simpan-jadwal',
+            [JadwalController::class, 'simpan_jadwal'], ['as' => 'admin.jadwal.simpan_jadwal']);
+        $routes->post('hapus-jadwal',
+            [JadwalController::class, 'hapus_jadwal'], ['as' => 'admin.jadwal.hapus_jadwal']);
     });
     
     $routes->group('jenjang', function ($routes)
