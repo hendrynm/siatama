@@ -45,11 +45,12 @@ class PembayaranController extends BaseController
         try
         {
             $id_siswa = $this->request->getPost('id_siswa');
+            $periode = date_format(date_create($this->request->getPost('periode')), 'Y-m-d');
             $tanggal = $this->request->getPost('tanggal');
             $nominal = $this->request->getPost('nominal');
             $catatan = $this->request->getPost('catatan') === '' ? null : $this->request->getPost('catatan');
             
-            $this->PembayaranService->simpan_bayar($id_siswa, $tanggal, $nominal, $catatan);
+            $this->PembayaranService->simpan_bayar($id_siswa, $periode, $tanggal, $nominal, $catatan);
             
             return json_encode(['status' => 'success']);
         }

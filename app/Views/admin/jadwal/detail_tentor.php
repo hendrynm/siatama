@@ -52,8 +52,10 @@ Detail Tentor
                             </div>
                             <div class="fs-6">
                                 <?= ubah_jam($v2['mulai']) ?>-<?= ubah_jam($v2['selesai']) ?>
-                                <button class="btn btn-sm btn-alt-warning ms-2 tombol-ubah-jadwal" data-id-jadwal="<?= $v2['id_jadwal'] ?>" data-bs-toggle="tooltip" title="Ubah"><i class="fa fa-edit fa-sm"></i></button>
-                                <button class="btn btn-sm btn-alt-danger tombol-hapus-jadwal" data-id-jadwal="<?= $v2['id_jadwal'] ?>" data-bs-toggle="tooltip" title="Hapus"><i class="fa fa-trash fa-sm"></i></button>
+                                <?php if(session()->get('hak_akses') == 'Admin'): ?>
+                                    <button class="btn btn-sm btn-alt-warning ms-2 tombol-ubah-jadwal" data-id-jadwal="<?= $v2['id_jadwal'] ?>" data-bs-toggle="tooltip" title="Ubah"><i class="fa fa-edit fa-sm"></i></button>
+                                    <button class="btn btn-sm btn-alt-danger tombol-hapus-jadwal" data-id-jadwal="<?= $v2['id_jadwal'] ?>" data-bs-toggle="tooltip" title="Hapus"><i class="fa fa-trash fa-sm"></i></button>
+                                <?php endif; ?>
                             </div>
                         </div>
                     <?php endforeach; ?>

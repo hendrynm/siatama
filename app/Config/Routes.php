@@ -137,6 +137,8 @@ $routes->group('admin', function ($routes)
             [LaporanController::class, 'daftar_tentor'], ['as' => 'admin.laporan.daftar_tentor']);
         $routes->get('laporan-tentor/(:num)',
             [[LaporanController::class, 'laporan_tentor'], '$1']);
+        $routes->post('detail-tentor',
+            [LaporanController::class, 'detail_tentor'], ['as' => 'admin.laporan.detail_tentor']);
     });
     
     $routes->group('siswa', function ($routes)

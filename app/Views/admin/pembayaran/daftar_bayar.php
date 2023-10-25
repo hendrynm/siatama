@@ -73,15 +73,38 @@ Daftar Pembayaran
                             </div>
                         </td>
                         <td class="">
-                            <div class="badge bg-<?= $v1['status'][2]['status'] === 'Lunas' ? 'success' : 'danger' ?>">
-                                <?= $v1['status'][2]['periode'] . ' &nbsp; ' . $v1['status'][2]['status'] . ' &nbsp; ' . ubah_harga($v1['status'][2]['harga']) ?>
-                            </div><br/>
-                            <div class="badge bg-<?= $v1['status'][1]['status'] === 'Lunas' ? 'success' : 'danger' ?>">
-                                <?= $v1['status'][1]['periode'] . ' &nbsp; ' . $v1['status'][1]['status'] . ' &nbsp; ' . ubah_harga($v1['status'][1]['harga'])  ?>
-                            </div><br/>
-                            <div class="badge bg-<?= $v1['status'][0]['status'] === 'Lunas' ? 'success' : 'danger' ?>">
-                                <?= $v1['status'][0]['periode'] . ' &nbsp; ' . $v1['status'][0]['status'] . ' &nbsp; ' . ubah_harga($v1['status'][0]['harga'])  ?>
-                            </div>
+                            <?php if($v1['status'][2]['status'] === 'Lunas'): ?>
+                                <div class="badge bg-success">
+                                    <?= $v1['status'][2]['periode'] . ' &nbsp; ' . $v1['status'][2]['status'] . ' &nbsp; ' . ubah_harga($v1['status'][2]['total']) ?>
+                                </div>
+                            <?php else: ?>
+                                <div class="badge bg-danger">
+                                    <?= $v1['status'][2]['periode'] . ' &nbsp; ' . $v1['status'][2]['status'] . ' &nbsp; ' ?>
+                                    <?= ($v1['status'][2]['harga'] != 0) ? ubah_harga($v1['status'][2]['harga']) : ubah_harga($v1['status'][2]['total']) ?>
+                                </div>
+                            <?php endif; ?>
+                            <br/>
+                            <?php if($v1['status'][1]['status'] === 'Lunas'): ?>
+                                <div class="badge bg-success">
+                                    <?= $v1['status'][1]['periode'] . ' &nbsp; ' . $v1['status'][1]['status'] . ' &nbsp; ' . ubah_harga($v1['status'][1]['total']) ?>
+                                </div>
+                            <?php else: ?>
+                                <div class="badge bg-danger">
+                                    <?= $v1['status'][1]['periode'] . ' &nbsp; ' . $v1['status'][1]['status'] . ' &nbsp; ' ?>
+                                    <?= ($v1['status'][1]['harga'] != 0) ? ubah_harga($v1['status'][1]['harga']) : ubah_harga($v1['status'][1]['total']) ?>
+                                </div>
+                            <?php endif; ?>
+                            <br/>
+                            <?php if($v1['status'][0]['status'] === 'Lunas'): ?>
+                                <div class="badge bg-success">
+                                    <?= $v1['status'][0]['periode'] . ' &nbsp; ' . $v1['status'][0]['status'] . ' &nbsp; ' . ubah_harga($v1['status'][0]['total']) ?>
+                                </div>
+                            <?php else: ?>
+                                <div class="badge bg-danger">
+                                    <?= $v1['status'][0]['periode'] . ' &nbsp; ' . $v1['status'][0]['status'] . ' &nbsp; ' ?>
+                                    <?= ($v1['status'][0]['harga'] != 0) ? ubah_harga($v1['status'][0]['harga']) : ubah_harga($v1['status'][0]['total']) ?>
+                                </div>
+                            <?php endif; ?>
                         </td>
                         <td class="text-center space-y-1">
                             <a href="<?= url_to('PembayaranController::detail_bayar', $v1['siswa']->id_siswa) ?>" class="btn btn-sm btn-alt-info">

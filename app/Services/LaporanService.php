@@ -243,17 +243,35 @@ class LaporanService
         return $this->TentorService->ambil_detail_tentor($id_tentor);
     }
     
-    public function ambil_waktu_mengajar(int $id_tentor): ?array
+    public function ambil_waktu_mengajar(int $id_tentor, string $mulai = null, string $selesai = null): ?array
     {
-        $query1 = $this->LivePertemuan
-            ->join('live_kelas', 'live_pertemuan.id_kelas = live_kelas.id_kelas')
-            ->join('setting_tingkat', 'live_kelas.id_tingkat = setting_tingkat.id_tingkat')
-            ->join('setting_jenjang', 'setting_tingkat.id_jenjang = setting_jenjang.id_jenjang')
-            ->where('id_pengajar', $id_tentor)
-            ->orderBy('setting_jenjang.id_jenjang')
-            ->orderBy('jenis')
-            ->orderBy('tanggal')
-            ->findAll();
+        if($mulai !== null)
+        {
+            $query1 = $this->LivePertemuan
+                ->join('live_kelas', 'live_pertemuan.id_kelas = live_kelas.id_kelas')
+                ->join('setting_tingkat', 'live_kelas.id_tingkat = setting_tingkat.id_tingkat')
+                ->join('setting_jenjang', 'setting_tingkat.id_jenjang = setting_jenjang.id_jenjang')
+                ->where('id_pengajar', $id_tentor)
+                ->where('live_pertemuan.tanggal >=', $mulai)
+                ->where('live_pertemuan.tanggal <=', $selesai)
+                ->orderBy('setting_jenjang.id_jenjang')
+                ->orderBy('jenis')
+                ->orderBy('tanggal')
+                ->findAll();
+        }
+        else
+        {
+            $query1 = $this->LivePertemuan
+                ->join('live_kelas', 'live_pertemuan.id_kelas = live_kelas.id_kelas')
+                ->join('setting_tingkat', 'live_kelas.id_tingkat = setting_tingkat.id_tingkat')
+                ->join('setting_jenjang', 'setting_tingkat.id_jenjang = setting_jenjang.id_jenjang')
+                ->where('id_pengajar', $id_tentor)
+                ->where('live_pertemuan.tanggal >=', date('Y-m-d', strtotime('-1 month')))
+                ->orderBy('setting_jenjang.id_jenjang')
+                ->orderBy('jenis')
+                ->orderBy('tanggal')
+                ->findAll();
+        }
         
         // Inisialisasi array untuk hasil pengelompokan
         $groupedData = [];

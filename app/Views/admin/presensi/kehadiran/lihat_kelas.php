@@ -75,7 +75,7 @@ Detail Kelas
                     <td class="text-center">
                         <div class="space-y-1">
                             <a href="<?= url_to('PresensiController::kehadiran_isi_presensi', $kelas->id_kelas, $p->id_pertemuan) ?>" class="btn btn-alt-primary btn-sm w-100"><i class="fa fa-eye me-2"></i>Lihat</a>
-                            <?php if($cek_presensi->{$k} == true): ?>
+                            <?php if(($cek_presensi->{$k} == true) || (session()->get('hak_akses') == 'Admin')): ?>
                             <a href="<?= url_to('PresensiController::kehadiran_ubah_presensi', $kelas->id_kelas, $p->id_pertemuan) ?>" class="btn btn-alt-warning btn-sm w-100"><i class="fa fa-edit me-2"></i>Ubah</a>
                             <button class="btn btn-alt-danger btn-sm w-100" data-pertemuan-id="<?= $p->id_pertemuan ?>"><i class="fa fa-trash me-2"></i>Hapus</button>
                             <?php endif; ?>

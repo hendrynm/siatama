@@ -146,4 +146,21 @@ class LaporanController extends BaseController
             'waktu' => $waktu
         ]);
     }
+    
+    public function detail_tentor(): string
+    {
+        $id_tentor = $this->request->getPost('id_tentor');
+        $mulai = $this->request->getPost('mulai');
+        $selesai = $this->request->getPost('selesai');
+        
+        $tentor = $this->LaporanService->ambil_detail_tentor($id_tentor);
+        $waktu = $this->LaporanService->ambil_waktu_mengajar($id_tentor, $mulai, $selesai);
+        
+        return view('admin/laporan/tentor/laporan_tentor',[
+            'tentor' => $tentor,
+            'waktu' => $waktu,
+            'mulai' => $mulai,
+            'selesai' => $selesai
+        ]);
+    }
 }

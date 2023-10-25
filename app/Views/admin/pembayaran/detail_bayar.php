@@ -70,7 +70,7 @@ Detail Pembayaran
         <div class="col-12 col-lg-6">
             <div class="block">
                 <div class="block-header block-header-default bg-<?= $v['status'] === 'Lunas' ? 'success' : 'danger' ?>">
-                    <h3 class="block-title fw-semibold text-white">
+                    <h3 class="block-title fw-medium text-white">
                         Periode <span class="fw-bold"><?= ubah_bulan($v['periode']) ?></span>
                     </h3>
                 </div>
@@ -146,6 +146,10 @@ Detail Pembayaran
                 </div>
                 <div class="block-content fs-sm">
                     <div class="form-floating mb-4">
+                        <input type="month" class="form-control" id="periode" name="periode" placeholder="">
+                        <label class="form-label" for="periode">Periode Tagihan</label>
+                    </div>
+                    <div class="form-floating mb-4">
                         <input type="date" class="form-control" id="tanggal" name="tanggal" placeholder="">
                         <label class="form-label" for="tanggal">Tanggal Bayar</label>
                     </div>
@@ -191,6 +195,7 @@ Detail Pembayaran
         
         $('.tombol-simpan-pembayaran').on('click', function () {
             let id_siswa = <?= $siswa->id_siswa ?>;
+            let periode = $('#periode').val();
             let tanggal = $('#tanggal').val();
             let nominal = $('#nominal').val();
             let catatan = $('#catatan').val();
@@ -201,6 +206,7 @@ Detail Pembayaran
                 data: {
                     <?= csrf_token() ?>: "<?= csrf_hash() ?>",
                     id_siswa: id_siswa,
+                    periode: periode,
                     tanggal: tanggal,
                     nominal: nominal,
                     catatan: catatan
@@ -225,8 +231,6 @@ Detail Pembayaran
                 }
             });
         });
-        
-        
         
         $('.tombol-hapus-pembayaran').on('click', function () {
             let id_pembayaran = $(this).data('id-pembayaran');

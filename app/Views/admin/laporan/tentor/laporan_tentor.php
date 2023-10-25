@@ -1,6 +1,6 @@
 <?= $this->extend('admin/_layout/master') ?>
 
-<?php helper(['ubah_tanggal','ubah_nomor_hp', 'ubah_jam', 'hitung_durasi']) ?>
+<?php helper(['ubah_tanggal','ubah_nomor_hp', 'ubah_jam', 'hitung_durasi', 'form']) ?>
 
 <?= $this->section('menu') ?>
 Laporan
@@ -11,6 +11,7 @@ Laporan Tentor
 <?= $this->endSection() ?>
 
 <?= $this->section('css') ?>
+<?= link_tag('src/assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') ?>
 <style>
     .timeline-modern::before {
         background-color: rgba(54, 179, 160, 0.4);
@@ -62,6 +63,31 @@ Laporan Tentor
             </div>
         </div>
     </div>
+    
+    <form action="<?= url_to('admin.laporan.detail_tentor') ?>" method="post">
+    <?= csrf_field() ?>
+    <?= form_hidden('id_tentor', $tentor->id_pengajar) ?>
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <div class="mb-4">
+                <div class="input-daterange input-group" data-date-format="yyyy-mm-dd" data-week-start="1" data-autoclose="true" data-today-highlight="true">
+                    <input type="text" class="form-control" id="mulai" name="mulai" placeholder="Tanggal Mulai" data-week-start="1" data-autoclose="true" data-today-highlight="true" value="<?= $mulai ?? '' ?>">
+                        <span class="input-group-text fw-semibold">
+                            <i class="fa fa-fw fa-arrow-right"></i>
+                        </span>
+                    <input type="text" class="form-control" id="selesai" name="selesai" placeholder="Tanggal Selesai" data-week-start="1" data-autoclose="true" data-today-highlight="true" value="<?= $selesai ?? '' ?>">
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-3">
+            <div class="mb-4">
+                <button type="submit" class="btn btn-alt-info btn-block">
+                    <i class="fa fa-fw fa-search me-2"></i> Cari
+                </button>
+            </div>
+        </div>
+    </div>
+    </form>
     
     <div class="row">
         <?php foreach($waktu as $k1=>$v1): ?>
@@ -127,5 +153,9 @@ Laporan Tentor
 
 <?= $this->section('js') ?>
 <?= script_tag('src/assets/js/lib/jquery.min.js') ?>
-<?= script_tag('src/assets/js/plugins/chart.js/chart.umd.js') ?>
+<?= script_tag('src/assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') ?>
+
+<script type="text/javascript">
+    Codebase.helpersOnLoad(['jq-datepicker']);
+</script>
 <?= $this->endSection() ?>

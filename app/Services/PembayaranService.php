@@ -70,7 +70,7 @@ class PembayaranService
                 $totalPembayaran = 0;
                 foreach ($bayar as $k2=>$v2) {
                     if ($v1->id_siswa == $v2->id_siswa) {
-                        $tanggalPembayaran = date_create($v2->tanggal);
+                        $tanggalPembayaran = date_create($v2->periode);
                         $tanggalBulanPembayaran = $tanggalPembayaran->format('Y-m');
                         
                         if ($bulan == $tanggalBulanPembayaran) {
@@ -148,7 +148,7 @@ class PembayaranService
             $detailPembayaran = [];
             foreach ($bayar as $k2=>$v2) {
                 if ($siswa->id_siswa == $v2->id_siswa) {
-                    $tanggalPembayaran = date_create($v2->tanggal);
+                    $tanggalPembayaran = date_create($v2->periode);
                     $tanggalBulanPembayaran = $tanggalPembayaran->format('Y-m');
                     
                     if ($bulan == $tanggalBulanPembayaran) {
@@ -210,11 +210,12 @@ class PembayaranService
             ->getResultArray();
     }
     
-    public function simpan_bayar(int $id_siswa, string $tanggal, string $nominal, string $catatan = null, int $id_pembayaran = null): void
+    public function simpan_bayar(int $id_siswa, string $periode, string $tanggal, string $nominal, string $catatan = null, int $id_pembayaran = null): void
     {
         $this->LivePembayaran->upsert([
             'id_pembayaran' => $id_pembayaran,
             'id_siswa' => $id_siswa,
+            'periode' => $periode,
             'tanggal' => $tanggal,
             'nominal' => $nominal,
             'catatan' => $catatan
